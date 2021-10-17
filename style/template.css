@@ -1,0 +1,165 @@
+#header{
+	min-height:100px;
+	background-color:#666699;
+}
+#menu{
+	min-height:40px;
+	background-color:#999999;
+}
+#body{
+	min-height:400px;
+	margin-top:3%;
+	background-color:#efefef;
+}
+#footer{
+	min-height:100px;
+	margin-top:3%;
+	background-color:#666699;
+}
+#header, #menu, #body, #footer{
+	margin-left:1%;
+	margin-right:1%;
+	
+	box-shadow: 3px 5px 7px #666666;
+	border: 1px solid black;
+}
+/*========================================================================================================= LOGIN CSS ========================================================================================================= */
+
+
+.login-box{
+	border-radius: 5%;
+	background:white;
+	min-width:500px;
+  width: 55%;
+	
+	height:450px;
+  color: white;
+  padding: 1%;
+
+  transition:.5s;
+-webkit-box-shadow: 0px 1px 21px 5px #000000; 
+box-shadow: 0px 1px 21px 5px #000000;
+}
+.first{
+
+	
+	
+}
+.firstimg{
+	float:left;
+	width:48%;
+
+	height:100%;
+	
+	
+	background-image: url("sign.jpg");
+	background-position: center; /* Center the image */
+	background-size: cover; /* Resize the background image to cover the entire container */
+	background-repeat: no-repeat;
+
+	
+
+	border-radius: 6%;
+
+	
+}
+
+.second{
+
+	margin-left:50%;
+	background-color:;
+}
+
+
+.login-box h1{
+  float: left;
+  font-size: 40px;
+  border-bottom: 6px solid #4caf50;
+  margin-bottom: 50px;
+  padding: 13px 0;
+  color:black;
+
+  font-weight:bold;
+}
+.textbox{
+  width: 100%;
+  overflow: hidden;
+  font-size: 20px;
+  padding: 8px 0;
+  margin: 8px 0;
+ 
+  border-bottom: 1px solid #4caf50;
+}
+.textbox i{
+  width: 26px;
+  float: left;
+  text-align: center;
+  color:black;
+}
+.textbox input{
+  border: none;
+  outline: none;
+  background: none;
+  color: black;
+  font-size: 18px;
+  width: 80%;
+  float: left;
+  margin: 0 10px;
+}
+
+.loginbtn{
+  width: 60%;
+  background: #f0ffff;
+  border: 2px solid #4caf50;
+  color: black;
+  padding: 5px;
+  font-size: 18px;
+  cursor: pointer;
+  margin: 12px 0;
+  transition:.3s;
+
+  border-radius: 224px 224px 224px 224px;
+
+  
+}
+.loginbtn:hover{
+	transition:.3s;
+	background:#ebd4d4;
+	color:#463333;
+	
+}
+.showpass{
+	margin-left: 80%;
+	
+	border:none;
+	
+}
+.showpass input{
+	margin-top:-20px;
+	border:none;
+}
+
+.textbox input[type=text]:focus {
+  background-color: 	#f0ffff;
+   border-bottom: none;
+}
+[type=Password]:focus{
+ background-color: 	#f0ffff;
+  border-bottom: none;
+}
+input[type=checkbox]
+{
+  /* Double-sized Checkboxes */
+  -ms-transform: scale(2); /* IE */
+  -moz-transform: scale(2); /* FF */
+  -webkit-transform: scale(2); /* Safari and Chrome */
+  -o-transform: scale(2); /* Opera */
+  transform: scale(2);
+  padding: 10px;
+  
+}
+
+::placeholder{
+	color:grey;
+	opacity: 0.8;
+}

@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url("https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css");
+html {
+   scroll-behavior: smooth;
+   font-family: 'Montserrat', sans-serif;
+}
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #F1F1F1;
+    font: 12pt "Tahoma";
+    font-family: 'Montserrat', sans-serif;
+
+}
+* {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+.page {
+    width: 21cm;
+    min-height: 29.7cm;
+    padding: 1cm;
+    margin: 1cm auto;
+    border: 1px #D3D3D3 solid;
+    border-radius: 5px;
+    background: white;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+.subpage {
+    padding: 1cm;
+    height: 256mm;
+    
+}
+
+@page {
+    size: A4;
+		 margin: 0;
+}
+@media print {
+    .page {
+        margin: 0;
+        border: initial;
+        border-radius: initial;
+        width: initial;
+        min-height: initial;
+        box-shadow: initial;
+        background: initial;
+        page-break-after: always;
+    }
+}
+.logo{
+  float: left;
+  overflow: hidden;
+  margin-left: -5%;
+  width: 40%;
+  height: 100%;
+}
+.header{
+     font-size: 20px;
+     font-weight: bold;
+}
+.appointment-status{
+    width: 100%;
+    background-color: #FFA43E;
+    text-align: center;
+    color: white;
+}
+.highlight{
+    font-size: 25px;
+    font-weight: bold;
+
+}
+
+ h1 {
+  display: flex;
+  flex-direction: row;
+}
+h1:before, h1:after{
+  content: "";
+  flex: 1 1;
+  border-bottom: 1px solid;
+  margin: auto;
+}
+h1:before {
+  margin-right: 10px
+}
+h1:after {
+  margin-left: 10px
+}
