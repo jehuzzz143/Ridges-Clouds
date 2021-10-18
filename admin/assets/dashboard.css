@@ -15,6 +15,23 @@ body{
 
 
 }
+.buttonNav{
+  width: 100px;  color:white;
+  transition:.2s;
+  cursor: pointer;
+  background-color: #333948;
+  border: none;
+  padding: 10px 5px;
+  border-radius: 5px;
+}
+.buttonNav:hover{
+  background:#2E94E3;
+
+}
+.weatherwidget-io{
+  border-radius: 5px;
+  width: 100%;
+}
 .btnn{
   position: fixed;
   top: 10px;
@@ -275,7 +292,7 @@ margin-bottom:10px;
                 0 16px 32px rgba(0,0,0,0.07), 
                 0 32px 64px rgba(0,0,0,0.07); 
                ;
-    border-top:10px solid #e09f5b;
+    border-top:10px solid #333948;
     border-radius:8px;
 
     width:28%;
@@ -295,7 +312,7 @@ margin-bottom:10px;
                 0 16px 32px rgba(0,0,0,0.07), 
                 0 32px 64px rgba(0,0,0,0.07); 
                 width:250px;
-    border-top:10px solid #e09f5b;
+    border-top:10px solid #333948;
     border-radius:8px;
     width:100%;
 
@@ -364,22 +381,11 @@ margin-bottom:10px;
   background:#2E94E3;
 
 }
-.buttonNav{
-  width: 100px;  color:white;
-  transition:.2s;
-  cursor: pointer;
-  background-color: #555555;
-  border: none;
-  padding: 10px 5px;
-}
-.buttonNav:hover{
-  background:#2E94E3;
 
-}
 /*############################################################################ clock */
 .datetime{
   color: #fff;
-  background: #e09f5b;
+  background: #333948;
   font-family: "Poppins", sans-serif;
   width: 100%;
   padding: 15px 10px;
@@ -478,7 +484,7 @@ transition:.5s;
             width: 100%;
             padding: 5px 10px;
             text-align: center;
-            background-color: #e09f5b;
+            background-color: #333948;
             color: #fff;
              border-radius: 8px 8px 0px 0px;
 
@@ -494,7 +500,7 @@ transition:.5s;
         }
 
         .weekdays {
-            background-color: #e09f5b ;
+            background-color: #333948 ;
             color: #fff;
             padding: 7px 5px;
             display: flex;

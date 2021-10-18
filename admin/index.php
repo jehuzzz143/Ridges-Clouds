@@ -488,9 +488,18 @@ if($total_visitors<1){
     </div>
 <div class="column is-full">
 
+   <a class="weatherwidget-io" href="https://forecast7.com/en/14d58121d33/tanay/" data-label_1="TANAY" data-label_2="WEATHER" data-theme="original" data-basecolor="#333948" >TANAY WEATHER</a>
+<script>
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+</script>
+
+</div>
+<div class="column is-full">
+
    <a href="../calendar" class="btn-explore button" target="_blank" style="">CALENDAR SCHEDULE</a>
 
 </div>
+
 <br><br>
 <div id="columnchart_material" style="width: 100%; height: 500px;margin-bottom: 70px;"></div>
     <div class="columns is-mobile" style="background-color:;">
