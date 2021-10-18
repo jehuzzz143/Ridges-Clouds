@@ -12,6 +12,11 @@
 <?php
 date_default_timezone_set('Asia/Manila');
 
+// $servername="sql205.unaux.com";
+// $username="unaux_29489773";
+// $password="4c75qbn4hjbc8";
+// $dbase="unaux_29489773_db_ntrcamp";
+
 $servername="localhost";
 $username="root";
 $password="";

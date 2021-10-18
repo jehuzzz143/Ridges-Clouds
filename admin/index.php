@@ -543,10 +543,10 @@ if($total_visitors<1){
 
                       <p><?php echo"".$row['description'];?>  </p>
                       <div class="column" style="text-align: center;">
-                        <form method="POST">
+                        <form action="index.php" method="POST">
 
                           <button type="submit" name="SaveReview" class="reviewBtn reviewBtnSave" ><i class="fa fa-upload" aria-hidden="true"></i></button>
-                          <input type="hidden" class="reviewID"  name="reviewID" id="reviewID">
+                          <input type="hidden" class="reviewID"  name="reviewID" id="reviewID" value="<?php echo"".$row['ID'];?>">
                           <button type="submit" name="disabledReview" class="reviewBtn reviewBtnDisabled" ><i class="fas fa-archive"></i></button>
                         </form>
                       </div>
@@ -869,8 +869,8 @@ if(isset($_POST['logout'])){
 <?php
 }else if(isset($_POST['SaveReview'])){
   $id = $_POST['reviewID'];
-  $sql = "UPDATE tbl_review SET status='enable' WHERE ID =$id";
-
+  $sql = "UPDATE tbl_review SET status='enable' WHERE ID ='$id'";
+ 
   if ($conn->query($sql) === TRUE) {
     $sql122 = "SELECT * FROM tbl_review WHERE ID = '$id'";
     $result122 = $conn->query($sql122);
@@ -902,10 +902,10 @@ if(isset($_POST['logout'])){
 
   }
 
-   echo("<meta http-equiv='refresh' content='1'>");
+    echo("<meta http-equiv='refresh' content='1'>");
 }else if(isset($_POST['disabledReview'])){
   $id = $_POST['reviewID'];
-  $sql = "UPDATE tbl_review SET status='disabled' WHERE ID =$id";
+  $sql = "UPDATE tbl_review SET status='disabled' WHERE ID = '$id'";
 
   if ($conn->query($sql) === TRUE) {
     $sql122 = "SELECT * FROM tbl_review WHERE ID = '$id'";
@@ -942,7 +942,7 @@ if(isset($_POST['logout'])){
     echo "Error updating record: " . $conn->error;
   }
 
-   echo("<meta http-equiv='refresh' content='1'>");
+    echo("<meta http-equiv='refresh' content='1'>");
 }
 
 

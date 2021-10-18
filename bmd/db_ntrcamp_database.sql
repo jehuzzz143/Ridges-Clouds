@@ -9,7 +9,7 @@ CREATE TABLE `events` (
   `color` varchar(191) DEFAULT NULL,
   `text_color` varchar(191) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=193 DEFAULT CHARSET=utf8mb4;
+) ENGINE=MyISAM AUTO_INCREMENT=200 DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO events VALUES("174","182","Bryan, Dollentas | Daytour | 1 | Pending","2021-08-07 07:08:00","2021-08-07 10:08:00","#000000","#FFFFFF");
 INSERT INTO events VALUES("175","176","Bryan, Dollentas | Overnight |  || C1 ","2021-08-04 14:00:00","2021-08-06 12:00:00","#000000","#FFFFFF");
@@ -30,6 +30,13 @@ INSERT INTO events VALUES("189","232","leica, balayanto | Daytour | 2 | Pending"
 INSERT INTO events VALUES("190","233","leica, balayanto | Daytour | 1 | Pending","2021-10-11 07:10:00","2021-10-11 10:10:00","#000000","#FFFFFF");
 INSERT INTO events VALUES("191","233","leica, balayanto | Daytour | 1 | Pending","2021-10-11 07:10:00","2021-10-11 10:10:00","#000000","#FFFFFF");
 INSERT INTO events VALUES("192","234","leica, balayanto | Overnight |  || C9 ","2021-10-11 14:00:00","2021-10-12 12:00:00","#3498DB","#FDFEFE");
+INSERT INTO events VALUES("193","235","leica, balayanto | Daytour | 1 | Pending","2021-10-14 07:10:00","2021-10-14 10:10:00","#FF5733","white");
+INSERT INTO events VALUES("194","235","leica, balayanto | Daytour | 1 | Pending","2021-10-14 07:10:00","2021-10-14 10:10:00","#FF5733","white");
+INSERT INTO events VALUES("195","235","leica, balayanto | Daytour | 1 | Pending","2021-10-14 07:10:00","2021-10-14 10:10:00","#FF5733","white");
+INSERT INTO events VALUES("196","235","leica, balayanto | Daytour | 1 | Pending","2021-10-14 07:10:00","2021-10-14 10:10:00","#FF5733","white");
+INSERT INTO events VALUES("197","236","jehu, ombrog | Daytour | 1 | Pending","2021-10-11 07:10:00","2021-10-11 10:10:00","#FF5733","white");
+INSERT INTO events VALUES("198","237","jehu, ombrog | Daytour | 1 | Pending","2021-10-11 10:10:00","2021-10-11 13:10:00","#FF5733","white");
+INSERT INTO events VALUES("199","238","leica, balayanto | Overnight |  || C2 ","2021-10-11 14:00:00","2021-10-12 12:00:00","#3498DB","#FDFEFE");
 
 
 
@@ -61,7 +68,7 @@ CREATE TABLE `tbl_announcement` (
 INSERT INTO tbl_announcement VALUES("11","close","zxczcxz","2021-10-06 14:49:00","2021-12-06 14:49:00","inactive");
 INSERT INTO tbl_announcement VALUES("12","!! Updates on RaC operations while on MECQ up to 15October 2021!!   ","Due to inconsistent checkpoint requirements during MECQ, we accept WALK-IN guests who are able to pass thru checkpoints. Guests with APOR IDs or who are Rizal residents are usually allowed. Checkpoint operations are usually  from 7am-3pm along Marilaque Highway, just 5 mins before Ridges and Clouds.
 ","2021-10-09 18:23:00","2021-12-25 18:23:00","active");
-INSERT INTO tbl_announcement VALUES("9","Medical Certification is requiredd","We are happy to announce that we are now allowed to re-open under MGCQ by virtue of the Certificate to Operate granted by the Department of Tourism to our establishment.","2021-09-16 19:04:00","2021-12-28 19:04:00","inactive");
+INSERT INTO tbl_announcement VALUES("9","Medical Certification is requiredd","We are happy to announce that we are now allowed to re-open under MGCQ by virtue of the Certificate to Operate granted by the Department of Tourism to our establishment.","2021-09-16 19:04:00","2021-12-28 19:04:00","active");
 INSERT INTO tbl_announcement VALUES("10","The camp is closed due to maintenance","The camp willnow having a dining area where we need to close the camp for a month for better service in the future","2021-09-17 19:07:00","2021-12-27 19:07:00","deleted");
 INSERT INTO tbl_announcement VALUES("13","SAFETY AND HEALTH PROTOCOLS","• Only 18-65 years old are allowed <BR>
 • Pregnant women and persons with comorbities not allowed<BR>
@@ -79,7 +86,7 @@ CREATE TABLE `tbl_audit` (
   `Name` varchar(100) NOT NULL,
   `type` varchar(50) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=203 DEFAULT CHARSET=utf8mb4;
+) ENGINE=MyISAM AUTO_INCREMENT=249 DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO tbl_audit VALUES("135","CSTMR22","update review ID: 4 status to disabled","2021-10-06","Cyril, Samonte","");
 INSERT INTO tbl_audit VALUES("134","CSTMR22","Posted review of '","2021-10-06","Cyril, Samonte","");
@@ -208,6 +215,52 @@ INSERT INTO tbl_audit VALUES("199","CSTMR10","Confirm Daytour Booking ID: 233 ",
 INSERT INTO tbl_audit VALUES("200","CSTMR10","Finish Booking ID:  transaction","2021-10-10","pol, garcia","booking");
 INSERT INTO tbl_audit VALUES("201","CSTMR10","Confirm Overnight Booking ID: 234 ","2021-10-10","pol, garcia","booking");
 INSERT INTO tbl_audit VALUES("202","CSTMR10","Generate sales report from: 2021-09-01 to 2021-11-31","2021-10-10","pol, garcia","System");
+INSERT INTO tbl_audit VALUES("203","CSTMR10","Export Database Copy","2021-10-10","pol, garcia","System");
+INSERT INTO tbl_audit VALUES("204","CSTMR10","add new aminities named as =tent  ","2021-10-10","pol, garcia","Information");
+INSERT INTO tbl_audit VALUES("205","CSTMR10","Confirm Daytour Booking ID: 237 ","2021-10-10","pol, garcia","booking");
+INSERT INTO tbl_audit VALUES("206","CSTMR10","Delete photo id: 15","2021-10-11","pol, garcia","Information");
+INSERT INTO tbl_audit VALUES("207","CSTMR10","Delete photo id: 17","2021-10-11","pol, garcia","Information");
+INSERT INTO tbl_audit VALUES("208","CSTMR10","Delete photo id: 18","2021-10-11","pol, garcia","Information");
+INSERT INTO tbl_audit VALUES("209","CSTMR10","Delete photo id: 19","2021-10-11","pol, garcia","Information");
+INSERT INTO tbl_audit VALUES("210","CSTMR10","Delete photo id: 20","2021-10-11","pol, garcia","Information");
+INSERT INTO tbl_audit VALUES("211","CSTMR10","Delete photo id: 23","2021-10-11","pol, garcia","Information");
+INSERT INTO tbl_audit VALUES("212","CSTMR10","Added new photo in gallery","2021-10-11","pol, garcia","Information");
+INSERT INTO tbl_audit VALUES("213","CSTMR10","Added new photo in gallery","2021-10-11","pol, garcia","Information");
+INSERT INTO tbl_audit VALUES("214","CSTMR10","Added new photo in gallery","2021-10-11","pol, garcia","Information");
+INSERT INTO tbl_audit VALUES("215","CSTMR10","Delete photo id: 21","2021-10-11","pol, garcia","Information");
+INSERT INTO tbl_audit VALUES("216","CSTMR10","Added new photo in gallery","2021-10-11","pol, garcia","Information");
+INSERT INTO tbl_audit VALUES("217","CSTMR10","Added new photo in gallery","2021-10-11","pol, garcia","Information");
+INSERT INTO tbl_audit VALUES("218","CSTMR10","Delete photo id: 30","2021-10-11","pol, garcia","Information");
+INSERT INTO tbl_audit VALUES("219","CSTMR10","Delete photo id: 29","2021-10-11","pol, garcia","Information");
+INSERT INTO tbl_audit VALUES("220","CSTMR10","Added new photo in gallery","2021-10-11","pol, garcia","Information");
+INSERT INTO tbl_audit VALUES("221","CSTMR10","Delete photo id: 27","2021-10-11","pol, garcia","Information");
+INSERT INTO tbl_audit VALUES("222","CSTMR10","Recover Announcement ID: 9","2021-10-11","pol, garcia","Information");
+INSERT INTO tbl_audit VALUES("223","CSTMR10","Delete photo id: 13","2021-10-11","pol, garcia","Information");
+INSERT INTO tbl_audit VALUES("224","CSTMR10","Update photo id: ","2021-10-12","pol, garcia","Information");
+INSERT INTO tbl_audit VALUES("225","CSTMR10","Update photo id: ","2021-10-12","pol, garcia","Information");
+INSERT INTO tbl_audit VALUES("226","CSTMR10","Update photo id: ","2021-10-12","pol, garcia","Information");
+INSERT INTO tbl_audit VALUES("227","CSTMR10","Update photo id: ","2021-10-12","pol, garcia","Information");
+INSERT INTO tbl_audit VALUES("228","CSTMR10","Update photo id: ","2021-10-12","pol, garcia","Information");
+INSERT INTO tbl_audit VALUES("229","CSTMR10","Update photo id: ","2021-10-12","pol, garcia","Information");
+INSERT INTO tbl_audit VALUES("230","CSTMR10","Update  Standard Couple Cabana    accomodation Details","2021-10-12","pol, garcia","Information");
+INSERT INTO tbl_audit VALUES("231","CSTMR10","Update  Standard Couple Cabana     accomodation Details","2021-10-12","pol, garcia","Information");
+INSERT INTO tbl_audit VALUES("232","CSTMR10","Update  Standard Couple Cabana  accomodation Details","2021-10-12","pol, garcia","Information");
+INSERT INTO tbl_audit VALUES("233","CSTMR10","Update  Standard Couple Cabana  accomodation Details","2021-10-12","pol, garcia","Information");
+INSERT INTO tbl_audit VALUES("234","CSTMR10","Update  Standard Couple Cabana      accomodation Details","2021-10-12","pol, garcia","Information");
+INSERT INTO tbl_audit VALUES("235","CSTMR10","Update  Standard Couple Cabana   accomodation Details","2021-10-12","pol, garcia","Information");
+INSERT INTO tbl_audit VALUES("236","CSTMR10","Update  Standard Couple Cabana   accomodation Details","2021-10-12","pol, garcia","Information");
+INSERT INTO tbl_audit VALUES("237","CSTMR10","Update  Standard Couple Cabana  accomodation Details","2021-10-12","pol, garcia","Information");
+INSERT INTO tbl_audit VALUES("238","CSTMR10","Update  Standard Couple Cabana   accomodation Details","2021-10-12","pol, garcia","Information");
+INSERT INTO tbl_audit VALUES("239","CSTMR10","Update  De Luxe Couple Cabana  accomodation Details","2021-10-12","pol, garcia","Information");
+INSERT INTO tbl_audit VALUES("240","CSTMR10","Update  De Luxe Couple Cabana  accomodation Details","2021-10-12","pol, garcia","Information");
+INSERT INTO tbl_audit VALUES("241","CSTMR10","Update  De Luxe Couple Cabana  accomodation Details","2021-10-12","pol, garcia","Information");
+INSERT INTO tbl_audit VALUES("242","CSTMR10","Update  De Luxe Couple Cabana  accomodation Details","2021-10-12","pol, garcia","Information");
+INSERT INTO tbl_audit VALUES("243","CSTMR10","Update  Twin Ifugao House   accomodation Details","2021-10-12","pol, garcia","Information");
+INSERT INTO tbl_audit VALUES("244","CSTMR10","Remove costumer review of Bryan Dollentas - status to disabled","2021-10-13","pol, garcia","");
+INSERT INTO tbl_audit VALUES("245","CSTMR10","Posted review of costumer named Bryan Dollentas - status to enable","2021-10-18","pol, garcia","");
+INSERT INTO tbl_audit VALUES("246","CSTMR10","Remove costumer review of Bryan Dollentas - status to disabled","2021-10-18","pol, garcia","");
+INSERT INTO tbl_audit VALUES("247","CSTMR10","Posted review of costumer named Bryan Dollentas - status to enable","2021-10-18","pol, garcia","");
+INSERT INTO tbl_audit VALUES("248","CSTMR10","Update promo code : RNC10","2021-10-18","pol, garcia","Information");
 
 
 
@@ -234,7 +287,7 @@ CREATE TABLE `tbl_booking` (
   `paymentPhoto` varchar(500) NOT NULL,
   `promo_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=235 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=241 DEFAULT CHARSET=latin1;
 
 INSERT INTO tbl_booking VALUES("176","CSTMR11","0","Bryan Dollentas","Overnight","2021-08-04"," || C1 ","","","","2021-08-04 14:00:00","2021-08-06 12:00:00","","3500","3500","0","Completed","","0","1.jpg","");
 INSERT INTO tbl_booking VALUES("179","CSTMR11","0","Bryan Dollentas","Overnight","2021-08-06"," || C1 ","","","","2021-08-06 14:00:00","2021-08-08 12:00:00","","3500","0","3500","Declined","","0","122222222.jpg","");
@@ -276,6 +329,12 @@ INSERT INTO tbl_booking VALUES("223","CSTMR25","2","jehu ombrog","Daytour","2021
 INSERT INTO tbl_booking VALUES("224","CSTMR11","2","Bryan Dollentas","Daytour","2021-10-06","","","","","2021-10-06 10:10:00","2021-10-06 13:10:00","10:00 am to 13:00 pm","320","320","0","Completed","","1","postal back.jpg","12");
 INSERT INTO tbl_booking VALUES("233","CSTMR26","1","leica balayanto","Daytour","2021-10-11","","","","","2021-10-11 07:10:00","2021-10-11 10:10:00","07:00 am to 10:00 am","200","200","0","Completed","","0","","");
 INSERT INTO tbl_booking VALUES("234","CSTMR26","0","leica balayanto","Overnight","2021-10-11"," || C9 ","","","","2021-10-11 14:00:00","2021-10-12 12:00:00","","8000","4000","4000","Confirmed","","0","postal back.jpg","");
+INSERT INTO tbl_booking VALUES("235","CSTMR26","1","leica balayanto","Daytour","2021-10-14","","","","","2021-10-14 07:10:00","2021-10-14 10:10:00","07:00 am to 10:00 am","200","400","100","Confirmed","","0","","");
+INSERT INTO tbl_booking VALUES("236","CSTMR25","1","jehu ombrog","Daytour","2021-10-11","","","","","2021-10-11 07:10:00","2021-10-11 10:10:00","07:00 am to 10:00 am","200","100","100","Confirmed","","0","","");
+INSERT INTO tbl_booking VALUES("237","CSTMR25","1","jehu ombrog","Daytour","2021-10-11","","","","","2021-10-11 10:10:00","2021-10-11 13:10:00","10:00 am to 13:00 pm","200","100","100","Confirmed","","0","","");
+INSERT INTO tbl_booking VALUES("238","CSTMR26","0","leica balayanto","Overnight","2021-10-11"," || C2 ","","","","2021-10-11 14:00:00","2021-10-12 12:00:00","","2510","1500","1010","Confirmed","","0","","");
+INSERT INTO tbl_booking VALUES("239","CSTMR25","0","jehu ombrog","Overnight","2021-10-22"," || C2 "," ||  Veranda ","3am to 4pm"," || Sunrise Breakfast","2021-10-22 14:00:00","2021-10-23 12:00:00","","3010","0","3010","Pending","","0","postal back.jpg","");
+INSERT INTO tbl_booking VALUES("240","CSTMR25","1","jehu ombrog","Daytour","2021-10-15","","","","","2021-10-15 07:10:00","2021-10-15 10:10:00","07:00 am to 10:00 am","200","0","200","Pending","","0","flex_play.png","");
 
 
 
@@ -283,9 +342,9 @@ CREATE TABLE `tbl_photo` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `photoname` varchar(500) NOT NULL,
   `category` int(11) NOT NULL,
-  `description` varchar(500) NOT NULL,
+  `description` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4;
+) ENGINE=MyISAM AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO tbl_photo VALUES("2","Gall (1).jpg","1","");
 INSERT INTO tbl_photo VALUES("3","Gall (2).jpg","1","");
@@ -296,16 +355,11 @@ INSERT INTO tbl_photo VALUES("7","Gall (6).jpg","1","");
 INSERT INTO tbl_photo VALUES("8","Gall (7).jpg","1","");
 INSERT INTO tbl_photo VALUES("9","Gall (8).jpg","1","");
 INSERT INTO tbl_photo VALUES("10","Gall (9).jpg","1","");
-INSERT INTO tbl_photo VALUES("11","Gall (10).jpg","1","");
-INSERT INTO tbl_photo VALUES("12","Gall (11).jpg","1","");
-INSERT INTO tbl_photo VALUES("13","Gall (12).jpg","1","");
-INSERT INTO tbl_photo VALUES("15","1.jpg","2","");
-INSERT INTO tbl_photo VALUES("17","2.jpg","2","twoooooooooooooooo");
-INSERT INTO tbl_photo VALUES("18","3.jpg","2","33333333333333333333333");
-INSERT INTO tbl_photo VALUES("19","4.jpg","2","444444444444444444444444");
-INSERT INTO tbl_photo VALUES("20","5.jpg","2","55555555555555555555555555555555555");
-INSERT INTO tbl_photo VALUES("21","Gall (1).jpg","2","bryaaaaannnn");
-INSERT INTO tbl_photo VALUES("23","589853e0bd10f467f923929dda39deae.jpg","2","asdsadsadsa");
+INSERT INTO tbl_photo VALUES("11","Gall (10).jpg","1","dsdsds");
+INSERT INTO tbl_photo VALUES("12","Gall (11).jpg","1","juls");
+INSERT INTO tbl_photo VALUES("26","144471192_444489167002130_7562133926244138582_n.jpg","2","  Surprise your husband (or wife) with a camping date experience! Make up your bed with crisp, brownies and coffee to make your dating experience more memorable.");
+INSERT INTO tbl_photo VALUES("28","125306896_390425969075117_657423807408911188_n.jpg","2","Grabbing the perfect photo of a rainbow can be few and far between, But with Ridges and Clouds will help you to see one often. All you have to do is grab your camera and get a photo before it fades away. ");
+INSERT INTO tbl_photo VALUES("31","186540329_510378623746517_8380644808479828123_n.jpg","2","With us, we will help you experience the simple standard life with our cabana houses. you will surely enjoy the beauty of nature without signal and wifi.");
 
 
 
@@ -323,15 +377,15 @@ CREATE TABLE `tbl_price` (
   `imagename` varchar(500) NOT NULL,
   `quantity` int(11) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=43 DEFAULT CHARSET=utf8mb4;
+) ENGINE=MyISAM AUTO_INCREMENT=44 DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO tbl_price VALUES("1","room","Standard Couple Cabana  ","Small","","2","3500","","","Free breakfast for two","c1.png","0");
-INSERT INTO tbl_price VALUES("2","room","Standard Couple Cabana","Large","","2","3000","","","Free breakfast for two","c3.png","0");
-INSERT INTO tbl_price VALUES("3","room","De Luxe Couple Cabana","Small","","2","4000","","","Free breakfast for two","c5.png","0");
-INSERT INTO tbl_price VALUES("4","room","De Luxe Couple Cabana","Large","","2","5000","","","Free breakfast for two","c7.png","0");
+INSERT INTO tbl_price VALUES("1","room","Standard Couple Cabana     ","Small","","2","3500","","","Free breakfast for two","C1.jpg","0");
+INSERT INTO tbl_price VALUES("2","room","Standard Couple Cabana  ","Large","","2","3000","","","Free breakfast for two","C3.jpg","0");
+INSERT INTO tbl_price VALUES("3","room","De Luxe Couple Cabana ","Small","","2","4000","","","Free breakfast for two","C5.jpg","0");
+INSERT INTO tbl_price VALUES("4","room","De Luxe Couple Cabana ","Large","","2","5000","","","Free breakfast for two","C7.jpg","0");
 INSERT INTO tbl_price VALUES("5","room","De Luxe Couple Cabana","","","Each","500","","","","","0");
-INSERT INTO tbl_price VALUES("6","room","Twin Ifugao House ","Large","","6","8000","","","With two rooms, living room, dining
-room, own CR, and outdoor kitchen","c9.png","0");
+INSERT INTO tbl_price VALUES("6","room","Twin Ifugao House  ","Large","","6","8000","","","With two rooms, living room, dining
+room, own CR, and outdoor kitchen","C9.jpg","0");
 INSERT INTO tbl_price VALUES("7","room","Twin Ifugao House ","","","Each","510","","","Max of 10 excess pax","","0");
 INSERT INTO tbl_price VALUES("8","date","Sunrise Breakfast","","6AM - 7AM","2","","1000","500","Choice of silog meal with brewed coffee (upgrade from breakfast for 2pax)","","0");
 INSERT INTO tbl_price VALUES("9","date","Coffee Date","","1 hour only between 3pm-5pm","2","","700","400","Brewed Coffee and sandwiches/cookies","","0");
@@ -340,10 +394,11 @@ INSERT INTO tbl_price VALUES("11","other","Kawa Bath","","","","","","","500/Pax
 INSERT INTO tbl_price VALUES("12","other","Mini Pool","","","","","","","TBC due to COVID19","","0");
 INSERT INTO tbl_price VALUES("13","other","Massage","","","","","","","TBC due to COVID19","","0");
 INSERT INTO tbl_price VALUES("14","other","Bonfire","","","","","","","300 (until 9PM only)","","0");
-INSERT INTO tbl_price VALUES("34","room","Standard Couple Cabana","Small","","2","2510","","","Free breakfast for two","c2.png","0");
-INSERT INTO tbl_price VALUES("35","room","Standard Couple Cabana","Large","","2","3000","","","Free Break fast for two","c4.png","0");
-INSERT INTO tbl_price VALUES("36","room","De Luxe Couple Cabana","Small","","2","4000","","","Free Break Fast for Two","c6.png","0");
-INSERT INTO tbl_price VALUES("37","room","De Luxe Couple Cabana","Large","","2","5000","","","Free Breakfast for Two","c8.png","0");
+INSERT INTO tbl_price VALUES("34","room","Standard Couple Cabana  ","Small","","2","2510","","","Free breakfast for two","C2.jpg","0");
+INSERT INTO tbl_price VALUES("35","room","Standard Couple Cabana  ","Large","","2","3000","","","Free Break fast for two","C4.jpg","0");
+INSERT INTO tbl_price VALUES("36","room","De Luxe Couple Cabana ","Small","","2","4000","","","Free Break Fast for Two","C6.jpg","0");
+INSERT INTO tbl_price VALUES("37","room","De Luxe Couple Cabana ","Large","","2","5000","","","Free Breakfast for Two","C8.jpg","0");
+INSERT INTO tbl_price VALUES("43","other","tent ","","","","","","","mag tayo bahay bahayan","","0");
 
 
 
@@ -360,17 +415,17 @@ CREATE TABLE `tbl_promo` (
   PRIMARY KEY (`promo_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO tbl_promo VALUES("0","ZZZZ","couple promo ","20","%","2021-10-21","99","disable","");
+INSERT INTO tbl_promo VALUES("0","ZZZZ","couple promo ","20","%","2021-10-21","99","inactive","");
 INSERT INTO tbl_promo VALUES("7","QWERTY","Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.  ","500","off","2021-09-21","99","inactive","");
 INSERT INTO tbl_promo VALUES("8","BRYANAD","zzzzzzzzzz zzzzzzzz zzzzzzzzzzzzzz zzzzzzzzzzzzzzzz zzzzzzz ","20","% OFF","2021-09-30","99","inactive","Daytour");
 INSERT INTO tbl_promo VALUES("9","ZASDWEWQ","zasdsadsadwqewqasd asdasdqwe asd zxc asd qweasd zxcas qwe asdczxc sad qwe zxcz xcz  ","200","OFF","2021-09-19","99","inactive","");
 INSERT INTO tbl_promo VALUES("10","MCDO50","zxczxc adas qwe  asd zczcasd qwe asd zxcas ewr xcvxcvsfdfg frt erdfg fdbcvb dfg retr bv ","500","% OFF","2021-09-26","99","inactive","Overnight");
 INSERT INTO tbl_promo VALUES("11","DAY50","bawal ang bata ","100","OFF","2021-10-10","99","inactive","Daytour");
-INSERT INTO tbl_promo VALUES("12","RNC10","family promo ","20","% OFF","2021-11-06","99","active","Daytour");
+INSERT INTO tbl_promo VALUES("12","RNC10","family promo ","20","% OFF","2021-11-06","55","active","Daytour");
 INSERT INTO tbl_promo VALUES("13","RNC1","Barkada promo ","50","% OFF","2021-11-30","99","active","Daytour");
 INSERT INTO tbl_promo VALUES("14","QWERT","gamer coupon ","20","OFF","2021-11-06","99","active","Both");
-INSERT INTO tbl_promo VALUES("15","DSDS","qewqeq ","20","OFF","2021-11-30","99","disable","Overnight");
-INSERT INTO tbl_promo VALUES("16","PRM30","happy independence day ","30","% OFF","2021-11-03","99","disable","Overnight");
+INSERT INTO tbl_promo VALUES("15","DSDS","qewqeq ","20","OFF","2021-11-30","99","inactive","Overnight");
+INSERT INTO tbl_promo VALUES("16","PRM30","happy independence day ","30","% OFF","2021-11-03","99","inactive","Overnight");
 INSERT INTO tbl_promo VALUES("17","PRM30","new year promo ","30","% OFF","2021-11-05","99","active","Overnight");
 INSERT INTO tbl_promo VALUES("18","PWD","PWD ","20","% OFF","2022-05-29","99","active","Both");
 

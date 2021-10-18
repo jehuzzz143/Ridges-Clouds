@@ -56,20 +56,19 @@
 <!-- ############################################################################################## side menu -->
   <?php
 
-  $today = date("y-m-d");
-  $date_today = strtotime($today);
-  // UPDATE PROMOTE WHEN MEET EXPIRATION DATE
-  $sql = "SELECT * FROM tbl_promo WHERE promo_status = 'active'";
-  $result = $conn->query($sql);
-  if ($result->num_rows > 0) {
-    while($row = $result->fetch_assoc()) {
-      if($row['promo_expiration'] < $date_today){
-        $sql = "UPDATE tbl_promo SET promo_status='Inactive'";
-        if ($conn->query($sql) === TRUE) { 
-        } 
-      }
-    }
+$sql = "SELECT * FROM tbl_promo WHERE promo_expiration <= NOW()";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+  // output data of each row
+  while($row = $result->fetch_assoc()) {
+    $sql = "UPDATE tbl_promo SET promo_status='inactive' WHERE  promo_id=".$row['promo_id'];
+
+    $conn->query($sql);
+
+
   }
+} 
   ?>
 
 
@@ -794,7 +793,7 @@ if ($conn->query($sql) === TRUE) {
   $promo_id = $_POST['promo_id'];
   $promo_code               =$_POST['promo_code'];
 
-  $sql = "UPDATE tbl_promo SET promo_status='disable' WHERE promo_id = '$promo_id'";
+  $sql = "UPDATE tbl_promo SET promo_status='inactive' WHERE promo_id = '$promo_id'";
 
   if ($conn->query($sql) === TRUE) {
     $sql1 = "INSERT INTO tbl_audit (UserID, Description, Date_edit, Name, type)

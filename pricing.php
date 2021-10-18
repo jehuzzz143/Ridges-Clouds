@@ -35,6 +35,7 @@ if($total_visitors<1){
 }
 ?>
 <?php 
+error_reporting(0);
      // Initialize the session
    session_start();
      //Check if the user is logged in, if not then redirect him to login page
