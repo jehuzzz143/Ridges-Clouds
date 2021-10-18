@@ -224,7 +224,7 @@ window.onclick = function(event) {
       </div>
     <div class="column is-full">
 
-        <button class="button-to-anchor1">
+        <button class="button-to-anchor1" type="submit" name="room">
         <a href="roompicker.php" >
 
          <i class="fas fa-arrow-left"></i> Change Rooms 
@@ -394,5 +394,9 @@ exit();
 
  <script type="text/javascript">location.href = '../user.php';</script>
 <?php
+}else if(isset($_POST['room'])){
+   ?>
+  <script type="text/javascript">location.href = 'roompicker.php';</script>
+  <?php
 }
 ?>

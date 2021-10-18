@@ -280,7 +280,7 @@ window.onclick = function(event) {
                           </div>                            
 
                           <?php
-                      
+                   
                           
                         }else if($rows4 >=6 AND $row['accomodation']=='Coffee Date'){
                           ?>
@@ -375,6 +375,7 @@ window.onclick = function(event) {
                     
                       <?php
                         if($rows1>= 1 AND $row['accomodation']=='Sunrise Breakfast'){
+
                           ?>
                           <div class="column is-5 noclick">
                             <label class="checkbox-container">
@@ -396,6 +397,7 @@ window.onclick = function(event) {
                           </div>
 
                           <?php
+
                            $rows2=0;
                         }else if($rows3 >= 2 AND $row['accomodation']=='Coffee Date'){
                           ?>
@@ -516,14 +518,14 @@ window.onclick = function(event) {
 
 
   		<div class="column is-full">
-          <button class="button-to-anchor1">
+          <button class="button-to-anchor1" name="back" type="submit"> 
   			<a href="additional.php" >
           <i class="fas fa-arrow-left"></i> Back
         </a>
 
       </button>
 
-  	   	<button class="button-to-anchor" name="next" type="submit"> Finish <i class="fas fa-arrow-right"></i></button>
+  	   	<button class="button-to-anchor" name="next" type="submit"> Proceed <i class="fas fa-arrow-right"></i></button>
   		</div>
 
   </div>
@@ -649,22 +651,7 @@ exit();
 
     $name = $selected;
 
-
-
-    
-
-     // $lastChar = substr(str_replace(' ', '', $name), -1);
-     // $int = (int)$lastChar;
-     // if($int % 2 == 0){
-     //  $one = (int)$lastChar;
-     //  $one = $one - 1;
-     //  $foo = (string)$one;
-     //  $lastChar = $foo;
-     //   $price = $_POST['price'.$lastChar+1];
-     // $accomodationName .= " || ".$_POST['name'.$lastChar];
-     // // echo '<script type="text/javascript">alert("'.$accomodationName.$lastChar. '")</script>';
-     // $tabletotal += $price;
-     // $_SESSION['place'] .= " || View Deck ";
+    //echo '<script type="text/javascript">alert("'.$name.'")</script>';
 
 
        $lastChar = substr(str_replace(' ', '', $name), -1);
@@ -675,9 +662,16 @@ exit();
       $foo = (string)$one;
       $lastChar = (int)$foo + 1;
       $post_var = 'price'.$lastChar;
-      $price = $_POST['price'.$lastChar];
-     $accomodationName .= " || ".$_POST['name'.$lastChar];
-     // echo '<script type="text/javascript">alert("'.$accomodationName.$lastChar. '")</script>';
+      $price = $_POST['price'.$lastChar]; 
+      if($lastChar == 2){
+        $accomodationName1 = 'Sunrise Breakfast';
+      }else if($lastChar == 4){
+        $accomodationName1 = 'Coffee Date';
+      }else{
+        $accomodationName1 = 'Romantic Dinner';
+      }
+     $accomodationName .= " || ".$accomodationName1;
+      //echo '<script type="text/javascript">alert("'.$accomodationName.$lastChar. '")</script>';
      $tabletotal += $price;
      $_SESSION['place'] .= " || View Deck ";
      
@@ -719,5 +713,9 @@ exit();
 
  <script type="text/javascript">location.href = '../user.php';</script>
 <?php
+}else if(isset($_POST['back'])){
+   ?>
+  <script type="text/javascript">location.href = 'additional.php';</script>
+  <?php
 }
 ?>

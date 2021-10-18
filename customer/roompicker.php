@@ -265,7 +265,7 @@ window.onclick = function(event) {
     <div class="columns is-full" style="padding:10px;">
       <div class="column">
 
-      <button class="button-to-anchor1">
+      <button class="button-to-anchor1" type="submit" name="change">
         <a href="datepicker.php" >
          <i class="fas fa-arrow-left"></i> Change Date 
       </a>
@@ -449,6 +449,10 @@ exit();
 
  <script type="text/javascript">location.href = '../user.php';</script>
 <?php
+}else if(isset($_POST['change'])){
+   ?>
+  <script type="text/javascript">location.href = 'datepicker.php';</script>
+  <?php
 }
 
 

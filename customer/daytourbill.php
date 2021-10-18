@@ -583,6 +583,19 @@ if ($result->num_rows > 0) {
 
 
 }else if(isset($_POST['remove_coupon'])){
+  $coupon = $_SESSION['promo_id'];
+
+  $sql = "SELECT * FROM tbl_promo WHERE promo_id = '$id'";
+  $result = $conn->query($sql);
+  if ($result->num_rows > 0) {
+  // output data of each row
+  while($row = $result->fetch_assoc()) {
+     $count = $row['promo_count'] +1;
+      $sql = "UPDATE tbl_promo SET promo_count= $count";
+      $conn->query($sql);
+    }
+  }
+
   $_SESSION['couponactive']= false;
   $_SESSION['promo_id'] = "";
   $_SESSION['daytourprice'] = $_SESSION['booking_price'];
@@ -591,6 +604,8 @@ if ($result->num_rows > 0) {
    Swal.fire('Coupon Remove'); 
   </script>
   <?php
+
+ 
   
   echo("<meta http-equiv='refresh' content='2'>");
 }

@@ -211,7 +211,7 @@ window.onclick = function(event) {
       </div>
 
       <div class="column is-full">   
-        <button class="button-to-anchor">
+        <button class="button-to-anchor" type="submit" name="category">
           <a href="category.php" >
             <i class="fas fa-arrow-left"></i> Category
           </a> 
@@ -219,7 +219,7 @@ window.onclick = function(event) {
          <?php 
           if($_SESSION['check']!= 0 ){
             ?>
-              <button class="button-to-anchor1">  
+              <button class="button-to-anchor1" type="submit" name="rooms">  
                 <a href="roompicker.php"> Rooms <i class="fas fa-arrow-right"></i></a>
               </button>
             <?php
@@ -444,5 +444,17 @@ exit();
 
  <script type="text/javascript">location.href = '../user.php';</script>
 <?php
+}else if(isset($_POST['rooms'])){
+   ?>
+  <script type="text/javascript">location.href = 'roompicker.php';</script>
+  <?php
 }
+else if(isset($_POST['category'])){
+   ?>
+  <script type="text/javascript">location.href = 'category.php';</script>
+  <?php
+}
+
+
+
 ?>
