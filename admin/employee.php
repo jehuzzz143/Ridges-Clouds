@@ -72,7 +72,7 @@
           <ul class="feat-showw">
             <li><a href="pending.php">Pending Bookings</a></li>
             <li><a href="allbooking.php">All booking</a></li>
-            <li><a href="../calendar"  target="_blank" style=""> Schedule</a></li>
+            <li><a href="../calendar" rel="noopener noreferrer"  target="_blank" style=""> Schedule</a></li>
           </ul>
         </li>
         <?php if($usertype ==3){

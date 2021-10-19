@@ -290,23 +290,10 @@ window.onclick = function(event) {
 <!-- END OF FOOTER -->
 
 
-<!-- The Modal -->
-<div id="myModal" class="modal fade-in">
+<?php
+  include  'scrollup.php';
 
-  <!-- Modal content -->
-  <div class="modal-content">
-  	<h1>Step by Step Booking <span class="close">&times;</span></h1>
-    <hr>
-    <p><b>Step 1: </b> Create an Account</p>
-    <p><b>Step 2: </b> Login the Account</p>
-    <p><b style=" text-decoration:underline; color:red;">Step 3:</b>  Choose Date</p>
-    <p><b>Step 4: </b> Submit the Booking Request</p>
-    <p><b>Step 5: </b> Pay 50% of Booking Cost</p>
-    <p><b>Step 6: </b> Wait for the SMS Confirmation of Booking</p>
-    <p><b>Step 7: </b> After Receving a text, Print the Booking Receipt Under Account Profile and present it to the camp</p>
-  </div>
-
-</div>
+?>
 
 
 

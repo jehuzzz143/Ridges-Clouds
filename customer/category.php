@@ -36,7 +36,7 @@
 <html>
 <head>
 	<title> booking</title>
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
+
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -44,6 +44,7 @@
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 	<!-- CSS -->
 	<link rel="stylesheet" href="css/category.css">
+
 
 	<!-- date formatting -->
 	<script src="https://momentjs.com/downloads/moment.js"></script>
@@ -257,7 +258,7 @@ window.onclick = function(event) {
 
   <!-- Modal content -->
   <div class="modal-content">
-  	<h1>STEPS IN BOOKING: <span class="close">&times;</span></h1>
+    <h1>STEPS IN BOOKING: <span class="close">&times;</span></h1>
     <hr>
     <p><b>STEP 1: </b> Create an Account</p>
     <p><b>STEP 2: </b> Login the Account</p>
@@ -305,8 +306,26 @@ window.onclick = function(event) {
 </script>
 
 
+<!-- The Modal -->
+<div id="myModal" class="modal fade-in">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <h1>STEPS IN BOOKING: <span class="close">&times;</span></h1>
+    <hr>
+    <p><b>STEP 1: </b> Create an Account</p>
+    <p><b>STEP 2: </b> Login the Account</p>
+    <p><b>STEP 3: </b>  Choose Date</p>
+    <p><b>STEP 4: </b> Submit the Booking Request</p>
+    <p><b>STEP 5: </b> Pay 50% of Booking Cost Through GCASH with BOOKING ID</p>
+    <p><b>STEP 6: </b> Wait for the SMS Confirmation of Booking</p>
+    <p><b>STEP 7: </b> After Receving a text, Print the Booking Receipt Under Account Profile and present it to the camp</p>
+  </div>
+
+</div>
 
 
+ 
 
 </body>
 </html>

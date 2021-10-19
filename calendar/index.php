@@ -79,7 +79,7 @@
     <nav  style="padding:0; margin:0;" class="sidebarr">
       <div class="textt">Site Menu </div>
       <ul style="padding:0; margin:0;">
-        <li class="activee"><a href="index.php"><i class="fas fa-tachometer-alt"></i>&nbsp; Dashboard</a></li>
+        <li class="activee"><a href="../admin/index.php"><i class="fas fa-tachometer-alt"></i>&nbsp; Dashboard</a></li>
         <li><a href="../admin/employee.php"><i class="fas fa-user"></i>&nbsp; Employee</a></li>
         <li><a href="../admin/costumer.php"><i class="fas fa-users"></i>&nbsp; Customer</a></li>
         <li>

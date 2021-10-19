@@ -380,7 +380,10 @@ window.onclick = function(event) {
 
 
 
+<?php
+  include  'scrollup.php';
 
+?>
 
 </body>
 </html>

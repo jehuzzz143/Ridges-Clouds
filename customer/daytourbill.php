@@ -315,7 +315,7 @@ window.onclick = function(event) {
   	<div class="columns is-desktop" style="padding:10px;">
 
   		<div class="column ">
-        <button class="button-to-anchor1">
+        <button type="submit" name="back" class="button-to-anchor1">
             <a href="daytour.php" >
               <i class="fas fa-arrow-left"></i> Back
             </a>
@@ -426,7 +426,10 @@ window.onclick = function(event) {
 </script>
 
 
+<?php
+  include  'scrollup.php';
 
+?>
 
 
 </body>
@@ -608,6 +611,10 @@ if ($result->num_rows > 0) {
  
   
   echo("<meta http-equiv='refresh' content='2'>");
+}else if(isset($_POST['back'])){
+   ?>
+  <script type="text/javascript">location.href = 'daytour.php';</script>
+  <?php
 }
 
 

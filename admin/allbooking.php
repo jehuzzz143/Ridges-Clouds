@@ -78,7 +78,7 @@
           <ul class="feat-showw">
             <li><a href="pending.php">Pending Bookings</a></li>
             <li><a href="allbooking.php">All booking</a></li>
-            <li><a href="../calendar"  target="_blank" style=""> Schedule</a></li>
+            <li><a href="../calendar" rel="noopener noreferrer" target="_blank" style=""> Schedule</a></li>
           </ul>
         </li>
         <?php if($usertype ==3){
@@ -951,7 +951,7 @@ if ($payment == null) {
      $sql = "UPDATE tbl_booking SET bstatus='Completed', bdeposit = $totaldeposit, balance = $balance WHERE ID=$bid";
      if ($conn->query($sql) === TRUE) {
       
-      $sql = "UPDATE events SET color='#000000', text_color = '#FFFFFF' WHERE appID='$appid'";
+      $sql = "UPDATE events SET color='#000000', text_color = '#FFFFFF', title = REPLACE(title,'Confirmed','Completed') WHERE appID='$appid'";
       $conn->query($sql);
 
       $sql1 = "INSERT INTO tbl_audit (UserID, Description, Date_edit, Name, type)

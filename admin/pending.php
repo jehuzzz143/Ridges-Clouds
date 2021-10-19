@@ -74,7 +74,7 @@
           <ul class="feat-showw">
             <li><a href="pending.php">Pending Bookings</a></li>
             <li><a href="allbooking.php">All booking</a></li>
-            <li><a href="../calendar"  target="_blank" style=""> Schedule</a></li>
+            <li><a href="../calendar" rel="noopener noreferrer" target="_blank" style=""> Schedule</a></li>
           </ul>
         </li>
         <?php if($usertype ==3){
@@ -605,7 +605,7 @@ function daytour() {
                         <td ><?php echo"".$row['bpax']; ?></td>
                        
                         <?php 
-                          if($row['datecategory']==''){
+                          if($row['datecategory']=='' OR $row['datecategory']==' '){
                             ?>
                              <td data-label="Pax" style="font-size: 1em;"><?php echo"<b> &nbsp; </b><i class='fas fa-times-circle'></i> &nbsp;"."NO ROMANTIC DATE RESERVATION"; ?></td>
                              <td data-label="Pax" style="display:none;"></td>
@@ -899,13 +899,13 @@ for (var i = 0; i < btn.length; i++) {
       var data1 = $tr.children("td").find("p").map(function(){
         return $(this).text();
       }).get();
-   console.log(data);
+      console.log(data)
   
 
     if(data[2]=="Overnight"){  
 
-        if(data[7]==""){
-         document.getElementById("title").value = data[1] +" | "+data[2] +" | "+data[4];
+        if((data[7]=="" ) || (data[7]==" ")){
+         document.getElementById("title").value = data[1] +" | "+data[2] +" | "+data[4].replace("||","")+"| Confirmed" ;
          //+" | Price:"+data[10]; 
          var timein = data[11].replace(" ", "T");
          var timout =  data[12].replace(" ", "T");
@@ -915,7 +915,7 @@ for (var i = 0; i < btn.length; i++) {
          document.getElementById("price").value = data[13];
           document.getElementById("nightGNumber").value = "+"+data[15];
         }else{
-        document.getElementById("title").value = data[1] +" | "+data[2] +" "+data[4]+" "+data[7]+" "+data[8];
+        document.getElementById("title").value = data[1] +" | "+data[2] +" |"+data[4].replace("||","")+"|"+data[7].replace("||","")+" |"+data[8].replace("||","")+"| Confirmed";
         //+" | Price:"+data[10]; 
         var timein = data[12].replace(" ", "T");
          var timout =  data[13].replace(" ", "T");
@@ -947,7 +947,7 @@ for (var i = 0; i < btn1.length; i++) {
    console.log(data);
   
     document.getElementById("aid-daytour").value = data[0];
-    document.getElementById("title-daytour").value = data[1]+" | "+data[2]+" | "+data[3]+" | "+data[5];
+    document.getElementById("title-daytour").value = data[1]+" | "+data[2]+" | "+data[3]+" | "+'Confirmed';
     document.getElementById("price-daytour").value = data[7];
     //document.getElementById("date-daytour").value = data[4];
     var timein = data[10].replace(" ", "T");
@@ -1072,114 +1072,7 @@ function appClose(){
   }
 </script>
 <script>
-// MODAL SCRIPTING
-/*
-var modal = document.getElementById("addeventmodal");
-var modal1 = document.getElementById("myModal1");
 
-
-var btn = document.querySelectorAll(".myBtn");
-var btn1 = document.querySelectorAll(".myBtn1");
-
-
-var span = document.getElementsByClassName("close")[0];
-var span1 = document.getElementsByClassName("close1")[0];
-
-for (var i = 0; i < btn.length; i++) {
-  btn[i].onclick = function(e) {
-  e.preventDefault();
-  modal.style.display = "block";
- 
-
-  $tr = $(this).closest('tr');
-      
-      var data = $tr.children("td").map(function(){
-        return $(this).text();
-      }).get();
-
-      var data1 = $tr.children("td").find("p").map(function(){
-        return $(this).text();
-      }).get();
-
-      
-      console.log(data);
-      console.log(data1);
-
-
-      if(data[2]=="Overnight"){  
-
-        if(data[6]==""){
-         document.getElementById("appid1").value = data[1] +" | "+data[2] +" | "+data[4];
-         //+" | Price:"+data[10]; 
-        }else{
-        document.getElementById("appid1").value = data[1] +" | "+data[2] +" "+data[4]+" | "+data[5]+" | "+data1[2]+" | "+data1[3];
-        //+" | Price:"+data[10]; 
-
-        }
-
-        document.getElementById("startDate").value = data[10];
-       document.getElementById("endDate").value = data[11];
-        document.getElementById("bid").value =data[0];
-        document.getElementById("priceOvernight").value=data[9];
-
-      }else if(data[2]=="Daytour"){
-
-        document.getElementById("appid1").value = data[1] +" | "+data[2] +" | "+data[3];
-        document.getElementById("startDate").value = data[4];
-        document.getElementById("endDate").value =data[4];
-        document.getElementById("bid").value =data[0];
-        document.getElementById("priceOvernight").value=data[7];
-      }
-
-  }
-}
-
-for (var i = 0; i < btn1.length; i++) {
- btn1[i].onclick = function(e) {
-   e.preventDefault();
-  modal1.style.display = "block";
- 
-
-  $tr = $(this).closest('tr');
-      
-      var data = $tr.children("td").map(function(){
-        return $(this).text();
-      }).get();
-      
-      console.log(data);
-      
-      
-
-
-      document.getElementById("editEventTitle").value = data[1] +" | "+data[2] +" | "+data[3]+" | "+data[5];
-      document.getElementById("daytourdate").value = data[4];
-    
-      document.getElementById("bid1").value =data[0];
-
-  }
-}
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
- 
-}
-/*span1.onclick = function() {
-  modal1.style.display = "none";
- 
-}*/
-/*
-function close1(){
-   modal.style.display = "none";
-}
-function close2(){
-   modal1.style.display = "none";
-}
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}*/
 </script>
 
 

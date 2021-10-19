@@ -198,7 +198,7 @@ if($total_visitors<1){
           <ul class="feat-showw">
             <li><a href="pending.php">Pending Bookings</a></li>
             <li><a href="allbooking.php">All booking</a></li>
-            <li><a href="../calendar"  target="_blank" style=""> Schedule</a></li>
+            <li><a href="../calendar"  target="_blank"  rel="noopener noreferrer" style=""> Schedule</a></li>
           </ul>
         </li>
         <?php if($usertype ==3){
@@ -496,7 +496,7 @@ if($total_visitors<1){
 </div>
 <div class="column is-full">
 
-   <a href="../calendar" class="btn-explore button" target="_blank" style="">CALENDAR SCHEDULE</a>
+   <a href="../calendar" class="btn-explore button" target="_blank" rel="noopener noreferrer"  style="">CALENDAR SCHEDULE</a>
 
 </div>
 

@@ -225,7 +225,7 @@ window.onclick = function(event) {
         <button class="no-button" name="check" type="submit"> Check Availability</button>
       </div>
       <div class="column is-full">
-        <button class="button-to-anchor">
+        <button class="button-to-anchor" type="submit" name="category">
          <a href="category.php" >
              <i class="fas fa-arrow-left"></i> Category
           </a>
@@ -291,6 +291,7 @@ window.onclick = function(event) {
 <br><br><br><br>
 
 -->
+
 <!-- FOOTER -->
 <div class="container is-fluid" style="background-color: #292b2c">
   <div class="container">
@@ -329,20 +330,21 @@ window.onclick = function(event) {
 <!-- END OF FOOTER -->
 
 
+
 <!-- The Modal -->
 <div id="myModal" class="modal fade-in">
 
   <!-- Modal content -->
   <div class="modal-content">
-  	<h1>Step by Step Booking <span class="close">&times;</span></h1>
+    <h1>STEPS IN BOOKING: <span class="close">&times;</span></h1>
     <hr>
-    <p><b>Step 1: </b> Create an Account</p>
-    <p><b>Step 2: </b> Login the Account</p>
-    <p><b style=" text-decoration:underline; color:red;">Step 3:</b>  Choose Date</p>
-    <p><b>Step 4: </b> Submit the Booking Request</p>
-    <p><b>Step 5: </b> Pay 50% of Booking Cost</p>
-    <p><b>Step 6: </b> Wait for the SMS Confirmation of Booking</p>
-    <p><b>Step 7: </b> After Receving a text, Print the Booking Receipt Under Account Profile and present it to the camp</p>
+    <p><b>STEP 1: </b> Create an Account</p>
+    <p><b>STEP 2: </b> Login the Account</p>
+    <p><b>STEP 3: </b>  Choose Date</p>
+    <p><b>STEP 4: </b> Submit the Booking Request</p>
+    <p><b>STEP 5: </b> Pay 50% of Booking Cost Through GCASH with BOOKING ID</p>
+    <p><b>STEP 6: </b> Wait for the SMS Confirmation of Booking</p>
+    <p><b>STEP 7: </b> After Receving a text, Print the Booking Receipt Under Account Profile and present it to the camp</p>
   </div>
 
 </div>
@@ -384,6 +386,10 @@ window.onclick = function(event) {
 
 
 
+<?php
+  include  'scrollup.php';
+
+?>
 
 </body>
 </html>
@@ -435,7 +441,7 @@ if(isset($_POST['check'])){
     $_SESSION['pax_count'] = 0;
   }  
  
-	echo("<meta http-equiv='refresh' content='4'>");
+	echo("<meta http-equiv='refresh' content='2'>");
 
 }else if(isset($_POST['next'])){
    $_SESSION['daytourpax'] =$_POST['daytourpax'];
@@ -461,6 +467,11 @@ exit();
   ?>
 
  <script type="text/javascript">location.href = '../user.php';</script>
+<?php
+}else if(isset($_POST['category'])){
+  ?>
+
+ <script type="text/javascript">location.href = 'category.php';</script>
 <?php
 }
 ?>
