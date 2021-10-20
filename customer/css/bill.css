@@ -147,6 +147,8 @@ nav :checked ~ .icon-burger .line:nth-child(2) {
 }
 
 }
+
+
 /* NavBar end*/
 .footer-style{
 	text-decoration-style: none;
@@ -262,6 +264,19 @@ nav :checked ~ .icon-burger .line:nth-child(2) {
  	color: white;
 }
 
+.buttonNav{
+  width: 100px;  color:white;
+  transition:.2s;
+  cursor: pointer;
+  background-color: #333948;
+  border: none;
+  padding: 8px 1px;
+  border-radius: 5px;
+}
+.buttonNav:hover{
+  background:#2E94E3;
+
+}
 .btn-explore{
 	font-family: 'Poppins', sans-serif;
 	font-size: 1.3rem;
@@ -348,7 +363,7 @@ nav :checked ~ .icon-burger .line:nth-child(2) {
     background-color: #f7f7f7;
 	//background: linear-gradient(to right,#dde7ee,white,#dde7ee);
 	//padding: 20px;
-	//width: 70%;
+	width: 70%;
 	margin-left:auto;
 	margin-right:auto;
 	margin-top:10px;
@@ -364,13 +379,19 @@ nav :checked ~ .icon-burger .line:nth-child(2) {
 
 	
 }
+@media screen and (max-width: 768px){
+  .white-background{
+    width: auto;
+  }
+ 
+}
 .label{
    font-weight:bold;
   font-size:1em;
   font-family: 'Poppins', sans-serif;
   display:inline;
 }
-input[type=text] {
+input[type=text],textarea[type=text] {
   width: 100%;
   padding: 2px 0px;
   box-sizing: border-box;
@@ -378,16 +399,13 @@ input[type=text] {
   font-family: 'Poppins', sans-serif;
   border:none;
   background: transparent;
-  font-weight: bold;
+  //font-weight: bold;
   font-size:18px;
   text-align: left;
+  text-w
  
 }
-input[type=text]:focus {
-  background-color: #A2EAFF;
-  color:black;
 
-}
 select{
   width: 70%;
   padding: 5px 0px;
@@ -506,6 +524,22 @@ a{
 .noclick{
   cursor: no-drop;
 }
+
+.buttonRemove-cop{
+  float:right; 
+  background:#e09f5b;
+  padding: 5px 10px;
+  border: 1px;
+  border-radius: 3px;
+  height: 35px;
+  font-family: 'Poppins', sans-serif; 
+  color: white;
+  cursor: pointer;
+  font-size: 1em;
+  width: auto;
+
+}
+
 /* ################################## TABLE */
   .styled-table {
       border-collapse: collapse;
@@ -518,24 +552,28 @@ a{
       max-height: 200px;
       overflow: scroll;
       
+      
 
   }
 
   .styled-table th{
    
-    background-color: black;
+    background-color: #333948;
       color: #ffffff;
       text-align: left;
        font-family: 'Poppins', sans-serif;
+
   }
 
   .styled-table input{
-    font-size: 1.2em;
+    font-size: 1.1em;
+      padding: 5px 10px;
   }
 
   .styled-table th,
   .styled-table td {
       padding: 5px 5px;
+      padding-left: 20px;
 
 
   }

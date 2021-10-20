@@ -502,9 +502,9 @@ if($total_visitors<1){
 
 <br><br>
 <div id="columnchart_material" style="width: 100%; height: 500px;margin-bottom: 70px;"></div>
-    <div class="columns is-mobile" style="background-color:;">
+    <div class="columns is-desktop" style="background-color:;">
 
-      <div class="column is-8 is-mobile" >
+      <div class="column is-8" >
 
    
           <div class="container" id="firstcontainer"  >
@@ -640,7 +640,7 @@ if($total_visitors<1){
                 $path2 = "upload/profilepicture/".$row12['Userimage'];
                 
                 ?>
-                  <div class="columns  is-mobile"  style="background-color: white; border-top:1px solid black; padding:0; margin:0; ">
+                  <div class="columns  is-desktop"  style="background-color: white; border-top:1px solid black; padding:0; margin:0; ">
                     <div class="column is-one-fifth" >
                         <?php 
 

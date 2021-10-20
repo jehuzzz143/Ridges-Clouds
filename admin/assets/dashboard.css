@@ -652,7 +652,7 @@ transition:.5s;
     color: white;
 }
 
-@media screen and (max-width: 700px){
+@media screen and (max-width: 768px){
   .mobile{
     visibility: none;
     transition: 3s;
@@ -675,7 +675,13 @@ transition:.5s;
   }
   #activitylog{
     padding: 1px;
-    width: 45%;
+    width: 90%;
+  }
+  #auditdp{
+    width: 100px;
+    height: 100px;
+
+
   }
 }
     </style>
