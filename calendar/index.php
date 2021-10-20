@@ -38,7 +38,25 @@
 
 
 ?>
+
 <html>
+<style type="text/css">
+    
+    @media screen and (max-width: 992px){
+  .mobile{
+    visibility: none;
+    transition: 3s;
+  }
+
+  body{
+  padding-left:0px;
+ 
+  }
+  .btnn{
+    left: 10px;
+  }
+}
+</style>
 <head>
     <title>Calendar</title>
     
@@ -131,7 +149,7 @@
       </ul>
     </nav>
 
-<div class="container" style="background-color:white;
+<div class="container mobile" style="background-color:white;
     box-shadow: 0 1px 2px rgba(0,0,0,0.07), 
                 0 2px 4px rgba(0,0,0,0.07), 
                 0 4px 8px rgba(0,0,0,0.07), 

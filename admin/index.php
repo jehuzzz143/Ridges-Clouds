@@ -240,7 +240,7 @@ if($total_visitors<1){
       </ul>
     </nav>
 
-<div class="container" style="background-color:;
+<div class="container mobile" style="background-color:;
     box-shadow: 0 1px 2px rgba(0,0,0,0.07), 
                 0 2px 4px rgba(0,0,0,0.07), 
                 0 4px 8px rgba(0,0,0,0.07), 
@@ -417,7 +417,7 @@ if($total_visitors<1){
 
 </div>
 <!-- ######################################################################################### HEADER -->
-<div class="columns is-mobile" style="background-color:;
+<div class="columns is-mobile mobile2" style="background-color:;
     box-shadow: 0 1px 2px rgba(0,0,0,0.07), 
                 0 2px 4px rgba(0,0,0,0.07), 
                 0 4px 8px rgba(0,0,0,0.07), 
@@ -430,7 +430,7 @@ if($total_visitors<1){
                 margin:0;">
 
 
-  <div class="column" style="background-color:; margin:0;padding:0;" >
+  <div class="column " style="background-color:; margin:0;padding:0;" >
       <div class="dropdown" style="float:right; height:100%; background-color:; margin:0; padding:0; ">
         <button type="button" class="dropbtn"  style="font-size:17px; background-color:#e09f5b; " >
             Welcome, FirstName <i class="fas fa-caret-down"></i>
@@ -622,8 +622,8 @@ if($total_visitors<1){
           </div>
         </div>
 
-  <div class="column is-4" id="activitylog">
-            <div class="container"  style="background-color:white; margin:0; padding: 0; position:sticky; top:0; z-index: 1;"><h2 style="color:black;">Activity Logs</h2></div>
+  <div class="column is-4 " id="activitylog">
+            <div class="container "  style="background-color:white; margin:0; padding: 0; position:sticky; top:0; z-index: 1;"><h2 style="color:black;">Activity Logs</h2></div>
             <?php
 
             $sql = "SELECT * FROM tbl_audit  ORDER BY ID DESC LIMIT 30";
@@ -660,7 +660,7 @@ if($total_visitors<1){
                         
                     </div>
                     
-                    <div class="column" style="text-align: left;font-style: italic; opacity:.8; ">
+                    <div class="column" style="text-align: left;font-style: italic; opacity:.8; padding:1px; ">
                     - <b><?php echo "".$row['Name'];?>:</b> <small> <?php echo "".$row['Description'];?></small>
                       <p style="color:green; text-align:right; font-weight: bold;"><?php echo "".$row['Date_edit'];?></p>
                     </div>

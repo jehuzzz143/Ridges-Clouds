@@ -612,3 +612,19 @@ color:grey;
   background:#2E94E3;
 
 }
+    
+    @media screen and (max-width: 992px){
+  .mobile{
+    visibility: none;
+    transition: 3s;
+  }
+
+  body{
+  padding-left:0px;
+  min-width: 1000px;
+ 
+  }
+  .btnn{
+    left: 10px;
+  }
+}

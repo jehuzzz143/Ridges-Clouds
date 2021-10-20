@@ -710,4 +710,22 @@ color:grey;
 .modal input[type=datetime-local]:focus {
   background-color: white;
 }
+
+
+
+@media screen and (max-width: 992px){
+  .mobile{
+    visibility: none;
+    transition: 3s;
+  }
+
+  body{
+  padding-left:0px;
+  min-width: 1000px;
+ 
+  }
+  .btnn{
+    left: 10px;
+  }
+}
     </style>

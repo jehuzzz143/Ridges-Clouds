@@ -750,6 +750,21 @@ color:grey;
     color: #0049FF;
     font-family: 'Montserrat', sans-serif;
 }
+
+@media screen and (max-width: 992px){
+  .mobile{
+    visibility: none;
+    transition: 3s;
+  }
+
+  body{
+  padding-left:0px;
+ 
+  }
+  .btnn{
+    left: 10px;
+  }
+}
 </style>
 </style>
 

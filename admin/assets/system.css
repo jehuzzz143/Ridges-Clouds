@@ -593,4 +593,20 @@ input[type="month"]:focus {
     font-weight: bold;
     color: #009879;
 }
+    
+    @media screen and (max-width: 992px){
+  .mobile{
+    visibility: none;
+    transition: 3s;
+  }
+
+  body{
+  padding-left:0px;
+  min-width: 500px;
+ 
+  }
+  .btnn{
+    left: 10px;
+  }
+}
     </style>

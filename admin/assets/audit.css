@@ -721,4 +721,23 @@ z-index: 9;
   font-size: 16px;
 
 }
+    
+    @media screen and (max-width: 992px){
+  .mobile{
+    visibility: none;
+    transition: 3s;
+  }
+
+  body{
+  padding-left:0px;
+  min-width: 1000px;
+  }
+  .btnn{
+    left: 10px;
+    z-index: 99;
+  }
+  .sidebarr{
+    z-index: 98;
+  }
+}
 </style>

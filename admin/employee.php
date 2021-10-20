@@ -114,7 +114,7 @@
       </ul>
     </nav>
 
-<div class="container" style="background-color:white;
+<div class="container mobile" style="background-color:white;
     box-shadow: 0 1px 2px rgba(0,0,0,0.07), 
                 0 2px 4px rgba(0,0,0,0.07), 
                 0 4px 8px rgba(0,0,0,0.07), 
@@ -305,7 +305,7 @@
                 margin:0;">
 
 
-  <div class="column" style="background-color:; margin:0;padding:0;" >
+  <div class="column" style="background-color:; margin:0;padding:0; min-width: 400px;" >
       <div class="dropdown" style="float:right; height:100%; background-color:; margin:0; padding:0; ">
         <button type="button" class="dropbtn"  style="font-size:17px; background-color:#e09f5b; " >
             Welcome, FirstName <i class="fas fa-caret-down"></i>
@@ -631,7 +631,7 @@ window.onclick = function(event) {
                         <div class="info_data">
                           <div class="data">
                             <h4>Email</h4>
-                            <p> <?php echo "".$row['Useremail']?></p>
+                            <p> <?php echo "".str_ireplace("@Gmail.com"," ",$row['Useremail'])?></p>
                             <h4>Birthday</h4>
                             <p> <?php echo "".$row['Userbday']?></p>
                             <h4>Date of Registration</h4>

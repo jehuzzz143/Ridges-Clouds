@@ -441,6 +441,7 @@ transition:.5s;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   height: 450px;
   justify-content: center;
+  min-width: 400px;
 
 }
 
@@ -519,7 +520,7 @@ transition:.5s;
   display: flex;
   background-color: ;
   width: 100%;
-   justify-content: center;
+  justify-content: center;
 
 }
 
@@ -826,4 +827,31 @@ color:grey;
   transition: width .2s ease-out, padding-top .2s ease-out;
 }
 /* END */
+
+
+@media screen and (max-width: 992px){
+  .mobile{
+    visibility: none;
+    transition: 3s;
+  }
+
+  body{
+  padding-left:0px;
+  min-width: 1000px;
+ 
+  }
+  .btnn{
+    left: 10px;
+  }
+  .wrapper-profile .social_media  li  {
+
+   margin: 3px;
+
+
+  }
+  div .info_data{
+    
+    white-space: normal;
+  }
+}
     </style>

@@ -117,7 +117,7 @@
       </ul>
     </nav>
 
-<div class="container" style="background-color:white;
+<div class="container mobile" style="background-color:white;
     box-shadow: 0 1px 2px rgba(0,0,0,0.07), 
                 0 2px 4px rgba(0,0,0,0.07), 
                 0 4px 8px rgba(0,0,0,0.07), 
@@ -471,7 +471,7 @@
 <!-- Modal End-->
 <!-- ################################################################################################################## BODY CONTAINER -->
 <br><h2 style="opacity: .6;margin-left: 4px; font-weight: bold;">  Rates & Regulations</h2><br>
-<div class="container-lg" style="background-color:;">
+<div class="container-lg mobile2" style="background-color:;">
 
   <button class="btnadd"style="float:right;" id="roomAdd" class="roomAdd">Add Rooms</button>
   <center>
@@ -509,13 +509,13 @@
               <tr  class="room">
                   <td style="display:none;"><?php echo"".$row['ID']; ?></td>
                   <?php 
-                  if( $data == $row['accomodation']){
+                  if( $row['pax'] == 'Each'){
                   ?>
-                    <td style="opacity: 0; "><?php echo"".$row['accomodation'] ?> </td>
+                    <td style="opacity: 0; "><?php echo"".trim($row['accomodation']); ?> </td>
                   <?php 
                   }else{
                   ?>
-                   <td><?php echo"".$row['accomodation']; ?> </td>
+                   <td><?php echo"".trim($row['accomodation']); ?> </td>
                   <?php 
                   }
                   ?>
@@ -524,7 +524,7 @@
                   <td><?php echo"".$row['rate']; ?></td>
                   
                   <td style="width: 30%;"><?php echo"".$row['notes']; ?></td>
-                   <td style="display:none;"><?php echo"".$row['imagename']; ?></td>
+                  <td style="display:none;"><?php echo"".$row['imagename']; ?></td>
               </tr>
               <?php
               $data = $row['accomodation'];

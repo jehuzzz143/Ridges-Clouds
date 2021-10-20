@@ -13,7 +13,7 @@ body{
   padding-left:250px;
   padding-right:10px;
   background-color:white;
-  min-width: 1000px;
+ 
   
 }
 .btnn{
@@ -623,5 +623,22 @@ input[type="password"]
   font-family: 'Poppins', sans-serif; 
   color: white;
   cursor: pointer;*/
+}
+    
+    @media screen and (max-width: 992px){
+  .mobile{
+    visibility: none;
+    transition: 3s;
+  }
+
+  body{
+  padding-left:0px;
+
+ 
+  }
+  
+  .btnn{
+    left: 10px;
+  }
 }
     </style>

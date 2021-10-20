@@ -634,4 +634,19 @@ color:grey;
   
   transition: width .2s ease-out, padding-top .2s ease-out;
 }
+    
+    @media screen and (max-width: 992px){
+  .mobile{
+    visibility: none;
+    transition: 3s;
+  }
+
+  body{
+  padding-left:0px;
+ 
+  }
+  .btnn{
+    left: 10px;
+  }
+}
     </style>

@@ -1050,3 +1050,19 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
     /* don't display any button-related controls */
   }
 }
+
+    
+    @media screen and (max-width: 992px){
+  .mobile{
+    visibility: none;
+    transition: 3s;
+  }
+
+  body{
+  padding-left:0px;
+ 
+  }
+  .btnn{
+    left: 10px;
+  }
+}
