@@ -141,63 +141,63 @@ window.onclick = function(event) {
   <div class="container is-desktop bar">
     <div class="progress-bar">100%</div>
   </div>
-  <div class="container is-desktop white-background">
+  <div class="container is-desktop white-background" style="border-radius: 8px;">
 
   
         <table class="styled-table" id="bookingtable">
           <thead>
             <tr >
-              <th colspan=3 style="text-align: center;font-size:1.5em;">BOOKING INFORMATION</th>
+              <th colspan=3 style="text-align: center;font-size:1.3em;    border-radius: 8px 8px 0px 0px;">BOOKING INFORMATION</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <th>Booking Category: </th>
-              <td><input type="text" readonly name="category" value="<?php echo"".$_SESSION['choice']; ?>"></td>
-              <td></td>
+              <td colspan=2><input type="text" readonly name="category" value="<?php echo"".$_SESSION['choice']; ?>"></td>
+              
             </tr>
              <tr>
               <th> Date: </th>
               <!--  -->
-              <td><input type="text" readonly name="roomcode" value="<?php echo"".date('F jS, Y ', strtotime ($_SESSION['daytourdate'])); ?>"></td>
-              <td></td>
+              <td colspan=2><input type="text" readonly name="roomcode" value="<?php echo"".date('F jS, Y ', strtotime ($_SESSION['daytourdate'])); ?>"></td>
+            
             </tr>
             <tr>
               <th>Visitor Time In & Out: </th>
-              <td><input type="text" readonly name="roomname" value="<?php echo"".$_SESSION['daytourtime']; ?>"></td>
-              <td></td>
+              <td  colspan=2><input type="text" readonly name="roomname" value="<?php echo"".$_SESSION['daytourtime']; ?>"></td>
+            
             </tr>
             <tr>
               <th>Visitor Pax: </th>
-              <td><input type="text" readonly name="roomcode" value="<?php echo"".$_SESSION['daytourpax']; ?>"></td>
-              <td></td>
+              <td  colspan=2><input type="text" readonly name="roomcode" value="<?php echo"".$_SESSION['daytourpax']; ?>"></td>
+            
             </tr>
             <?php
             if($_SESSION['couponactive'] == true){
               ?>
               <thead>
-                <tr >
-                  <th colspan=3 style="text-align: center;font-size:1.5em;">COUPON APPLIED</th>
-                  
+                <tr>
+                  <th colspan=3 style="text-align: center;font-size:1.3em;">COUPON APPLIED</th>
                 </tr>
               </thead>
               <tr>
                  <th>Booking Price: </th>
                  <td></td>
-                <td style="background-color:#EEEEEE;">
-                  <?php echo "".$_SESSION['booking_price'];?></td>
+                <td>
+                  <input type="text" value="<?php echo "".$_SESSION['booking_price'];?>">
+                  </td>
               </tr>
               <tr>
                 <th>Discounted Fee: </th>
                  <td><?php echo"".$_SESSION['discount'];?></td>
-                <td style="background-color:#EEEEEE;">
-                  <?php echo "".$_SESSION['discounted_fee'];?></td>
-               
+                <td>
+                  <input type="text" value="<?php echo "".$_SESSION['discounted_fee'];?>" >
+                  </td>
               </tr>
               <tr>
                 <th>Total Price: </th>
-                 <td>-------------------------------------------------------------------------------------------</td>
-                <td style="background-color:#EEEEEE;"><input type="text" readonly name="roomprice" value="<?php echo"".$_SESSION['daytourprice'];?>"></td>
+                 <td></td>
+                <td style="font-size: 1.3em;font-weight: bold;"><input type="text" readonly name="roomprice"value="<?php echo"".$_SESSION['daytourprice'];?>"></td>
                
               </tr>
               <?php
@@ -205,14 +205,45 @@ window.onclick = function(event) {
               ?>
               <tr>
                 <th>Total Price: </th>
-                 <td>-------------------------------------------------------------------------------------------</td>
-                <td style="background-color:#EEEEEE;"><input type="text" readonly name="roomprice" value="<?php echo"".$_SESSION['daytourprice'];?>"></td>
+                 <td></td>
+                <td style="background-color:#EEEEEE;font-size: 1.3em;ont-weight: bold;"><input type="text" readonly name="roomprice" value="<?php echo"".$_SESSION['daytourprice'];?>" ></td>
                
               </tr>
 
               <?php
             }
             ?>
+                <!-- PROMO CODE -->
+    <?php if($_SESSION['couponactive'] == false){
+      ?>
+      <tr id="promocontainer">
+        <th>
+            <p class="coupon-f">Coupon Code:</p>
+        </th>
+        <td>
+            <input type="text" class="coupon" name="coupon" placeholder="...." style="background-color: white;"> </input>
+        </td>
+        <td>
+            <button type="submit" name="coupon_apply" class="button-to-apply buttonNav">
+                       Apply
+            </button>
+        </td>
+    </tr>
+      <?php
+    }else{
+      ?>
+      <tr>
+        <th></th>
+        <td>
+          <center>
+          <button class="buttonRemove-cop" name="remove_coupon" type="submit">Remove Coupon</button> 
+          </center> 
+        </td>
+      </tr>
+     
+      <?php
+    }
+    ?>
             
              
           
@@ -221,52 +252,11 @@ window.onclick = function(event) {
         </table>
         <input type="hidden" name="promo_id" value="<?php echo"".$_SESSION['promo_id'];?>">
       <?php
-   
-    
-
-
-
-    
-
-
-
-
-
    ?>
    
 
 
-    <!-- PROMO CODE -->
-    <?php if($_SESSION['couponactive'] == false){
-      ?>
-      <div class="columns" id="promocontainer">
-      <div class="column is-2">
-          <p class="coupon-f">COUPON CODE</p>
-      </div>
-      <div class="column is-4">
-          <input type="text" class="coupon" name="coupon"> </input>
-      </div>
-      <div class="column">
-          <button type="submit" name="coupon_apply" class="button-to-apply">
-                     Apply
-          </button>
-      </div>
-    </div>
-      <?php
-    }else{
-      ?>
-      <div class="columns">
-        <div class="column">
-          <center>
-          <button class="button-to-anchor" name="remove_coupon" type="submit"> Remove Coupon </button> 
-          </center> 
-        </div>
-         
-      </div>
-     
-      <?php
-    }
-    ?>
+
 
     <!-- tooltip -->
     <div class="column is-full" style="text-align: center; display: inline-block;">
