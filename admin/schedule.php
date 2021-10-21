@@ -33,6 +33,7 @@
 
 ?>
 <html lang="en" dir="ltr">
+
   <head>
     <!--Cover to use all symbol all over the world -->
     <meta charset="utf-8">
@@ -108,7 +109,7 @@
       </ul>
     </nav>
 
-<div class="container" style="background-color:;
+<div class="container mobile" style="background-color:;
     box-shadow: 0 1px 2px rgba(0,0,0,0.07), 
                 0 2px 4px rgba(0,0,0,0.07), 
                 0 4px 8px rgba(0,0,0,0.07), 

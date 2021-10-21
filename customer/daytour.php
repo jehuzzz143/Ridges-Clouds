@@ -405,7 +405,7 @@ if(isset($_POST['check'])){
   $day_tour_pax = $_POST['daytourpax'];
 
   // SELECT * FROM tbl_booking WHERE `bdate` = '2021-09-16' AND `bdaytourtime`  = '07:00 am to 10:00 am'  
-  $sql = "SELECT * FROM tbl_booking WHERE bdate = '$day_tour_date' AND bdaytourtime = '$day_tour_time'";
+  $sql = "SELECT * FROM tbl_booking WHERE bdate = '$day_tour_date' AND bdaytourtime LIKE '%$day_tour_time%'";
   $result = $conn->query($sql);
 
   if ($result->num_rows > 0) {
@@ -436,7 +436,17 @@ if(isset($_POST['check'])){
      
     <?php
   }else{
-    echo '<script type="text/javascript">alert("Booking is full in this time! Try select different time")</script>';
+    echo '<script type="text/javascript">Swal.fire({
+              icon: "error",
+              title: "Date Unavailable",
+              text: "Please select different date",
+              
+              color: "white"
+              
+             
+            });</script>';
+  
+   
    
     $_SESSION['pax_count'] = 0;
   }  

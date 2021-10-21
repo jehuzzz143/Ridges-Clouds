@@ -1141,6 +1141,7 @@ if(isset($_POST['logout'])){
     echo '<script type="text/javascript">alert("Please input realistic numbers")</script>';
 
   }else{
+    
     $textcolor  ="#FDFEFE";
     $textbg     ="#3498DB";
 

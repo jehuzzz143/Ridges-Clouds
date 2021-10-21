@@ -42,7 +42,7 @@
 <html>
 <style type="text/css">
     
-    @media screen and (max-width: 992px){
+@media screen and (max-width: 992px){
   .mobile{
     visibility: none;
     transition: 3s;
@@ -55,6 +55,190 @@
   .btnn{
     left: 10px;
   }
+}
+
+.linecenter 
+ {
+  overflow: hidden;
+  text-align: center;
+  font-weight: bold;
+  font-size: 25px;
+  margin-bottom: 50px;
+  letter-spacing: 3px;
+}
+
+.linecenter :before,
+.linecenter :after {
+  background-color: #000;
+  content: "";
+  display: inline-block;
+  height: 1px;
+  position: relative;
+  vertical-align: middle;
+  width: 50%;
+
+}
+
+.linecenter :before {
+  right: 0.5em;
+  margin-left: -50%;
+}
+
+.linecenter :after {
+  left: 0.5em;
+  margin-right: -50%;
+}
+
+input[type="date"],select {
+  color:grey;
+  font-family: 'Poppins', sans-serif;
+  width: 350px;
+  padding: 10px 20px;
+  margin: 5px 0px;
+  //display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  
+}
+input[type="date    "]:focus {
+  background-color: white;
+}
+.btn1{
+  position: relative;
+
+  display: block;
+ // margin: 30px auto;
+  padding: 0;
+
+  overflow: hidden;
+  font-family: sans-serif 'Poppins';
+  border-width: 0;
+  outline: none;
+  border-radius: 2px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
+  font-size: 1rem;
+  
+  background-color: #333948;
+  color: #ecf0f1;
+  padding:10px;
+  border-radius: 5px;
+  
+  transition: background-color .3s;
+}
+
+.btn1:hover, .btn1:focus {
+  background-color: #27ae60;
+}
+
+.btn1 > * {
+  position: relative;
+}
+
+.btn1 span {
+  display: block;
+  padding: 12px 24px;
+}
+
+.btn1:before {
+  content: "";
+  
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  
+  display: block;
+  width: 0;
+  padding-top: 0;
+    
+  border-radius: 100%;
+  
+  background-color: rgba(236, 240, 241, .3);
+  
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.btn1:active:before {
+  width: 120%;
+  padding-top: 120%;
+  
+  transition: width .2s ease-out, padding-top .2s ease-out;
+}
+
+
+
+.styled-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: 'Poppins', sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    width: 100%;
+    max-height: 200px;
+    overflow: scroll;
+
+
+}
+.styled-table thead tr {
+
+    
+
+
+
+}
+.style-table thead tr th{
+
+}
+.styled-table th{
+    position:sticky;
+  top:0;
+  background-color: #333948;
+    color: #ffffff;
+    text-align: left;
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+
+
+}
+
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+
+}
+.styled-table tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
+}
+
+.buttons{
+ width: 70px;  color:white;
+  transition:.2s;
+  cursor: pointer;
+  background-color: #333948;
+  border: none;
+  padding: 10px 12px;
+  border-radius: 5px;
+  align-items: ;
+}
+.buttons:hover{
+   background:#2E94E3;
 }
 </style>
 <head>
@@ -130,7 +314,7 @@
                 </a>
               <ul class="third-showw">
                 <li><a href="announcement.php">Audit Trail</a></li>
-                <li><a href="system.php">Sales Report</a></li>
+                <li><a href="../admin/system.php">Sales Report</a></li>
                 <li><a href="admin_gall.php">Database Backup</a></li>
               
 
@@ -517,6 +701,116 @@
 -->
     <div id="calendar"></div>
 </div>
+
+<script>
+  $(function(){
+    var dtToday = new Date();
+    var month = dtToday.getMonth() + 1;
+    var day = dtToday.getDate();
+    var year = dtToday.getFullYear();
+    var maxDate2="";
+    var minus ="";
+    var year1= year; 
+    if(month < 10)
+        month = '0' + month.toString();
+    if(day < 10)
+        day = '0' + day.toString();  
+    var maxDate = year + '-' + month + '-' + day;
+    $('#txtDate').attr('min', maxDate);
+    $('#txtDate1').attr('min', maxDate);
+    var monthend = month+5;
+    if(monthend > 12){
+       year1 = year1 +1;
+       var minus = monthend - 12;
+       if(minus<10){
+        var monthmonthend = '0'+minus    
+       }
+       maxDate2 = year1 + '-' + monthmonthend + '-' + day;
+    }else{
+       maxDate2 = year1 + '-' + monthend + '-' + day;
+    }
+    // $('#txtDate').attr('max', maxDate2);
+    // $('#txtDate1').attr('max', maxDate2);
+  });
+
+</script>
+<div class="container is-fullhd" style="background-color:;width">
+  <center>
+    <div class="container is-mobile">
+      <form method="POST">
+        <div class="container is-mobile"><p class="linecenter">CLOSING DATES</p></div>
+        <div class="columns is-mobile is-multiline" >
+          <div class="column ">
+            <label for="startDate" >From:</label>
+            <input type="date"  name="startDate" id="txtDate"  required>
+          </div>
+          <div class="column">
+            <label for="endDate" >To:</label>
+            <input type="date" name="endDate"  id="txtDate1" required>
+          </div>
+          <div class="column">
+          
+            <select name="category">
+                <option value="Daytour">Daytour</option>
+                <option value="Overnight">Overnight</option>
+            </select>
+            
+          </div> 
+          <div class="column is-full">
+            <button>
+              <div class="sub-main">
+
+                <button type="submit" name="close_date" class="btn1" > DECLARE CLOSE</button>
+              </div>
+            </button>
+          </div>
+        </div>  
+      </form>
+    </div>
+    <h1 class="content"></h1>
+  </center>
+</div>
+
+<div class="column is-full" style="background-color:;overflow: scroll;width:100%;max-height: 600px; padding:0; margin:0;margin-top:3px;">
+          <table class="styled-table" id="overnighttable">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Description</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                    $sql = "SELECT * FROM events WHERE appID = 'CLOSE'";
+                    $result = $conn->query($sql);
+
+                    if ($result->num_rows > 0) {
+                      while($row = $result->fetch_assoc()) {
+                       ?>
+                        <tr>
+                        <td><?php echo"".date("F jS, Y - h:s a", strtotime($row['start_event']))."-      To     -".date("F jS, Y -- h:s a", strtotime($row['end_event']));?></td>
+                        <td><?php echo"".$row['title'];?></td>
+                        <td>
+                            
+                            <button  id="confirmBtn" class="buttons confirmBtn ">Update</button>
+                           
+                        </td>
+                        </tr>
+                       <?php
+                      }
+                    } else {
+                      echo "0 results";
+                    }
+                ?>
+              
+            </tbody>
+          </table>
+         </div>
+
+
+
+
 <script>
     $('.btnn').click(function(){
       $(this).toggleClass("clickk");
@@ -549,6 +843,44 @@ if(isset($_POST['logout'])){
   ?>
  <script type="text/javascript">location.href = '../login.php';</script>
 <?php
+
+}else if(isset($_POST['close_date'])){
+
+    $startDate = $_POST['startDate'];
+    $endDate   = $_POST['endDate'];
+
+    $startDateTime = $startDate.'T14:00:00';
+    $endDateTime = $endDate.'T12:00:00';
+
+    $textbg ='#655656';
+    $textcolor ='#FFFFFF';
+    $type = $_POST['category'];
+    if($type == 'Daytour'){
+        $sql1 = "INSERT INTO tbl_booking (customerID, bname, bdate, btype, btime_in, btime_out ,  bpax,bprice,balance,bdaytourtime, bstatus)
+        VALUES ('CLOSE', ' ', '$startDate' ,'$type', '$startDate', '$endDate',30,0,0,'07:00 am to 10:00 am 10:00 am to 13:00 pm 13:00 pm to 16:00 pm 16:00 pm to 19:00 pm','CLOSE')";
+
+        $sql = "INSERT INTO events (appID, title, start_event, end_event, color, text_color)
+        VALUES ('CLOSE', '$type CLOSE CAMP MAINTENANCE', '$startDate', '$endDate','$textbg','$textcolor')";
+    }else{
+        
+        $room = " || C1  || C2  || C3  || C4  || C5  || C6  || C7  || C8  || C9 ";
+        $sql1 = "INSERT INTO tbl_booking (customerID, bname, bdate, broom,btype, btime_in, btime_out ,  bpax,bprice,balance, bstatus)
+        VALUES ('CLOSE', ' ', '$startDate','$room' ,'$type', '$startDateTime', '$endDateTime',30,0,0,'CLOSE')";
+
+        $sql = "INSERT INTO events (appID, title, start_event, end_event, color, text_color)
+        VALUES ('CLOSE', '$type CLOSE CAMP MAINTENANCE', '$startDateTime', '$endDateTime','$textbg','$textcolor')";
+    }
+
+    
+    mysqli_query($conn, $sql);
+
+    
+    if ($conn->query($sql1) === TRUE) {
+      echo '<script type="text/javascript">alert("Successful")</script>';
+    } else {
+      echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+
 
 }
 
