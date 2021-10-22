@@ -27,6 +27,7 @@
                     $fname = $rowedit['Userfname']." ".$rowedit['Userlname'];
                   $path= "../admin/upload/profilepicture/".$image;
                   $user = $rowedit['Usertype'];
+                  $fullname_admin = $rowedit['Userfname'].", ".$rowedit['Userlname'];
                   if($user == 1){
                     header("refresh:0; ../");
                   }
@@ -181,14 +182,8 @@ input[type="date    "]:focus {
     width: 100%;
     max-height: 200px;
     overflow: scroll;
-
-
 }
 .styled-table thead tr {
-
-    
-
-
 
 }
 .style-table thead tr th{
@@ -205,8 +200,6 @@ input[type="date    "]:focus {
 .styled-table th,
 .styled-table td {
     padding: 12px 15px;
-
-
 }
 
 .styled-table tbody tr {
@@ -240,6 +233,141 @@ input[type="date    "]:focus {
 .buttons:hover{
    background:#2E94E3;
 }
+
+
+/*modal style*/
+/* #####################################################################################################MODAL */
+.modal-daytour{
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 2; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+  .fade-in {
+      opacity: 1;
+      animation-name: fadeInOpacity;
+      animation-iteration-count: 1;
+      animation-timing-function: ease-in;
+      animation-duration: .5s;
+  }
+  @keyframes fadeInOpacity {
+      0% {
+          opacity: 0;
+      }
+      50%{
+        opacity:.5;
+      }
+      100% {
+          opacity: 1;
+      }
+  }
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 500px;
+   border-radius: 8px;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+.closeconfirm{
+   color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+.close1 {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close1:hover,
+.close1:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+.modal input[type=text],.modal input[type=password],.modal select,.modal input[type=file]{
+  color:grey;
+  font-family: 'Poppins', sans-serif;
+  width: 100%;
+  padding: 10px 20px;
+  margin: 5px 0px;
+  //display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+
+
+}
+
+.modal input[type=text]:focus {
+  background-color: white;
+}
+.modal .label{
+  font-weight:;
+  font-size:1em;
+  font-family: 'Poppins', sans-serif;
+}
+.modal-footer{
+
+  text-align: right;
+}
+.modal input[type=datetime-local]{
+color:grey;
+  font-family: 'Poppins', sans-serif;
+  width: 100%;
+  padding: 10px 20px;
+  margin: 5px 0px;
+  //display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.modal input[type=datetime-local]:focus {
+  background-color: white;
+}
+
 </style>
 <head>
     <title>Calendar</title>
@@ -717,7 +845,8 @@ input[type="date    "]:focus {
         day = '0' + day.toString();  
     var maxDate = year + '-' + month + '-' + day;
     $('#txtDate').attr('min', maxDate);
-    $('#txtDate1').attr('min', maxDate);
+    $('#update_start').attr('min', maxDate+'T00:00');
+  
     var monthend = month+5;
     if(monthend > 12){
        year1 = year1 +1;
@@ -731,26 +860,85 @@ input[type="date    "]:focus {
     }
     // $('#txtDate').attr('max', maxDate2);
     // $('#txtDate1').attr('max', maxDate2);
+
   });
 
+
+function date(){
+    var first_date = document.getElementById('txtDate').value;
+    
+    document.getElementById('txtDate1').setAttribute("min",first_date)
+}
+
+
+var second_date = document.getElementById('txtDate1');
+
+second_date.onclick = function(){
+
+}
+
+function modaldate(){
+    var modal_first_date = document.getElementById('update_start').value;
+    document.getElementById('update_end').setAttribute("min",modal_first_date);
+
+}
+
 </script>
+
+
+<!-- update modal -->
+
+<div id="myModal" class="modal fade-in">
+
+  <!-- Modal content -->
+  <div class="modal-content" style="width: 400px;">
+    <span  class="close1">&times;</span>
+    <form method="POST">
+      <label>ID</label>   <input type="text" name="aid" id="aid" style="width:20%;height:30px;" />
+    <hr>
+      <label>Start</label>
+      <input type="datetime-local" name="update_start" id="update_start">
+      <label>End</label>
+      <input type="datetime-local" name="update_end" id="update_end" onclick="modaldate()">
+      <input type="hidden" name="appID" id="appID">
+      <input type="hidden" name="bookingId" id="bookingId">
+      <!-- style="display: none" -->
+
+
+
+
+
+      <button type="submit" name="updateSubmit" class="buttonNav" style="float:right">Update</button>   
+      <button type="submit" name="deletesubmit" class="buttonNav" style="float:right">Delete</button>
+     </form>
+      <button  id="close_btn" class="buttonNav" style="float:right;margin-right:5px;">    Cancel</button>  
+   
+  </div>
+
+</div>
+
+<!-- end of update modal -->
+
+
 <div class="container is-fullhd" style="background-color:;width">
   <center>
     <div class="container is-mobile">
       <form method="POST">
         <div class="container is-mobile"><p class="linecenter">CLOSING DATES</p></div>
         <div class="columns is-mobile is-multiline" >
+
           <div class="column ">
+
             <label for="startDate" >From:</label>
             <input type="date"  name="startDate" id="txtDate"  required>
           </div>
           <div class="column">
             <label for="endDate" >To:</label>
-            <input type="date" name="endDate"  id="txtDate1" required>
+            <input type="date" name="endDate"  id="txtDate1" onclick="date()" required>
           </div>
           <div class="column">
           
-            <select name="category">
+            <select name="category" required>
                 <option value="Daytour">Daytour</option>
                 <option value="Overnight">Overnight</option>
             </select>
@@ -775,6 +963,7 @@ input[type="date    "]:focus {
           <table class="styled-table" id="overnighttable">
             <thead>
                 <tr>
+                    <th>id</th>
                     <th>Date</th>
                     <th>Description</th>
                     <th>Action</th>
@@ -787,20 +976,44 @@ input[type="date    "]:focus {
 
                     if ($result->num_rows > 0) {
                       while($row = $result->fetch_assoc()) {
+                        $btime_in_compare = $row['start_event'];
+                        $btime_out_compare = $row['end_event'];
                        ?>
                         <tr>
+                        <td><?php echo"".$row['id']?></td>
                         <td><?php echo"".date("F jS, Y - h:s a", strtotime($row['start_event']))."-      To     -".date("F jS, Y -- h:s a", strtotime($row['end_event']));?></td>
                         <td><?php echo"".$row['title'];?></td>
                         <td>
-                            
-                            <button  id="confirmBtn" class="buttons confirmBtn ">Update</button>
-                           
+
+                            <p style="display:none"><?php echo"".$row['id'] ?></p>
+                            <p style="display:none"><?php echo"".$row['appID'] ?></p>
+                            <p style="display:none"><?php echo"".$row['start_event'] ?></p>
+                            <p style="display:none"><?php echo"".$row['end_event'] ?></p>
+                            <?php 
+                                $sql_cstmr_id = "SELECT ID FROM tbl_booking WHERE btime_in = '$btime_in_compare' AND btime_out = '$btime_out_compare'";
+                                $result_cstmr_id = $conn->query($sql_cstmr_id);
+                                if ($result_cstmr_id->num_rows > 0) {
+                                
+                                  while($row_csmtr_id = $result_cstmr_id->fetch_assoc()) {
+                                    ?>
+                                        <p style="display:none"><?php echo"".$row_csmtr_id['ID'] ?></p>
+                                    <?php
+                                  }
+                                }
+
+                            ?>
+                            <button  id="confirmBtn" class="buttons update_btn ">Update</button>
                         </td>
+
                         </tr>
                        <?php
                       }
                     } else {
-                      echo "0 results";
+                      ?>
+                        <tr>
+                            <td> No Record</td>
+                        </tr>
+                      <?php
                     }
                 ?>
               
@@ -831,7 +1044,56 @@ input[type="date    "]:focus {
       $('nav ul li').click(function(){
         $(this).addClass("activee").siblings().removeClass("activee");
       });
-    </script>
+
+
+
+    var modal = document.getElementById("myModal");
+    var span = document.getElementsByClassName("close1")[0];
+    var btnupdate = document.querySelectorAll(".update_btn");
+    var btn_close = document.getElementById("close_btn");
+    
+    for (var i = 0; i < btnupdate.length; i++) {
+     btnupdate[i].onclick = function(e) {
+       modal.style.display = "block";
+
+
+    $tr = $(this).closest('tr').find('p');
+        var data = $tr.map(function(){
+        return $(this).text();
+    }).get();
+
+        console.log(data)
+        console.log(data[2].replace(" ","T"))
+        document.getElementById("aid").value = data[0];
+        document.getElementById("update_start").value = data[2].replace(" ","T");
+        document.getElementById("update_end").value = data[3].replace(" ","T");
+        document.getElementById("appID").value = data[1];
+        document.getElementById("bookingId").value = data[4];
+
+
+
+        document.getElementById('update_end').setAttribute("min",data[2])
+       }
+    }   
+
+    btn_close.onclick = function(){
+        modal.style.display = "none";
+ 
+    }
+  
+    span.onclick = function() {
+      modal.style.display = "none";
+    }
+
+ 
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+       
+      }
+    }
+</script>
 </body>
 </html>
 <?php
@@ -873,14 +1135,102 @@ if(isset($_POST['logout'])){
 
     
     mysqli_query($conn, $sql);
-
-    
+    $start_display_convert            = date("F jS, Y h:s a", strtotime($startDateTime));
+    $end_display_convert              = date("F jS, Y h:s a", strtotime($endDateTime));
     if ($conn->query($sql1) === TRUE) {
+         $sql1 = "INSERT INTO tbl_audit (UserID, Description, Date_edit, Name, type)
+            VALUES ('$customerID' ,'Declare $type Date Close from: $start_display_convert to $end_display_convert ', now(),'$fullname_admin', 'booking')";
+         $conn->query($sql1);
+
       echo '<script type="text/javascript">alert("Successful")</script>';
+      echo("<meta http-equiv='refresh' content='1'>");
     } else {
       echo "Error: " . $sql . "<br>" . $conn->error;
     }
 
+
+}else if(isset($_POST['updateSubmit'])){
+
+    $aid            =$_POST['aid'];
+    $update_start   =$_POST['update_start'];
+    $update_end     =$_POST['update_end'];
+    $appID          =$_POST['appID'];
+    $date            = date("Y-m-d", strtotime($update_start));
+    $bookingid      =$_POST['bookingId'];
+    $update_start_update = str_replace("T"," ",$update_start);
+    $update_end_update = str_replace("T"," ",$update_end);
+
+
+    $start_display_convert            = date("F jS, Y h:s a", strtotime($update_start_update));
+    $end_display_convert              = date("F jS, Y h:s a", strtotime($update_end_update));  
+    // echo '<script type="text/javascript">alert("'.$date.'")</script>';
+
+    $sql = "UPDATE events SET start_event='$update_start', end_event='$update_end' WHERE id='$aid'";
+
+    if($conn->query($sql) === TRUE){
+        $sql = "UPDATE tbl_booking SET btime_in='$update_start', btime_out='$update_end', bdate = '$date' WHERE ID = '$bookingid'";
+
+        if ($conn->query($sql) === TRUE) {
+
+           $sql1 = "INSERT INTO tbl_audit (UserID, Description, Date_edit, Name, type)
+            VALUES ('$customerID' ,'Update Closed Date ID:$aid from | $start_display_convert to $end_display_convert', now(),'$fullname_admin', 'booking')";
+         $conn->query($sql1);
+          echo '<script type="text/javascript">alert("update sucessful")</script>';
+          echo("<meta http-equiv='refresh' content='1'>");
+        } else {
+          echo "second update Error updating record: " . $conn->error;
+        }
+
+
+
+
+    }else{
+      echo "Error updating record: " . $conn->error;
+    }
+
+
+
+
+
+
+
+}else if(isset($_POST['deletesubmit'])){
+    $bookingid      =$_POST['bookingId'];
+    $aid            =$_POST['aid'];
+    $update_start   =$_POST['update_start'];
+    $update_end     =$_POST['update_end'];
+
+
+     $update_start_update = str_replace("T"," ",$update_start);
+    $update_end_update = str_replace("T"," ",$update_end);
+
+    $start_display_convert            = date("F jS, Y h:s a", strtotime($update_start_update));
+    $end_display_convert              = date("F jS, Y h:s a", strtotime($update_end_update));  
+
+
+
+
+    $sql = "DELETE FROM events WHERE id='$aid'";
+
+
+    if($conn->query($sql) === TRUE){
+      $sql_tbl_booking = "DELETE FROM tbl_booking WHERE ID='$bookingid'";
+      $conn->query($sql_tbl_booking);
+
+     $sql1 = "INSERT INTO tbl_audit (UserID, Description, Date_edit, Name, type)
+        VALUES ('$customerID' ,'Delete close date from: $start_display_convert to $end_display_convert ', now(),'$fullname_admin', 'booking')";
+     $conn->query($sql1);
+
+
+      echo '<script type="text/javascript">alert("delete sucessful")</script>';
+      echo("<meta http-equiv='refresh' content='1'>");
+
+
+
+
+    }else{
+      echo "Error deleting record: " . $conn->error;
+    }
 
 }
 

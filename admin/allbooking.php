@@ -563,7 +563,17 @@
                   <td ><?php echo"".$row['bpax']; ?></td>
 
                   <!-- no booking condition -->
-                  <td data-label="Pax"><?php echo"<b>Date:</b>".$row['datecategory']."<Br><b>Place:</b>".$row['btable_date']; ?></td>
+                  <?php 
+                    if($row['datecategory']==''){
+                      ?>
+                        <td data-label="Pax"><?php echo"<i class='fas fa-times-circle'></i> NO ROMANTIC DATE"; ?></td>
+                      <?php
+                    }else{
+                      ?>
+                        <td data-label="Pax"><?php echo"<b>Date:</b>".$row['datecategory']."<Br><b>Place:</b>".$row['btable_date']; ?></td>
+                      <?php
+                    }          
+                  ?>  
                   <td data-label="Pax"><?php echo"<b> Total:</b>".$row['bprice']."<Br><b>Deposit:</b>".$row['bdeposit']; ?></td>
                   <td data-label="Pax"><?php echo"".$row['bstatus']; ?></td>
                  
