@@ -222,6 +222,33 @@ window.onclick = function(event) {
         </label>
       </center>
       </div>
+   <!--  ------------------------------------ADD ONS------------------------------------------ -->
+    <div class="columns is-multiline" style="padding:15px">
+      <div class="column is-full">
+        <label class="label_addons">Add Ons:</label>
+      </div>
+
+      <div class="column is-6 addon_container" >
+        <input type="checkbox" > </input>
+        <lable> Add ons Label here</lable>
+        <p> ₱ 9999.9</p>
+        <center>
+        <div class="addons_img"><img class="zoom" src="../style/images/Gall (3).jpg" style="width:100%; height:100%; object-fit: cover;"></img> </div>
+        </center>
+      </div>
+
+      <div class="column is-6 addon_container">
+        <input type="checkbox" > </input>
+        <lable> Add ons Label here</lable>
+        <p> ₱ 9999.9</p>
+        <center>
+        <div class="addons_img"><img  class="zoom"src="../style/images/Gall (3).jpg" style="width:100%; height:100%; object-fit: ;"></img> </div>
+        </center>
+      </div>
+
+    
+    </div>
+   <!--  ----------------------------------------------------------------------------- -->
     <div class="column is-full">
 
         <button class="button-to-anchor1" type="submit" name="room">
@@ -291,7 +318,15 @@ window.onclick = function(event) {
   </div>
 </div>
 <!-- END OF FOOTER -->
-
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="../medium-zoom.min.js"></script>
+<script src="../zoom-main.js"></script> <!-- not working--> 
+<script>
+  AOS.init({
+    offset:150,
+    duration:1000
+  });
+</script>
 
 <!-- The Modal -->
 <div id="myModal" class="modal fade-in">

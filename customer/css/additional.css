@@ -341,7 +341,7 @@ nav :checked ~ .icon-burger .line:nth-child(2) {
   background-color: #f7f7f7;
   //background: linear-gradient(to right,#dde7ee,white,#dde7ee);
   padding: 20px;
-  width: 350px;
+  width: 500px;
   margin-top:10px;
   margin-bottom: 10%;
   transition: 0.5s;
@@ -364,6 +364,27 @@ nav :checked ~ .icon-burger .line:nth-child(2) {
   font-family: 'Poppins', sans-serif;
 
 }
+.addon_container{
+  text-align: center;
+
+}
+.addon_container p{
+  font-weight: bold;
+}
+.label_addons{
+  font-weight:bold;
+  font-size:1em;
+  font-family: 'Poppins', sans-serif;
+  margin-left:px;
+}
+
+.addons_img{
+  width: 200px;
+  height: 130px;
+  border-radius:8px;
+  border-width: 1px;
+}
+
 input[type=date] {
   width: 100%;
   padding: 5px 0px;

@@ -142,8 +142,8 @@ window.onclick = function(event) {
   <div class="container is-desktop bar">
     <div class="progress-bar"> 0%</div>
   </div>
-
   <div class="container is-desktop white-background">
+
   	  	<label class="label" >Select booking category:</label>
     <div class="columns is-desktop">
       <div class="column"  >
