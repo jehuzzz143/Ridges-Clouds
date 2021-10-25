@@ -451,7 +451,7 @@
                   <textarea type="text" class="form-control" id="notes" name="notes" style="height: 60px; width:100%;" ></textarea>
                 <div id="patient_image1">
                   <label class="label"> Picture</label>
-                  <input  type="file" name="patient_image" id="patient_image" ></input>
+                  <input  type="file" name="patient_image" id="patient_image" accept="image/*"></input>
                   <input type="hidden" name="photo" id="photo" readonly />
                 </div>
             </div>
@@ -659,6 +659,211 @@
     </table>
   </center>
   </div>
+
+
+  <!-- ADD ONS -->
+<!-- add ons modal  -->
+
+<div class="modal fade-in" id="add_ons_modal" tabindex="-1" role="dialog" >
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" style="width:500px;">
+      
+        <span class="close add_ons_close">&times;</span>
+        <form action="rules.php" method="POST"  enctype="multipart/form-data">
+        <h5 class="modal-title" id="exampleModalLabel">ADD ONS INFORMATION&nbsp;&nbsp;<input type="text"  id="add_ons_id" name="add_ons_id" readonly style="text-align:center;width:100px; "></h5>
+       <Hr>
+          <div class="modal-body">
+            
+              <label> Picture </label>
+              <input  type="file" name="add_ons_image" id="add_ons_image" onchange="readURL(this);" enctype="multipart/form-data" accept="image/*"></input>
+              <div class="picture_container">
+                <img id="blah" src=""  />
+              </div>
+              <input type="hidden" name="photo_noupdate" id="photo_noupdate" readonly />
+
+
+            <label>Description</label>
+            <input type="text" name="addon_ons_description" id="addon_ons_description" >
+
+           <label >Price</label>
+          <div>
+
+            <input type="text" name="add_ons_price" id="add_ons_price" onkeypress='validate(event)' placeholder="₱..." style="width:200px;">
+          </div>
+            <div class="modal-footer">
+                <button type="button"  onclick="add_ons_btn_close()">Close</button>
+                <input type="submit" name="add_ons_btn_save"   value="Save"     id="add_ons_btn_save"></input>
+                <input type="submit" name="add_ons_btn_delete" value="delete"   id="add_ons_btn_delete"></input>
+                <input type="submit" name="add_ons_btn_update" value="update"   id="add_ons_btn_update"></input>
+                
+            </div>
+
+
+
+        </form>
+    </div>
+  </div>
+</div>
+</div>
+<!-- add ons modal end -->
+
+<script type="text/javascript">
+  function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#blah')
+                    .attr('src', e.target.result)
+                    .width(500)
+                    .height(300);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    function validate(evt) {
+  var theEvent = evt || window.event;
+
+  // Handle paste
+  if (theEvent.type === 'paste') {
+      key = event.clipboardData.getData('text/plain');
+  } else {
+  // Handle key press
+      var key = theEvent.keyCode || theEvent.which;
+      key = String.fromCharCode(key);
+  }
+  var regex = /[0-9]|\./;
+  if( !regex.test(key) ) {
+    theEvent.returnValue = false;
+    if(theEvent.preventDefault) theEvent.preventDefault();
+  }
+}
+</script>
+
+  
+<center>
+  <button class="btnadd" id="add_ons_btn"  >ADD ONS </button> <!-- class="othereventModal1" -->
+  <h2 style="font-weight: bold; letter-spacing: 2px; font-size:1.5em;"> BOOKING EXTRA ADD ONS</h2>
+</center>
+
+<div class="container-lg" style="overflow-y: scroll !!important;min-width: 1000px;max-height: 600px; padding:0; margin:0;margin-top:3px;">
+  <div class="columns " style="padding:15px">
+      
+      <?php
+        $sql = "SELECT * FROM tbl_price WHERE category = 'Add Ons'";
+        $result = $conn->query($sql);
+
+        if($result->num_rows > 0){
+          while($row = $result->fetch_assoc()) {
+            $add_ons_image_path = 'upload/'.$row['imagename'];
+            ?>
+              <div class="column is-3 addon_container" >
+                <center>
+                <div class="addons_img">
+                  <img class="zoom" src="<?php echo''.$add_ons_image_path; ?>" style="width:100%; height:100%; object-fit: cover;"></img> 
+                </div>
+                <lable> <?php echo"".$row['accomodation']; ?></lable>
+                <p> <?php echo"".$row['rate']; ?></p>
+                </center>
+             
+                <p style="display:none"> <?php echo"".$row['accomodation']; ?></p>
+                <p style="display:none"> <?php echo"".$row['imagename']; ?></p>
+                <p style="display:none"> <?php echo"".$row['ID']; ?></p>
+              </div>
+            <?php
+          }
+        }else{
+          ?>
+             <div class="column is-3 addon_container" >
+                <input type="checkbox" > </input>
+                <lable> SAMPLE</lable>
+                <p> ₱ 9999.99</p>
+                <center>
+                <div class="addons_img"><img class="zoom" src="../style/images/Gall (3).jpg" style="width:100%; height:100%; object-fit: cover;"></img> </div>
+                </center>
+              </div>
+          <?php
+        }
+      ?>
+
+     
+
+    
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  var btnadd_ons = document.getElementById("add_ons_btn");
+  var add_ons_modal = document.getElementById("add_ons_modal");
+  var add_ons_close = document.getElementsByClassName("add_ons_close")[0];
+  var add_ons_container = document.querySelectorAll(".addon_container");
+
+   for (var i = 0; i < add_ons_container.length; i++) {
+   add_ons_container[i].onclick = function(e) {
+      e.preventDefault();
+      add_ons_modal.style.display = "block";
+      document.getElementById("add_ons_btn_update").style.display = "block";
+      document.getElementById("add_ons_btn_delete").style.display = "block";
+      document.getElementById("add_ons_id").style.display = "block";
+      document.getElementById("add_ons_btn_save").style.display = "none";
+
+   
+
+      $tr = $(this).closest('div').find('p');
+        var data = $tr.map(function(){
+        return $(this).text();
+    }).get();
+
+      console.log(data);
+
+
+      document.getElementById("add_ons_id").value=data[3].trim();   
+      document.getElementById("photo_noupdate").value=data[2].trim();
+      document.getElementById("addon_ons_description").value=data[1].trim();
+      document.getElementById("add_ons_price").value=data[0].trim();
+      //add_ons_id
+      // photo_noupdate
+      // addon_ons_description
+      // add_ons_price
+
+
+    }
+  }
+
+
+  btnadd_ons.onclick =function(){
+    add_ons_modal.style.display = "block";
+    document.getElementById("add_ons_btn_update").style.display = "none";
+    document.getElementById("add_ons_btn_delete").style.display = "none";
+    document.getElementById("add_ons_id").style.display = "none";
+    document.getElementById("add_ons_btn_save").style.display = "block";
+
+      document.getElementById("add_ons_id").value="";   
+      document.getElementById("photo_noupdate").value="";
+      document.getElementById("addon_ons_description").value="";
+      document.getElementById("add_ons_price").value="";
+  }
+  add_ons_close.onclick = function(){
+    add_ons_modal.style.display  = "none";
+  }
+
+  function add_ons_btn_close(){
+    add_ons_modal.style.display = "none";
+  }
+  window.onclick = function(event) {
+  if (event.target == add_ons_modal) {
+    add_ons_modal.style.display = "none";
+   
+  }
+}
+
+
+</script>
+<!-- end of add ons -->
+
   <button class="btnadd"style="float:right;" data-toggle="modal"  data-target="#announcementDetails"  id="rulesAdd1" class="rulesAdd1">Add Rules</button> <!-- onclick="addrules()" -->
   <center>
 
@@ -1136,6 +1341,7 @@ span1.onclick = function() {
 window.onclick = function(event) {
   if (event.target == modal) {
     modal.style.display = "none";
+
   }
 }
 
@@ -1464,6 +1670,97 @@ if ($conn->query($sql) === TRUE) {
 
 
 
+
+}else if(isset($_POST['add_ons_btn_save'])){
+
+
+//             add_ons_id
+//             add_ons_image
+//             addon_ons_description
+//             add_ons_price
+
+//             add_ons_btn_save
+//             add_ons_btn_delete
+//             add_ons_btn_update
+
+$images        = $_FILES["add_ons_image"]["name"];
+$description   = mysqli_real_escape_string($conn, $_POST["addon_ons_description"]);
+$add_ons_price =$_POST['add_ons_price'];
+
+$sql = "INSERT INTO tbl_price (category, accomodation, rate, imagename)
+VALUES ('Add Ons', '$description', $add_ons_price,'$images')";
+
+if ($conn->query($sql) === TRUE) {
+    move_uploaded_file($_FILES["add_ons_image"]["tmp_name"],"upload/".$_FILES["add_ons_image"]["name"]);
+    $sql1 = "INSERT INTO tbl_audit (UserID, Description, Date_edit, Name, type)
+    VALUES ('$customerID' ,'New Add Ons created titled: <u> $description </u>', now(),'$fullname', 'Information')";
+
+   $conn->query($sql1);  
+   ?>
+    <script type="text/javascript">
+      alert("Add Ons Successfully Inserted");
+    </script>
+
+
+  <?php
+  echo "<meta http-equiv='refresh' content='0'>";
+} else {
+  echo "Error: " . $sql . "<br>" . $conn->error;
+}
+
+}else if(isset($_POST['add_ons_btn_update'])){
+
+// photo_noupdate
+$ID            = $_POST['add_ons_id'];
+$images        = $_FILES["add_ons_image"]["name"];
+$description   = mysqli_real_escape_string($conn, $_POST["addon_ons_description"]);
+$add_ons_price =$_POST['add_ons_price'];
+
+if($_FILES['add_ons_image']['name']==''){
+    $images= $_POST['photo_noupdate'];
+}
+
+  $sql = "UPDATE tbl_price SET accomodation='$description', rate=$add_ons_price, imagename ='$images' WHERE ID='$ID'";
+
+if ($conn->query($sql) === TRUE) {
+   move_uploaded_file($_FILES["add_ons_image"]["tmp_name"],"upload/".$_FILES["add_ons_image"]["name"]);
+   $sql1 = "INSERT INTO tbl_audit (UserID, Description, Date_edit, Name, type)
+    VALUES ('$customerID' ,'Update Add Ons information of titled: <u> $description </u>', now(),'$fullname', 'Information')";
+    $conn->query($sql1);  
+   ?>
+    <script type="text/javascript">
+      alert("Successfully Updated");
+    </script>
+  <?php
+  echo "<meta http-equiv='refresh' content='0'>";
+} else {
+  echo "Error updating record: " . $conn->error;
+}
+
+
+
+
+
+}
+else if(isset($_POST['add_ons_btn_delete'])){
+  $ID            = $_POST['add_ons_id'];
+  $description   = mysqli_real_escape_string($conn, $_POST["addon_ons_description"]);
+
+$sql = "DELETE FROM tbl_price WHERE ID='$ID'";
+
+if ($conn->query($sql) === TRUE) {
+   $sql1 = "INSERT INTO tbl_audit (UserID, Description, Date_edit, Name, type)
+    VALUES ('$customerID' ,'Delete Add Ons titled: <u> $description </u>', now(),'$fullname', 'Information')";
+    $conn->query($sql1);  
+   ?>
+    <script type="text/javascript">
+      alert("Successfully Deleted");
+    </script>
+  <?php
+  echo "<meta http-equiv='refresh' content='0'>";
+} else {
+  echo "Error deleting record: " . $conn->error;
+}
 
 }else if(isset($_POST['logout'])){
 

@@ -5,7 +5,7 @@
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '9043936df2c9659494d5e030019112858fff344d',
+        'reference' => '7aec6b520b99928f8dd40aebb843f49587fd13f2',
         'name' => '__root__',
         'dev' => true,
     ),
@@ -16,7 +16,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '9043936df2c9659494d5e030019112858fff344d',
+            'reference' => '7aec6b520b99928f8dd40aebb843f49587fd13f2',
             'dev_requirement' => false,
         ),
         'twilio/sdk' => array(

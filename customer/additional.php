@@ -227,24 +227,42 @@ window.onclick = function(event) {
       <div class="column is-full">
         <label class="label_addons">Add Ons:</label>
       </div>
+      <?php
+        $sql = "SELECT * FROM tbl_price WHERE category = 'Add Ons'";
+        $result = $conn->query($sql);
 
-      <div class="column is-6 addon_container" >
-        <input type="checkbox" > </input>
-        <lable> Add ons Label here</lable>
-        <p> ₱ 9999.9</p>
-        <center>
-        <div class="addons_img"><img class="zoom" src="../style/images/Gall (3).jpg" style="width:100%; height:100%; object-fit: cover;"></img> </div>
-        </center>
-      </div>
+        if($result->num_rows > 0){
+          while($row = $result->fetch_assoc()) {
+            $add_ons_image_path = '../admin/upload/'.$row['imagename'];
+            ?>
 
-      <div class="column is-6 addon_container">
-        <input type="checkbox" > </input>
-        <lable> Add ons Label here</lable>
-        <p> ₱ 9999.9</p>
-        <center>
-        <div class="addons_img"><img  class="zoom"src="../style/images/Gall (3).jpg" style="width:100%; height:100%; object-fit: ;"></img> </div>
-        </center>
-      </div>
+              <div class="column is-6 addon_container" >
+                <input type="checkbox" > </input>
+                <lable> <?php echo"".$row['accomodation']; ?></lable>
+                <p> <?php echo"".$row['rate']; ?></p>
+                <center>
+                <div class="addons_img"><img class="zoom" src="<?php echo''.$add_ons_image_path; ?>" style="width:100%; height:100%; object-fit: cover;"></img> </div>
+                </center>
+              </div>
+
+
+
+             
+            <?php
+          }
+        }else{
+          ?>
+             <div class="column is-3 addon_container" >
+                <input type="checkbox" > </input>
+                <lable> SAMPLE</lable>
+                <p> ₱ 9999.99</p>
+                <center>
+                <div class="addons_img"><img class="zoom" src="../style/images/Gall (3).jpg" style="width:100%; height:100%; object-fit: cover;"></img> </div>
+                </center>
+              </div>
+          <?php
+        }
+      ?>
 
     
     </div>

@@ -36,6 +36,7 @@ body{
   padding: 10px 5px;
   border-radius: 5px;
 
+
 }
 .btnadd:hover{
   background:#2E94E3;
@@ -455,7 +456,12 @@ ul li p{
   padding: 0 ;
   margin:0;
   font-size:15px;
+  transition: .5s;
 
+}
+ul li p:hover{
+    cursor: pointer;
+   box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
 }
 .col-sm ul{
   padding:0%;
@@ -509,7 +515,11 @@ float: right;
 
 .styled-table tbody tr {
     border-bottom: 1px solid #dddddd;
-
+    transition: .5s;
+}
+.styled-table tbody tr:hover{
+  cursor: pointer;
+ box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
 }
 .styled-table tbody tr:hover {
     border-bottom: 1px solid orange ;
@@ -635,6 +645,8 @@ float: right;
 }
 .modal-footer{
   text-align:right;
+  display: flex;
+  float: right;
  
 }
 .modal-footer button[type=button],.modal-footer input[type=submit]{
@@ -646,6 +658,8 @@ float: right;
   padding: 10px 5px;
   border-radius: 5px;
   margin: 10px 0px;
+  margin: 2px;
+
 }
 .modal-footer button[type=button],.modal-footer input[type=submit]:hover{
   background:#2E94E3;
@@ -727,5 +741,41 @@ color:grey;
   .btnn{
     left: 10px;
   }
+}
+
+
+
+/* ad ons */
+
+.label_addons{
+  font-weight:bold;
+  font-size:1em;
+  font-family: 'Poppins', sans-serif;
+  margin-left:px;
+}
+.addon_container{
+  text-align: center;
+  transition: .5s;
+
+}
+.addon_container:hover{
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+   background-color: #E7E9EB;
+  cursor: pointer;
+}
+.addon_container p{
+  font-weight: bold;
+}
+.addons_img{
+  width: 300px;
+  height: 230px;
+  border-radius:8px;
+  border-width: 1px;
+}
+.picture_container{
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+    display: flex;
+  justify-content: center;
+  align-items: center;
 }
     </style>
