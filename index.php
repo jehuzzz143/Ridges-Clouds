@@ -97,6 +97,7 @@ if ($result->num_rows > 0) {
 
 </head>
 <body>
+
   <form method="POST">
 <nav>
 
@@ -468,6 +469,9 @@ window.onclick = function(event) {
   });
 
 </script>
+<?php 
+    require 'cookies.html';
+  ?>
 </body>
 </html>
 <?php

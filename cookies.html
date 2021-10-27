@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<!-- Coding By CodingNepal - youtube.com/codingnepal -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cookie Constent Box | CodingNepal</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="wrapper1">
+    <img src="cookie.png" alt="">
+    <div class="content">
+      <header>Cookies Consent</header>
+      <p>This website use cookies to ensure you get the best experience on our website.</p>
+      <div class="buttons">
+        <button class="item">I understand</button>
+        <a href="#" id="myBtn1" class="item" style="color:black;">Learn more</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const cookieBox = document.querySelector(".wrapper1"),
+    acceptBtn = cookieBox.querySelector("button");
+
+    acceptBtn.onclick = ()=>{
+      //setting cookie for 1 month, after one month it'll be expired automatically
+      document.cookie = "CookieBy=CodingNepal; max-age="+60*60*24*30;
+      if(document.cookie){ //if cookie is set
+        cookieBox.classList.add("hide"); //hide cookie box
+      }else{ //if cookie not set then alert an error
+        alert("Cookie can't be set! Please unblock this site from the cookie setting of your browser.");
+      }
+    }
+    let checkCookie = document.cookie.indexOf("CookieBy=CodingNepal"); //checking our cookie
+    //if cookie is set then hide the cookie box else show it
+    checkCookie != -1 ? cookieBox.classList.add("hide") : cookieBox.classList.remove("hide");
+  </script>
+
+
+<!-- The Modal -->
+<div id="myModal1" class="modal1 fade-in">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <h1>WHAT ARE THE COOKIES <span class="close1">&times;</span></h1>
+    <hr>
+    <p>cookies are pieces of information saved about you when you’re online, and they track you as you browse. So say you go to a weather website and put in your zip code to look up what’s happening in your area; the next time you visit the same site, it will remember your zip code because of cookies.</p>
+    <br>
+    <p>If the website cookies are rejected, the booking function in website will not work. but you can just keep on browsing but will unable to login.</p>
+    <br>
+    <p>By accepting cookies users will never be harmed, it will just help the website algorithm to not input data again when the website already detected the data.</p>
+
+  </div>
+
+</div>
+
+
+
+
+  <!-- how to book MODAL -->
+
+<script>
+// Get the modal
+var modal = document.getElementById("myModal");
+var modal1 = document.getElementById("myModal1");
+
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+var btn1 = document.getElementById("myBtn1");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+var span1 = document.getElementsByClassName("close1")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+btn1.onclick = function() {
+  modal1.style.display = "block";
+}
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+span1.onclick = function() {
+  modal1.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
+
+</script>
+</body>
+</html>

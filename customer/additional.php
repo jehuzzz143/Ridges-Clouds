@@ -227,8 +227,9 @@ window.onclick = function(event) {
       <div class="column is-full">
         <label class="label_addons">Add Ons:</label>
       </div>
+   
       <?php
-        $sql = "SELECT * FROM tbl_price WHERE category = 'Add Ons'";
+        $sql = "SELECT * FROM tbl_price WHERE category = 'Add Ons' AND quantity = 0";
         $result = $conn->query($sql);
 
         if($result->num_rows > 0){
@@ -237,11 +238,14 @@ window.onclick = function(event) {
             ?>
 
               <div class="column is-6 addon_container" >
-                <input type="checkbox" > </input>
-                <lable> <?php echo"".$row['accomodation']; ?></lable>
-                <p> <?php echo"".$row['rate']; ?></p>
+                
+              
                 <center>
                 <div class="addons_img"><img class="zoom" src="<?php echo''.$add_ons_image_path; ?>" style="width:100%; height:100%; object-fit: cover;"></img> </div>
+                <input type="checkbox" name="add_ons[]" value="<?php echo''.$row['accomodation'].$row['rate']; ?>"> </input>
+                <input type="hidden" name="add_ons_price[]"  readonly value="<?php echo''.$row['rate'];?>">
+                <lable> <?php echo"".$row['accomodation']; ?></lable>
+                <p> <?php echo"".$row['rate']; ?></p>
                 </center>
               </div>
 
@@ -263,7 +267,7 @@ window.onclick = function(event) {
           <?php
         }
       ?>
-
+   
     
     </div>
    <!--  ----------------------------------------------------------------------------- -->
@@ -428,14 +432,55 @@ exit();
 
 
   }else if($_SESSION['romanticdate']=="Yes"){
+        // add ons functions 
+    $_SESSION['addonsactive']=false;
+      foreach($_POST['add_ons'] as $add_ons_title){
+        $_SESSION['addonsactive']=true;
+        $firstString ="";
+        if($firstString == ""){
+          $firstString = $add_ons_title;
+        }else {
+          if(strpos($add_ons_title,$firstString)){
+            $firstString = str_replace($firsString, $add_ons_title);
+          }
+        }
+    
+      $add_ons .=" | ".$add_ons_title;
+        $int +=  (int)filter_var($firstString, FILTER_SANITIZE_NUMBER_INT); 
+     }
+    
+    $words = preg_replace('/[0-9]+/', '', $add_ons);
+    $_SEsSION['add_ons_total'] = $int;
+    // add ons functions end
+    
     $_SESSION['addactive']=true;
     ?>
     <script type="text/javascript">location.href = 'romanticpicker.php';</script>
     <?php 
 
-    echo '<script type="text/javascript">alert("continue'.$total.'")</script>';
-
+ 
   }else{
+    // add ons functions 
+    $_SESSION['addonsactive']=false;
+      foreach($_POST['add_ons'] as $add_ons_title){
+        $_SESSION['addonsactive']=true;
+        $firstString ="";
+        if($firstString == ""){
+          $firstString = $add_ons_title;
+        }else {
+          if(strpos($add_ons_title,$firstString)){
+            $firstString = str_replace($firsString, $add_ons_title);
+          }
+        }
+    
+      $add_ons .=" | ".$add_ons_title;
+        $int +=  (int)filter_var($firstString, FILTER_SANITIZE_NUMBER_INT); 
+     }
+    
+    $words = preg_replace('/[0-9]+/', '', $add_ons);
+    $_SEsSION['add_ons_total'] = $int;
+    // add ons functions end
+
     $_SESSION['addactive']=true;
 
     ?>

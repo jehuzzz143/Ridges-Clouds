@@ -749,6 +749,9 @@ window.onclick = function(event) {
 		}
 	}
 </script>
+<?php 
+    require 'cookies.html';
+  ?>
 </body>
 </html>
 

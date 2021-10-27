@@ -228,6 +228,9 @@ window.onclick = function(event) {
     duration:1500
   });
 </script>
+<?php 
+    require 'cookies.html';
+  ?>
 </body>
 </html>
 <?php 

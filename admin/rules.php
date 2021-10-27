@@ -694,6 +694,8 @@
                 <button type="button"  onclick="add_ons_btn_close()">Close</button>
                 <input type="submit" name="add_ons_btn_save"   value="Save"     id="add_ons_btn_save"></input>
                 <input type="submit" name="add_ons_btn_delete" value="delete"   id="add_ons_btn_delete"></input>
+                <input type="submit" name="add_ons_btn_disable" value="disable" id="add_ons_btn_disable"></input>
+                <input type="submit" name="add_ons_btn_enable" value="enable" id="add_ons_btn_enable"></input>
                 <input type="submit" name="add_ons_btn_update" value="update"   id="add_ons_btn_update"></input>
                 
             </div>
@@ -758,8 +760,18 @@
         if($result->num_rows > 0){
           while($row = $result->fetch_assoc()) {
             $add_ons_image_path = 'upload/'.$row['imagename'];
+              if($row['quantity']==1){
+                ?>
+                  <div class="column is-3 addon_container" style="background-color: #FFE1E1 !important;" >
+                <?php
+              }else{
+                ?>
+                  <div class="column is-3 addon_container" >
+                <?php
+              }
             ?>
-              <div class="column is-3 addon_container" >
+
+              
                 <center>
                 <div class="addons_img">
                   <img class="zoom" src="<?php echo''.$add_ons_image_path; ?>" style="width:100%; height:100%; object-fit: cover;"></img> 
@@ -771,6 +783,7 @@
                 <p style="display:none"> <?php echo"".$row['accomodation']; ?></p>
                 <p style="display:none"> <?php echo"".$row['imagename']; ?></p>
                 <p style="display:none"> <?php echo"".$row['ID']; ?></p>
+                <p style="display:none"><?php echo "".$row['quantity']?></p>
               </div>
             <?php
           }
@@ -806,7 +819,7 @@
       e.preventDefault();
       add_ons_modal.style.display = "block";
       document.getElementById("add_ons_btn_update").style.display = "block";
-      document.getElementById("add_ons_btn_delete").style.display = "block";
+
       document.getElementById("add_ons_id").style.display = "block";
       document.getElementById("add_ons_btn_save").style.display = "none";
 
@@ -824,6 +837,17 @@
       document.getElementById("photo_noupdate").value=data[2].trim();
       document.getElementById("addon_ons_description").value=data[1].trim();
       document.getElementById("add_ons_price").value=data[0].trim();
+
+      if(data[4].trim()==1){
+        document.getElementById("add_ons_btn_delete").style.display ="block";
+        document.getElementById("add_ons_btn_enable").style.display ="block";
+        document.getElementById("add_ons_btn_disable").style.display ="none";
+      }else{
+        document.getElementById("add_ons_btn_delete").style.display ="none";
+        document.getElementById("add_ons_btn_enable").style.display ="none";
+        document.getElementById("add_ons_btn_disable").style.display ="block";
+      }
+
       //add_ons_id
       // photo_noupdate
       // addon_ons_description
@@ -840,6 +864,8 @@
     document.getElementById("add_ons_btn_delete").style.display = "none";
     document.getElementById("add_ons_id").style.display = "none";
     document.getElementById("add_ons_btn_save").style.display = "block";
+     document.getElementById("add_ons_btn_enable").style.display ="none";
+        document.getElementById("add_ons_btn_disable").style.display ="none";
 
       document.getElementById("add_ons_id").value="";   
       document.getElementById("photo_noupdate").value="";
@@ -1741,8 +1767,7 @@ if ($conn->query($sql) === TRUE) {
 
 
 
-}
-else if(isset($_POST['add_ons_btn_delete'])){
+}else if(isset($_POST['add_ons_btn_delete'])){
   $ID            = $_POST['add_ons_id'];
   $description   = mysqli_real_escape_string($conn, $_POST["addon_ons_description"]);
 
@@ -1762,6 +1787,36 @@ if ($conn->query($sql) === TRUE) {
   echo "Error deleting record: " . $conn->error;
 }
 
+}else if(isset($_POST['add_ons_btn_disable'])){
+  $ID            = $_POST['add_ons_id'];
+  $description   = mysqli_real_escape_string($conn, $_POST["addon_ons_description"]);
+  $sql = "UPDATE tbl_price SET quantity=1 WHERE ID='$ID'";
+
+  if ($conn->query($sql) === TRUE) {
+     $sql1 = "INSERT INTO tbl_audit (UserID, Description, Date_edit, Name, type)
+    VALUES ('$customerID' ,'Disabled Add Ons  titled: <u> $description </u>', now(),'$fullname', 'Information')";
+    $conn->query($sql1);  
+
+    echo "<meta http-equiv='refresh' content='0'>";
+  } else {
+    echo "Error updating record: " . $conn->error;
+  }
+
+}else if(isset($_POST['add_ons_btn_enable'])){
+   $ID            = $_POST['add_ons_id'];
+  $description   = mysqli_real_escape_string($conn, $_POST["addon_ons_description"]);
+  $sql = "UPDATE tbl_price SET quantity=0 WHERE ID='$ID'";
+
+  if ($conn->query($sql) === TRUE) {
+     $sql1 = "INSERT INTO tbl_audit (UserID, Description, Date_edit, Name, type)
+    VALUES ('$customerID' ,'Enabled Add Ons  titled: <u> $description </u>', now(),'$fullname', 'Information')";
+    $conn->query($sql1);  
+
+    echo "<meta http-equiv='refresh' content='0'>";
+  } else {
+    echo "Error updating record: " . $conn->error;
+  }
+
 }else if(isset($_POST['logout'])){
 
   session_unset();
@@ -1774,6 +1829,7 @@ if ($conn->query($sql) === TRUE) {
 }
 
 
-
+  // add_ons_btn_disable
+  //     add_ons_btn_enable
 
 ?>
