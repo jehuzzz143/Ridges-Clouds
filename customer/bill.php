@@ -251,18 +251,27 @@ window.onclick = function(event) {
               <td><input type="text" readonly name="roomprice" value="<?php echo"".$_SESSION['roomtotal'];?>"></td>
              
             </tr>
-            <tr>
-              <th>Additional Pax: </th>
-               
-              <td colspan=2><input type="text" readonly name="roomprice" value="<?php echo"".$_SESSION['additional'];?>"></td>
-             
-            </tr>
+
             <tr>
               <th>Additional Pax Price: </th>
                <td></td>
-                 <td> </td>
+                 <td><input type="text" readonly name="roomprice" value="<?php echo"".$_SESSION['additional'];?>"> </td>
               <td><input type="text" readonly name="roomprice" value="<?php echo"".$additionalPrice; ?>"></td>
             </tr>
+               <?php
+            
+              if($_SESSION['addonsactive']==true){
+                ?>
+                  <tr>
+                    <th>Room Add Ons</th>
+                    <td><input type="text" name="add_ons_submit" value="<?php echo"".$_SESSION['add_ons_description']?>"></td>
+                    <td></td>
+                    <td><input type="text" readonly name="roomname" value="<?php echo"".$_SESSION['add_ons_total']; ?>"></td>
+                  </tr>
+                <?php
+              }
+
+            ?>
             <thead>
               <tr >
                 <th colspan=4 style="text-align: center;font-size:1.3em;">ROMANTIC DATE INFORMATION</th>
@@ -287,6 +296,7 @@ window.onclick = function(event) {
                <td><input type="text" readonly name="roomprice" value="<?php echo"".$_SESSION['romantictotal']; ?>"></td>
              
             </tr>
+
           
             <?php
             if($_SESSION['couponactive'] == true){
@@ -310,18 +320,19 @@ window.onclick = function(event) {
                 </td>
                
               </tr>
-              <tr >
+              <tr>
                 <th>TOTAL PRICE:</th>
                 <td colspan=2> </td>
                 <td style="background-color:#EEEEEE;"><input type="text" readonly name="roomprice" value="<?php echo"".$_SESSION['daytourprice']; ?>"></td>
               </tr>
+
               <?php
             }else{
               ?>
               <tr >
                 <th  >TOTAL PRICE:</th>
                 <td colspan=2> </td>
-                <td style="background-color:#EEEEEE;"><input type="text" readonly name="roomprice" value="<?php echo"".$_SESSION['roomtotal']+$additionalPrice; ?>"></td>
+                <td style="background-color:#EEEEEE;"><input type="text" readonly name="roomprice" value="<?php echo"".$_SESSION['roomtotal']+$additionalPrice+$_SESSION['add_ons_total']+$_SESSION['romantictotal']; ?>"></td>
               </tr>
 
               <?php
@@ -405,17 +416,25 @@ window.onclick = function(event) {
               <td><input type="text" readonly name="roomprice" value="<?php echo"".$_SESSION['roomtotal'];?>"></td>
              
             </tr>
-            <tr>
-              <th>Additional Pax: </th>
-               
-              <td><input type="text" readonly name="roomprice" value="<?php echo"".$_SESSION['additional'];?>"></td>
-              <td></td>
-            </tr>
+
             <tr>
               <th>Additional Pax Price: </th>
-               <td></td>
+               <td><input type="text" readonly name="roomprice" value="<?php echo"".$_SESSION['additional'];?>"></td>
               <td><input type="text" readonly name="roomprice" value="<?php echo"".$additionalPrice; ?>"></td>
             </tr>
+            <?php
+            
+              if($_SESSION['addonsactive']==true){
+                ?>
+                  <tr>
+                    <th>Room Add Ons</th>
+                    <td><input type="text" name="add_ons_submit" value="<?php echo"".$_SESSION['add_ons_description']?>"></td>
+                    <td><input type="text" readonly name="roomname" value="<?php echo"".$_SESSION['add_ons_total']; ?>"></td>
+                  </tr>
+                <?php
+              }
+
+            ?>
             <?php
             if($_SESSION['couponactive'] == true){
               ?>
@@ -449,7 +468,7 @@ window.onclick = function(event) {
               <tr >
                 <th  >TOTAL PRICE:</th>
                 <td colspan=1> </td>
-                <td style="background-color:#EEEEEE;"><input type="text" readonly name="roomprice" value="<?php echo"".$_SESSION['roomtotal']+$additionalPrice; ?>"></td>
+                <td style="background-color:#EEEEEE;"><input type="text" readonly name="roomprice" value="<?php echo"".$_SESSION['roomtotal']+$additionalPrice+$_SESSION['add_ons_total']; ?>"></td>
               </tr>
 
               <?php
@@ -725,7 +744,16 @@ exit();
     $dateplace = $_SESSION['place'];
     $datetime = "3am to 4pm";
     $datecategory = $_SESSION['romanticAccomodation'];
-    $price = $_SESSION['romantictotal']+$_SESSION['roomtotal']+$additionalPrice;
+    $price = $_POST['roomprice'];
+  
+    // if($_SESSION['addonsactive']==true){
+    //   $price = $_SESSION['romantictotal']+$_SESSION['roomtotal']+$additionalPrice+$_SESSION['add_ons_total'];
+    // }else{
+    //   $price = $_SESSION['romantictotal']+$_SESSION['roomtotal']+$additionalPrice;
+    // }
+
+
+    $add_ons_description = $_POST['add_ons_submit'];
 
   if($term != 'agree'){
     ?>
@@ -744,13 +772,13 @@ exit();
   if($_SESSION['romanticdate'] == 'Yes'){
 
   
-    $sql = "INSERT INTO tbl_booking (customerID, bname, bdate, btype, btime_in, btime_out , broom, bpax,btable_date,btable_time, datecategory,bprice, balance, bstatus)
-  VALUES ('$customerID', '$fullname', '$date' ,'$type', '$timein', '$timeout', '$room' ,$additionalpax, '$dateplace','$datetime','$datecategory',$price,$price,'Pending')";
+    $sql = "INSERT INTO tbl_booking (customerID, bname, bdate, btype, btime_in, btime_out , broom, bpax,btable_date,btable_time, datecategory,bprice, balance, bstatus, add_ons)
+  VALUES ('$customerID', '$fullname', '$date' ,'$type', '$timein', '$timeout', '$room' ,$additionalpax, '$dateplace','$datetime','$datecategory',$price,$price,'Pending','$add_ons_description')";
 
   }else{
 
-    $sql = "INSERT INTO tbl_booking (customerID, bname, bdate, btype, btime_in, btime_out , broom, bpax,bprice,balance, bstatus)
-  VALUES ('$customerID', '$fullname', '$date' ,'$type', '$timein', '$timeout', '$room' ,$additionalpax,$price,$price,'Pending')";
+    $sql = "INSERT INTO tbl_booking (customerID, bname, bdate, btype, btime_in, btime_out , broom, bpax,bprice,balance, bstatus, add_ons)
+  VALUES ('$customerID', '$fullname', '$date' ,'$type', '$timein', '$timeout', '$room' ,$additionalpax,$price,$price,'Pending', '$add_ons_description')";
 
 
   }
@@ -761,7 +789,11 @@ exit();
       $_SESSION['roomactive']= false;
       $_SESSION['addactive']= false;
       $_SESSION['romanticactive']= false;
-    
+      $_SESSION['addonsactive']= false;
+      $_SESSION['add_ons_total']= false;
+      $_SESSION['add_ons_description']="";
+      $_SESSION['daytourprice']=0;
+      $_SESSION['couponactive']= false;
 
      ?>
       <script type="text/javascript">
@@ -805,7 +837,13 @@ if ($result->num_rows > 0) {
       </script>
 
       <?php
-      $_SESSION['daytourprice'] = $_SESSION['roomtotal']+$additionalPrice;
+      if($_SESSION['dateactive']==true){
+        $_SESSION['daytourprice'] = $_SESSION['roomtotal']+$additionalPrice+$_SESSION['add_ons_total']+$_SESSION['romantictotal'];
+      }else{
+        $_SESSION['daytourprice'] = $_SESSION['roomtotal']+$additionalPrice+$_SESSION['add_ons_total'];
+      }
+      
+
       $_SESSION['promo_id'] = $row['promo_id'];
       $_SESSION['couponactive']= true;
       $_SESSION['booking_price'] = $_SESSION['daytourprice'];

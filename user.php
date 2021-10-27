@@ -725,19 +725,26 @@ window.onclick = function(event) {
     <span  class="close12">&times;</span>
     <form method="POST" enctype="multipart/form-data">
       <input type="hidden" name="paymentAppId" id="paymentAppId" style="width:30%;height:30px;" />
-      <br><Br>
+    
       
-      
-      <h1 class="lineText label">Screenshot of Downpayment (Gcash)</h1> 
+      <center>
+      <h1 class="lineText label">UPLOAD SCREENSHOT OF DOWNPAYMENT (GCASH)</h1> 
+      </center>
+      <br>
          <div class="container" style="text-align:center;">
           <span class="btn btn-primary btn-file" >
-            <i class="far fa-images" style="width: 90%;">&nbsp; Select payment screenshot</i> <input type="file" name="paymentProofPhoto" onchange="readURL1(this);" required>
+            <i class="far fa-images" style="width: 90%;"></i> <input type="file" name="paymentProofPhoto" onchange="readURL1(this);" required>
           </span>
         </div>
         <br>
-        <div class="container">
-          <img id="blah1" src="#" alt="your sample image" />
+        <div class="container" style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
+          <img id="blah1" src="#" alt="" />
         </div>
+        <br><br>
+        <center>
+          <small><i>Please list down the names of guest</i></small>
+        </center>
+        <textarea placeholder="1. Name A. Lastname" rows="7" name="notes" id="notes" style="padding:3;"></textarea>
 
       <!-- paymentProofPhoto,paymentAppId  -->
       <hr>
@@ -1202,9 +1209,10 @@ if ($conn->query($sql) === TRUE) {
 $id                       = $_POST['paymentAppId'];
 $id                       = str_replace("APP","",$id);                     
 $paymentProofPhoto        = $_FILES['paymentProofPhoto']['name'];
+$notes = $_POST['notes'];
 
   
-$sql = "UPDATE tbl_booking SET paymentPhoto ='$paymentProofPhoto' WHERE ID='$id'";
+$sql = "UPDATE tbl_booking SET paymentPhoto ='$paymentProofPhoto', notes = '$notes' WHERE ID='$id'";
 
 
   if ($conn->query($sql) === TRUE) {

@@ -180,7 +180,7 @@ window.onclick = function(event) {
         <label class="label" >Pax (₱200 each):</label>
         <select name="daytourpax" id="day" required> <!--value="<?php //echo"".$_SESSION['day'] ?>"  -->
 
-        <option value="0" <?php if($_SESSION['daytourpax']==0) echo "SELECTED"; ?>>0</option>
+   
         <option value="1" <?php if($_SESSION['daytourpax']==1) echo "SELECTED"; ?>>1</option>
         <option value="2" <?php if($_SESSION['daytourpax']==2) echo "SELECTED"; ?>>2</option>
         <option value="3" <?php if($_SESSION['daytourpax']==3) echo "SELECTED"; ?>>3</option>

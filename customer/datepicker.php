@@ -206,7 +206,11 @@ window.onclick = function(event) {
   			<input type="datetime-local" readonly  name="end" value="<?php echo"".$end ?>">
   			
   		</div>
+
       <div class="column is-full">
+        <center>
+        <p><small style="font-size:13px;"><i>By default, check-in hours are from 2pm to 12pm.</i></small></p>
+        </center>
         <button class="no-button"type="submit"name="date-check" id="date-check" ><i class="fas fa-calendar-day"></i> Confirm Date </button>
       </div>
 

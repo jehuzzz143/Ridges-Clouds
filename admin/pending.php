@@ -652,6 +652,7 @@ function daytour() {
                         </td>
                         <td style="display:none;"><?php echo"".$guestNumber; ?></td>
                         <td style="display:none;"><?php echo"".$row['paymentPhoto']; ?></td>
+                        <td style="display:none;"><?php echo"".$row['notes']; ?></td>
                      </tr>
 
                    <?php
@@ -775,6 +776,7 @@ function daytour() {
                           </td> -->
                         <td style="display:none;"><?php echo"".$guestNumber; ?></td>
                         <td style="display:none;"><?php echo"".$row['paymentPhoto']; ?></td>
+                         <td style="display:none;"><?php echo"".$row['notes']; ?></td>
                      </tr>
 
                    <?php
@@ -826,6 +828,7 @@ function daytour() {
         <div class="container" style="padding:0;margin:0; text-align: center;">
           <img id="blah" src="#" alt="your sample image" />
         </div>
+        <p id="notes"></p>
 
      
     </form>
@@ -859,11 +862,14 @@ for (var i = 0; i < paymentProofBtn.length; i++) {
     console.log(data[7])
     if(data[7]!=""){
       document.getElementById("blah").src = "../style/images/downpayments/"+data[17];
+      document.getElementById("notes").innerHTML = data[18];
     }else{
       document.getElementById("blah").src = "../style/images/downpayments/"+data[16];
+      document.getElementById("notes").innerHTML = data[17];
     }
   }else{
     document.getElementById("blah").src = "../style/images/downpayments/"+data[14];
+    document.getElementById("notes").innerHTML = data[15];
   }
 
   }

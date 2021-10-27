@@ -746,6 +746,14 @@ if($total_visitors<1){
                 }
               
               ?>
+            <?php 
+              if($row['add_ons']!=""){
+                echo"<p>Add Ons: ".str_replace("|","",$row['add_ons']."</p>");
+              }else{
+                echo"<p>Add Ons: <mark style='background-color:#F4F4F4;'>None</mark></p>";
+
+              }
+            ?>
             <p>Total Price: <?php echo"".$row['bprice']; ?></p> 
             <p>Deposit: <?php echo"".$row['bdeposit']; ?></p> 
             <p>Balance: <?php echo"".$row['balance']; ?></p> 

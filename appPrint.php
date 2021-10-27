@@ -24,6 +24,7 @@ if ($result->num_rows > 0) {
     $room = str_replace('||',"",$room);
     $category =$row['btype'];
     $discount_id = $row['promo_id'];
+    $add_ons = $row['add_ons'];
 
     if($row['btype'] == 'Daytour'){
     	 $description = $row['btype'].' / '.$row['bdaytourtime'];
@@ -91,7 +92,14 @@ window.print();
         				<li>Account Name: &nbsp;&nbsp;&nbsp;&nbsp;<?php echo"<b>".$name."</b>"; ?></li>
         				<li>Appointment #:&nbsp;&nbsp;&nbsp;&nbsp;<?php echo"<b>".$id2."</b>"; ?></li>
         				<li>Description: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo"<b>".$description."</b>"; ?></li>
-
+                <?php
+                if($add_ons!=""){
+                  ?>
+                     <li>With:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo"<b>".$add_ons."</b>"; ?></li>
+                  <?php
+                }
+                ?>
+               
                 <?php 
                   if($discount_id !=""){
                     $sql = "SELECT * FROM tbl_promo WHERE promo_id = $discount_id";
