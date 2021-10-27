@@ -751,7 +751,7 @@
 </center>
 
 <div class="container-lg" style="overflow-y: scroll !!important;min-width: 1000px;max-height: 600px; padding:0; margin:0;margin-top:3px;">
-  <div class="columns " style="padding:15px">
+  <div class="columns is-multiline " style="padding:15px">
       
       <?php
         $sql = "SELECT * FROM tbl_price WHERE category = 'Add Ons'";
@@ -762,11 +762,11 @@
             $add_ons_image_path = 'upload/'.$row['imagename'];
               if($row['quantity']==1){
                 ?>
-                  <div class="column is-3 addon_container" style="background-color: #FFE1E1 !important;" >
+                  <div class="column is-4 addon_container" style="background-color: #FFE1E1 !important;" >
                 <?php
               }else{
                 ?>
-                  <div class="column is-3 addon_container" >
+                  <div class="column is-4 addon_container">
                 <?php
               }
             ?>
@@ -776,7 +776,7 @@
                 <div class="addons_img">
                   <img class="zoom" src="<?php echo''.$add_ons_image_path; ?>" style="width:100%; height:100%; object-fit: cover;"></img> 
                 </div>
-                <lable> <?php echo"".$row['accomodation']; ?></lable>
+                <label> <?php echo"".$row['accomodation']; ?></label>
                 <p> <?php echo"".$row['rate']; ?></p>
                 </center>
              
@@ -787,17 +787,6 @@
               </div>
             <?php
           }
-        }else{
-          ?>
-             <div class="column is-3 addon_container" >
-                <input type="checkbox" > </input>
-                <lable> SAMPLE</lable>
-                <p> ₱ 9999.99</p>
-                <center>
-                <div class="addons_img"><img class="zoom" src="../style/images/Gall (3).jpg" style="width:100%; height:100%; object-fit: cover;"></img> </div>
-                </center>
-              </div>
-          <?php
         }
       ?>
 

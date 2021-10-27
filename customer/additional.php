@@ -247,12 +247,13 @@ window.onclick = function(event) {
               
                 <center>
                 <div class="addons_img"><img class="zoom" src="<?php echo''.$add_ons_image_path; ?>" style="width:100%; height:100%; object-fit: cover;"></img> </div>
+                <label>
                 <input type="checkbox" name="add_ons[]" 
                       value="<?php echo''.$row['accomodation'].$row['rate']; ?>"
                       <?php if(strstr($_SESSION['add_ons_description'],$row['accomodation'])){ echo "checked"; }?>
                       > </input>
                 <input type="hidden" name="add_ons_price[]"  readonly value="<?php echo''.$row['rate'];?>">
-                <lable> <?php echo"".$row['accomodation']; ?></lable>
+                 <?php echo"".$row['accomodation']; ?></label>
                 <p> <?php echo"".$row['rate']; ?></p>
                 </center>
               </div>
@@ -266,7 +267,7 @@ window.onclick = function(event) {
           ?>
              <div class="column is-3 addon_container" >
                 <input type="checkbox" > </input>
-                <lable> SAMPLE</lable>
+                <label> SAMPLE</label>
                 <p> ₱ 9999.99</p>
                 <center>
                 <div class="addons_img"><img class="zoom" src="../style/images/Gall (3).jpg" style="width:100%; height:100%; object-fit: cover;"></img> </div>
