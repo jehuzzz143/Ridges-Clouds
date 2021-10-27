@@ -158,7 +158,7 @@ window.onclick = function(event) {
           <h3><?php echo "".$row['Userage']?></h3>
         </div>
         <div class="column is-full">
-          <input type="button" value="Edit Info"  onclick="edit()"> </input>
+          <input class="buttonNav" type="button" value="Edit Info"  onclick="edit()"> </input>
         </div>
       </div>
     </div>
@@ -216,7 +216,7 @@ window.onclick = function(event) {
         <input name="npass"type="password"> </input>
       </div>
       <div class="column is-full">  
-        <input name="update" type="Submit" value="Confirm" style="width: 100px;"> </input>
+        <input class="buttonNav"name="update" type="Submit" value="Confirm" style="width: 100px;"> </input>
       </div>
     </div>
   </div>
@@ -231,7 +231,7 @@ window.onclick = function(event) {
   <div class="modal-content" style="width: 300px;">
     <span  class="close12">&times;</span>
     <form method="POST">
-      <label>Appointment ID</label>   <input type="text" name="aid" id="aid" style="width:30%;height:30px;" />
+      <label class="label">Appointment ID</label> <input type="text" name="aid" id="aid" readonly> </label>
       <hr>
       <p>You want to cancel this appointment?</p>
       <hr>
@@ -724,30 +724,24 @@ window.onclick = function(event) {
   <div class="modal-content" style="width: 350px;">
     <span  class="close12">&times;</span>
     <form method="POST" enctype="multipart/form-data">
-      <input type="hidden" name="paymentAppId" id="paymentAppId" style="width:30%;height:30px;" />
+      <input type="hidden" name="paymentAppId" id="paymentAppId" style="width:30%;height:30px;">
     
       
       <center>
       <h1 class="lineText label">UPLOAD SCREENSHOT OF DOWNPAYMENT (GCASH)</h1> 
       </center>
-      <br>
-         <div class="container" style="text-align:center;">
-          <span class="btn btn-primary btn-file" >
-            <i class="far fa-images" style="width: 90%;"></i> <input type="file" name="paymentProofPhoto" onchange="readURL1(this);" required>
-          </span>
-        </div>
-        <br>
-        <div class="container" style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
-          <img id="blah1" src="#" alt="" />
-        </div>
-        <br><br>
+       
+          
+       <input type="file" name="paymentProofPhoto" onchange="readURL1(this);" required> </input>
+         
+     
+      
         <center>
           <small><i>Please list down the names of guest</i></small>
         </center>
-        <textarea placeholder="1. Name A. Lastname" rows="7" name="notes" id="notes" style="padding:3;"></textarea>
+        <textarea type="text" placeholder="1. Name A. Lastname" rows="7" name="notes" id="notes" style="padding:3;"></textarea>
 
       <!-- paymentProofPhoto,paymentAppId  -->
-      <hr>
       <button type="submit" name="paymentProof" style="float:right">Submit</button>
 
       <button type="button" onclick="appClose()" style="float:right;margin-right:5px;">    Cancel</button>  
@@ -795,7 +789,7 @@ function readURL1(input) {
 <div id="reviewModal" class="modal fade-in">
 
   <!-- Modal content -->
-  <div class="modal-content" style="width: 500px;">
+  <div class="modal-content" >
     <span  class="close12">&times;</span>
     <form method="POST" enctype="multipart/form-data">
       <input type="hidden" name="aid" id="aid" style="width:30%;height:30px;" />
@@ -806,9 +800,9 @@ function readURL1(input) {
       <h1 class="lineText label">CHOOSE PHOTO</h1>
       <div class="columns">
         <div class="column">
-          <span class="btn btn-primary btn-file">
-            <i class="far fa-images"></i> &nbsp;Browse<input type="file" name="photo" onchange="readURL(this);">
-          </span>
+          
+           <input type="file" name="photo" onchange="readURL(this);">
+          
         </div>
         <div class="column">
           <img id="blah" src="#" alt="your sample image" />
@@ -817,7 +811,7 @@ function readURL1(input) {
       <!--reviewAppId, customerAppId,photo,description,rating -->
 
        <h1 class="lineText label">DESCRIPTION</h1>
-      <textarea placeholder="The Ridges and Clouds is beautiful" rows="20" name="description" id="comment_text" cols="40" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true"></textarea>
+      <textarea type="text" placeholder="The Ridges and Clouds is beautiful" rows="5" name="description" id="comment_text"  class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true"></textarea>
 
       <h1 class="lineText label">GIVE US A SCORE</h1>
 

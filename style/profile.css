@@ -268,6 +268,43 @@ background: linear-gradient(to right, #F2C94C, #F2994A); /* W3C, IE 10+/ Edge, F
   -moz-box-shadow: 0px 8px 13px -4px rgba(0,0,0,0.4);
   margin-bottom: 50px;
 }
+.up-info input[type=text],.up-info input[type=password],.up-info select,.up-info input[type=file]{
+  color:grey;
+  font-family: 'Poppins', sans-serif;
+  width: 100%;
+  padding: 10px 20px;
+  margin: 5px 0px;
+  //display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+
+
+}
+.up-info textarea[type=text]{
+  font-size:15px;
+  font-family: 'Poppins', sans-serif;
+}
+.up-info input[type=date]{
+color:grey;
+  font-family: 'Poppins', sans-serif;
+  width: 100%;
+  padding: 10px 20px;
+  margin: 5px 0px;
+  //display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.up-info input[type=text]:focus {
+  background-color: white;
+}
+.up-info textarea[type=text],.up-info input[type=password],.up-info input[type=date]:focus {
+  background-color: white;
+}
+
+
+
 @media (max-width: 820px){
   .up-info{
     width: 360px;
@@ -555,9 +592,22 @@ tbody tr{
     cursor: not-allowed;
 }
 
+.buttonNav{
+  width: 100px;  color:white;
+  transition:.2s;
+  cursor: pointer;
+  background-color: #333948;
+  border: none;
+  padding: 10px 5px;
+  border-radius: 5px;
+}
+.buttonNav:hover{
+  background:#2E94E3;
 
+}
 
 /* The Modal (background) */
+
 .modal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
@@ -597,8 +647,28 @@ tbody tr{
   padding: 20px;
   border: 1px solid #888;
   width: 80%;
+  height: auto;
+  border-radius: 8px;
+  justify-content: center;
+
 }
 
+.modal-content button{
+
+  width: 100px;  color:white;
+  transition:.2s;
+  cursor: pointer;
+  background-color: #333948;
+  border: none;
+  padding: 10px 5px;
+  border-radius: 5px;
+
+
+}
+.modal-content button:hover{
+  background:#2E94E3;
+
+}
 /* The Close Button */
 .close12 {
   color: #aaaaaa;
@@ -613,47 +683,55 @@ tbody tr{
   text-decoration: none;
   cursor: pointer;
 }
-.modal input[type=text] {
+.modal-content input[type=text],.modal-content input[type=password],.modal-content select,.modal-content input[type=file]{
+  color:grey;
+  font-family: 'Poppins', sans-serif;
   width: 100%;
-  padding: 12px 10px;
-  margin: 8px 0;
+  padding: 10px 20px;
+  margin: 5px 0px;
+  //display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
   box-sizing: border-box;
-  font-size:1em;
 }
-
-.modal input[type=text]:focus {
-  background-color: lightblue;
-}
-
-.modal select {
+.modal-content textarea[type=text]{
+  fcolor:grey;
+  font-family: 'Poppins', sans-serif;
   width: 100%;
-  padding: 12px 10px;
-  margin: 8px 0;
+  padding: 10px 20px;
+  margin: 5px 0px;
+  //display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
   box-sizing: border-box;
-  font-size:1em;
 }
-
-.modal select:focus {
-  background-color: lightblue;
-}
-.modal input[type=datetime-local]{
+.modal-content input[type=date]{
+color:grey;
+  font-family: 'Poppins', sans-serif;
   width: 100%;
-  padding: 12px 10px;
-  margin: 8px 0;
+  padding: 10px 20px;
+  margin: 5px 0px;
+  //display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
   box-sizing: border-box;
-  font-size:1em;
 }
-.modal input[type=datetime-local]:focus {
-  background-color: lightblue;
+.modal-content input[type=text]:focus {
+  background-color: white;
 }
-.modal .label{
+.modal-content textarea[type=text],.modal input[type=password],.modal input[type=date]:focus {
+  background-color: white;
+}
+.modal-content .label{
   font-weight:;
   font-size:1em;
   font-family: 'Poppins', sans-serif;
+  margin:15px;
+  padding:0;
 }
 .modal-footer{
-  background-color: ;
-  text-align:right;
+  //text-align:right;
+ 
 }
 
 
