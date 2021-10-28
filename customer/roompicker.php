@@ -238,7 +238,7 @@ window.onclick = function(event) {
                        <?php if(strstr($_SESSION['room'],"C".$count)) echo "checked"; ?>
                        > 
                        <span class="checkmark"></span>
-                </label>
+                
 
                        <small > <?php echo"".$row['size']; ?> </small>
                   
@@ -247,7 +247,8 @@ window.onclick = function(event) {
                         readonly 
                         id="<?php echo "price".$count ?>"
                         class="price" 
-                        value="<?php echo"".$row['rate']; ?> ">  
+                        value="<?php echo"".$row['rate']; ?> ">
+                </label>  
              </div>
            <?php 
            }
