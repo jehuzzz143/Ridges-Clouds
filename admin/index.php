@@ -462,7 +462,7 @@ if($total_visitors<1){
 
     <div class="columns is-mobile" style="background-color:;">
       
-        <div class="column" id="clicker" style="  border-left:10px solid #B9F0E0; margin-right:5%;">
+        <div class="column" id="clicker" style="  border-left:10px solid #333948; margin-right:5%;">
           
                
             
@@ -470,13 +470,13 @@ if($total_visitors<1){
               <h2 > <?php echo"".$total_visitors; ?> <i id="rightside" class="fas fa-eye"></i></p></h2>
           
         </div>
-        <div class="column" id="clicker" style="  border-left:10px solid #B6D7F0; margin-right:5%;">
+        <div class="column" id="clicker" style="  border-left:10px solid #333948; margin-right:5%;">
           
               <h1 style="color:black;">  No. Clicks:</h1>
               <h2 > <?php echo file_get_contents('../count.txt'); ?> <i id="rightside" class="fas fa-mouse"></i></h2>
           
         </div>
-        <div class="column" id="clicker" style="  border-left:10px solid #EC94B7;">
+        <div class="column" id="clicker" style="  border-left:10px solid #333948;">
               <?php
                 $sql = "SELECT * FROM tbl_user WHERE Usertype=1";
                 $result = $conn->query($sql);

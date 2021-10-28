@@ -1,6 +1,8 @@
 <!doctype html>
 <?php
 	include "dbconnection/conn.php";
+
+
 ?>
 <html lang="en">
 <head>
@@ -135,11 +137,22 @@
 
 
 <?php
+//Import PHPMailer classes into the global namespace
+//These must be at the top of your script, not inside a function
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+include 'PHPMailer-master/src/Exception.php';
+include 'PHPMailer-master/src/PHPMailer.php';
+include 'PHPMailer-master/src/SMTP.php';
+
 if(isset($_POST['reset-request-submit'])){
+    
 	$selector = bin2hex(random_bytes(8));
 	$token = random_bytes(32);
 
-	$url = "http://localhost/ridges-clouds/create-new-password.php?selector=".$selector."&validator=".bin2hex($token);
+	$url = "http://www.ridgeclouds.site/create-new-password.php?selector=".$selector."&validator=".bin2hex($token);
 
 	$expires = date("U") + 1800;
 
@@ -155,53 +168,75 @@ if(isset($_POST['reset-request-submit'])){
  			</script>
  		<?php
     exit();
-}
-
-	$sql ="DELETE FROM pwdReset WHERE pwdResetEmail=?";
-	$stmt =mysqli_stmt_init($conn);
-	if(!mysqli_stmt_prepare($stmt,$sql)){
-
-		echo '<script type="text/javascript">alert("E-mail doesn\'t" exist")</script>';
+	}
+	$sql ="DELETE FROM pwdReset WHERE pwdResetEmail='$userEmail'";
+	$result = $conn->query($sql);
+	if ( $result->num_rows == 0){
+		echo '<script type="text/javascript">alert("E-mails does not exist")</script>';
 		header("Location: login.php");
 		exit();
 	}else{
-		mysqli_stmt_bind_param($stmt,"s", $userEmail );
-		mysqli_stmt_execute($stmt);
+		$sql = "INSERT into pwdReset (pwdResetEmail, pwdResetSelector, pwdResetToken, pwdResetExpires) VALUES (?, ?, ?, ?)";
+		$result = $conn->query($sql);
+		if ( $result->num_rows == 0){
+			echo "Error retrieving token";
+			exit();
+		}else{
+				$to = $userEmail;
+		
+	    //Create an instance; passing `true` enables exceptions
+	    $mail = new PHPMailer(true);
+	    
+	    try {
+	        //Server settings
+	        $mail->SMTPDebug = 2;                      //Enable verbose debug output
+	        $mail->isSMTP();                                            //Send using SMTP
+	        $mail->Host       = 'mail.ridgeclouds.site';                     //Set the SMTP server to send through
+	        $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+	        $mail->Username   = 'ridgeclo';                     //SMTP username
+	        $mail->Password   = 'p8Q0@2F*p1eWDa';                               //SMTP password
+	        $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
+	        $mail->Port       = 290;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+	    
+	        //Recipients
+	        $mail->setFrom('ridgeclo@ridgeclouds.site', 'Mailer');
+	       // $mail->addAddress('joe@example.net', 'Joe User');     //Add a recipient
+	        $mail->addAddress($to);               //Name is optional
+	        $mail->addReplyTo('ridgeclo@ridgeclouds.site');
+	        //$mail->addCC('cc@example.com');
+	        //$mail->addBCC('bcc@example.com');
+	    
+	        //Attachments
+	        //$mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
+	        //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
+	    
+	        //Content
+	        $mail->isHTML(true);                                  //Set email format to HTML
+	        $mail->Subject = 'Reset Password';
+	        $mail->Body    = 'We recieved a password reset request. The link to reset your password is below. If you did not make this request, you can ignore this email <br>.$url.';
+	        //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+	    
+	        $mail->send();
+	        	?>
+	    	<script>
+	 						alert("Check your e-mail");
+	 			</script>
+	 		<?php
+	    } catch (Exception $e) {
+	        	?>
+	    	<script>
+	 						alert("Dont work");
+	 			</script>
+	 		<?php
+	    }
+			
+		}
 	}
 
-	$sql = "INSERT into pwdReset (pwdResetEmail, pwdResetSelector, pwdResetToken, pwdResetExpires) VALUES (?, ?, ?, ?)";
+	
 
-	$stmt =mysqli_stmt_init($conn);
-	if(!mysqli_stmt_prepare($stmt,$sql)){
-		echo "There was sql error 1";
-		exit();
-	}else{
-		$hashedToken = password_hash($token, PASSWORD_DEFAULT);
-		mysqli_stmt_bind_param($stmt,"ssss", $userEmail ,$selector, $hashedToken, $expires);
-		mysqli_stmt_execute($stmt);
-	}
-	mysqli_stmt_close($stmt);
 	mysqli_close($conn);
 
-	$to = $userEmail;
-
-	$subject = 'Reset Your Password in Ridges & Clouds';
-
-	$message = 'We recieved a password reset request. The link to reset your password is below. If you did not make this request, you can ignore this email';
-
-	$message .= 'Here is your password reset link: ';
-
-	$message .= '' .$url. '';
-
-	$headers = "From: Ridges&Clouds <RidgesandClouds@gmail.com>\r\n";
-
-	mail($to, $subject, $message, $headers);
-
-			?>
-    	<script>
- 						alert("Check your e-mail");
- 			</script>
- 		<?php
 }else{
 }
 ?>
