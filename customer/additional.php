@@ -247,7 +247,7 @@ window.onclick = function(event) {
               
                 <center>
                 <div class="addons_img"><img class="zoom" src="<?php echo''.$add_ons_image_path; ?>" style="width:100%; height:100%; object-fit: cover;"></img> </div>
-                <label>
+                <label style="cursor: pointer;">
                 <input type="checkbox" name="add_ons[]" 
                       value="<?php echo''.$row['accomodation'].$row['rate']; ?>"
                       <?php if(strstr($_SESSION['add_ons_description'],$row['accomodation'])){ echo "checked"; }?>

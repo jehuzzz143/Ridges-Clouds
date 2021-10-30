@@ -247,8 +247,8 @@ window.onclick = function(event) {
                         readonly 
                         id="<?php echo "price".$count ?>"
                         class="price" 
-                        value="<?php echo"".$row['rate']; ?> ">
-                </label>  
+                        value="<?php echo"".$row['rate']; ?> "/>
+                </label> 
              </div>
            <?php 
            }

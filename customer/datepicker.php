@@ -44,6 +44,7 @@
 
 ?>
 <html>
+
 <head>
 
 	<title> booking</title>
@@ -55,6 +56,11 @@
 
 	<!-- CodingNepal jquery -->
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    
+    <!-- DATE PICKER -->
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 	<!-- CSS -->
 	<link rel="stylesheet" href="css/datepicker.css">
@@ -134,10 +140,10 @@
     }
    
  
+
+
     
-   
-    
-    $('#txtDate').attr('max', maxDate2);
+    // $('#txtDate').attr('max', maxDate2);
   });
 
 </script>
@@ -162,6 +168,10 @@ window.onclick = function(event) {
   }
 }
 </script>
+
+
+
+
 <!-- Parallax -->
 <form METHOD="POST">
 <div class="container is-fluid" id="parallax" style="height:100%;">
@@ -251,8 +261,31 @@ window.onclick = function(event) {
 <!-- paralax end -->
 
 
+<!-- PRACTICE -->
+<!-- <div id="datepicker"></div>
 
 
+<script type="text/javascript">
+var disabledTool = new Date();
+    disabledTool.setDate(disabledTool.getDate() - 2);
+    disabledTool.setHours(0, 0, 0, 0);
+ 
+    $(function () {
+
+        
+        $("#datepicker").datepicker({
+            beforeShowDay: function (date) {
+                var tooltipDate = "This date is DISABLED!!";
+                if (date.getTime() == disabledTool.getTime()) {
+                    return [false, 'redday', tooltipDate];
+                } else {
+                    return [true, '', ''];
+                }
+            }
+        });
+    });
+</script>
+  -->
 
 
 
@@ -294,15 +327,29 @@ window.onclick = function(event) {
 <!-- END OF FOOTER -->
 
 
-<?php
-  include  'scrollup.php';
 
-?>
+<!-- The Modal -->
+<div id="myModal" class="modal fade-in">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <h1>Step by Step Booking <span class="close">&times;</span></h1>
+    <hr>
+    <p><b>Step 1: </b> Create an Account</p>
+    <p><b>Step 2: </b> Login the Account</p>
+    <p><b style=" text-decoration:underline; color:red;">Step 3:</b>  Choose Date</p>
+    <p><b>Step 4: </b> Submit the Booking Request</p>
+    <p><b>Step 5: </b> Pay 50% of Booking Cost</p>
+    <p><b>Step 6: </b> Wait for the SMS Confirmation of Booking</p>
+    <p><b>Step 7: </b> After Receving a text, Print the Booking Receipt Under Account Profile and present it to the camp</p>
+  </div>
+
+</div>
 
 
 
 
-	<!-- how to book MODAL -->
+  <!-- how to book MODAL -->
 <script>
 // Get the modal
 var modal = document.getElementById("myModal");
@@ -331,7 +378,15 @@ window.onclick = function(event) {
 }
 
 
+
+
 </script>
+<?php
+  include  'scrollup.php';
+
+?>
+
+
 
 
 

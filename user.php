@@ -379,7 +379,7 @@ window.onclick = function(event) {
                   <td data-label="Room"><?php echo"<i class='fas fa-times-circle'></i> NO ROOM RESERVATION"; ?></td>
                   <td data-label="+Pax"><?php echo"".$row12['bpax']; ?></td>
                   <?php 
-                  if($row12['datecategory']==''){
+                  if($row12['datecategory']==' ' OR $row12['datecategory']== null){
                   ?>
                    <td data-label="Romantic Date" style="font-size: 1em;"><?php echo"<b> &nbsp; </b><i class='fas fa-times-circle'></i> &nbsp;"."NO DATE RESERVATION"; ?></td>
                   <?php
@@ -509,7 +509,7 @@ window.onclick = function(event) {
                   <td data-label="Room"><?php  $room = str_replace("||","   ", $row12['broom']);   echo"".$room; ?></td>
                   <td data-label="+Pax"><?php echo"".$row12['bpax']; ?></td>
                   <?php 
-                  if($row12['datecategory']==''){
+                  if($row12['datecategory']==' ' OR $row12['datecategory']== null){
                   ?>
                    <td data-label="Romantic Date" style="font-size: 1em;"><?php echo"<b> &nbsp; </b><i class='fas fa-times-circle'></i> &nbsp;"."NO DATE RESERVATION"; ?></td>
                   <?php

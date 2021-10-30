@@ -393,7 +393,7 @@ nav :checked ~ .icon-burger .line:nth-child(2) {
   color: black;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
-input[type=date] { 
+input[type=date],input[type=text] { 
   color:grey;
   font-family: 'Poppins', sans-serif;
   width: 100%;
@@ -404,6 +404,7 @@ input[type=date] {
   border-radius: 4px;
   box-sizing: border-box;
 }
+
  
 }
 input[type=date]:focus {
@@ -539,5 +540,16 @@ a{
   cursor: pointer;
   //margin-bottom: 5px;
 }
+td.redday, table.ui-datepicker-calendar tbody td.redday a {
+      background: none !important;
+      background-color : red !important;
+      background-image : red !important;
+      color: red !important;
+      font-weight: bold !important;
+      font-size: 12pt;
+    }
+
+
+
 
 
