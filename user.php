@@ -59,6 +59,10 @@ if($row['Userimage']==''){
   
 </head>
 <body>
+<?php 
+  include 'refund.php';
+?>
+
 <!-- Navbar    -->
 <form method="POST">
 <nav>
@@ -129,6 +133,7 @@ window.onclick = function(event) {
 <!-- -->
 
 
+
 <!-- profile --> 
 <div class="container is-widescreen user-container">
   <div class="columns is-widescreen is-gapless">
@@ -166,6 +171,7 @@ window.onclick = function(event) {
   </div> 
 </div>
 <!-- end profile --> 
+
 
 
 <!-- form --> 
@@ -662,12 +668,7 @@ window.onclick = function(event) {
                         </div>
                       <?php
                     }
-//    
-// 
-// 
-//              
-// 
-// 
+
                    if($row12['bstatus']=='Confirmed' AND  $timestamp >= $datenow2 ){
                     ?>
 
@@ -688,13 +689,8 @@ window.onclick = function(event) {
                     <?php
                       
                    }
-
-
-
                     
                   ?>
-                  
-                  
                 </td>
 
               </tr>
@@ -1098,6 +1094,9 @@ span.onclick = function() {
   editcontainer.style.display ="none";
 }
 </script>
+
+
+
 
 </body>
 </html>

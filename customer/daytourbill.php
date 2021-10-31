@@ -276,11 +276,9 @@ window.onclick = function(event) {
      &#10148;  50% downpayment  on total accommodation rate upon reservation  
     thru GCASH.
 ------------------------ CANCELLATION/REBOOKING POLICIES -----------------------
-     &#10148;Full refund of DP or free rebooking if cancelled/rebooked within 7 days 
+     &#10148;50% refund of DP or free rebooking if cancelled/rebooked within 7 days 
      from the day of booking. In case of typhoon and other natural calamities on the
      date of visit.
-     &#10148; 20% refund of DP if cancelled/rebooked within 2-6 days days before date of 
-     visit.
      &#10148; Forfeiture of DP if cancelled/rebooked 1 day before and no show on the date
      of visit.
 ------------------------- OPEN DATE REBOOKING POLICIES ---------------------------

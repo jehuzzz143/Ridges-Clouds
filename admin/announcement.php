@@ -316,8 +316,10 @@
             Welcome, FirstName <i class="fas fa-caret-down"></i>
         </button>
         <div class="dropdown-content1">
-           <button  type="button" class="buttonNav" id="" onclick="location.href='account.php';"><i class="fas fa-edit"></i>  Account</button>
-           <button  type="button"class="buttonNav" ><i class="fas fa-sign-out-alt"></i>  Logout</button>
+            <form method="POST">
+             <button  type="button" class="buttonNav" onclick="location.href='account.php';"><i class="fas fa-edit"></i>Account</button>
+             <button  type="submit" class="buttonNav" name="logout"><i class="fas fa-sign-out-alt fa-sm"></i>Logout</button>
+           </form>
         </div>
 
       </div>
@@ -325,6 +327,30 @@
 
  
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+  $(function(){
+    var dtToday = new Date();
+    
+    var month = dtToday.getMonth() + 1;
+    var day = dtToday.getDate();
+    var year = dtToday.getFullYear();
+    if(month < 10)
+        month = '0' + month.toString();
+    if(day < 10)
+        day = '0' + day.toString();
+    
+    var maxDate = year + '-' + month + '-' + day +'T00:00';
+
+    // or instead:
+    // var maxDate = dtToday.toISOString().substr(0, 10);
+
+
+    $('#startDate').attr('min', maxDate);
+     $('#endDate').attr('min', maxDate);
+});
+
+</script>
 
 <!-- ######################################################################################################################################################################################################################################################################################################################### Modal announcement -->
 <div class="modal fade-in" id="myModal" tabindex="-1" role="dialog" >
@@ -709,7 +735,7 @@ window.onclick = function(event) {
 include '../dbconnection/conn.php';
 if(isset($_POST['save'])){
 $header = $_POST['header'];
-$desc    = mysqli_real_escape_string($conn, $_POST["description"]);
+$desc    = mysqli_real_escape_string($conn, nl2br($_POST["description"],false));
 $start = $_POST['startDate'];
 $end = $_POST['endDate'];
 
@@ -736,7 +762,7 @@ $conn->close();
 }else if(isset($_POST['archive'])){
 $id = $_POST['aid'];
 $header = $_POST['header'];
-$desc    = mysqli_real_escape_string($conn, $_POST["description"]);
+$desc    = mysqli_real_escape_string($conn,  nl2br($_POST["description"],false));
 $start = $_POST['startDate'];
 $end = $_POST['endDate'];
 
@@ -765,7 +791,7 @@ $conn->close();
 }else if(isset($_POST['recover'])){
 $id = $_POST['aid'];
 $header = $_POST['header'];
-$desc    = mysqli_real_escape_string($conn, $_POST["description"]);
+$desc    = mysqli_real_escape_string($conn,  nl2br($_POST["description"],false));
 $start = $_POST['startDate'];
 $end = $_POST['endDate'];
 
@@ -793,7 +819,7 @@ $conn->close();
 }else if(isset($_POST['delete'])){
 $id = $_POST['aid'];
 $header = $_POST['header'];
-$desc = $_POST['description'];
+$desc =  nl2br($_POST["description"],false);
 $start = $_POST['startDate'];
 $end = $_POST['endDate'];
 
@@ -821,7 +847,7 @@ $conn->close();
 }else if(isset($_POST['update'])){
 $id = $_POST['aid'];
 $header = $_POST['header'];
-$desc = $_POST['description'];
+$desc    = mysqli_real_escape_string($conn,  nl2br($_POST["description"],false));
 $start = $_POST['startDate'];
 $end = $_POST['endDate'];
 
@@ -844,7 +870,7 @@ if ($conn->query($sql) === TRUE) {
   
 }
 
-$conn->close();
+
 
 }else if(isset($_POST['logout'])){
 

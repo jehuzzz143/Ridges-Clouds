@@ -529,10 +529,14 @@ if($total_visitors<1){
                     ?>
                     <div class="columns is-gapless is-3 is-desktop is-multiline review-row"data-aos="fade-up" style="background-color:#FFE9E9;">
                     <?php
+                  }else if($row['status'] == 'enable'){
+                    ?>
+                    <div class="columns is-gapless is-3 is-desktop is-multiline review-row"data-aos="fade-up" style="background-color:#E9FDFF;">
+                
+                    <?php
                   }else{
                     ?>
                     <div class="columns is-gapless is-3 is-desktop is-multiline review-row"data-aos="fade-up" >
-                
                     <?php
                   }
 

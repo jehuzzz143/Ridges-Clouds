@@ -500,7 +500,7 @@ if($_SESSION['time_value_compare']!= null OR $_SESSION['time_value_compare'] = "
 
         $datesBooked = array();
         $dates = "";
-        $sql = "SELECT `btype`,`bdate`,SUM(`bpax`) as 'TOTAL PAX' FROM `tbl_booking` WHERE `btype` = 'Daytour' AND `bdaytourtime` = '{$_SESSION['time_value_compare']}'  GROUP BY `bdate`";
+        $sql = "SELECT `btype`,`bdate`,SUM(`bpax`) as 'TOTAL PAX' FROM `tbl_booking` WHERE `btype` = 'Daytour' AND `bdaytourtime` = '{$_SESSION['time_value_compare']}' AND (`bstatus` = 'Pending' OR `bstatus` = 'Confirmed') GROUP BY `bdate`";
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
 

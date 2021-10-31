@@ -84,7 +84,7 @@
                   <span class="fas fa-caret-down second"></span>
                 </a>
               <ul class="serv-showw">
-                <li><a href="audit.php">Announcement</a></li>
+                <li><a href="announcement.php">Announcement</a></li>
                 <li><a href="rules.php">Rates & Rules</a></li>
                 <li><a href="admin_gall.php">Gallery</a></li>
                 <li><a href="promos.php">Promos</a></li>
