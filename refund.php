@@ -1,19 +1,32 @@
+<script type="text/javascript">
+
+</script>
+
 <!-- refund modal-->
 <div id="myModalrefund" class="modal fade-in">
 
   <!-- Modal content -->
   <div class="modal-content" style="width: 300px;">
     <span  class="close123">&times;</span>
-    <form method="POST">
-      <label class="label">Appointment ID</label> <input type="text" name="" id="" readonly> </label>
+    <form method="POST" id="signupform">
+      <label class="label">Appoinment Referrence</label> <input type="text" name="rid" id="rid" readonly> </label>
       <hr>
-      <p>You want to cancel this appointment?</p>
-      <hr>
+  
+      <p>Please confirm that you would like to <b>cancel</b> this reservation and receive a refund.</p>
+      <br>
+      <label>Gcash Number:</label>
+      <input type="gcash" name="gcash" id="gcash"  onkeypress='validate(event)' placeholder="09584569854" maxlength=11  pattern="[0-9]{11}" required>
+      <span id="phonetext"></span>
+    <br>
+      <p>YOUR DEPOSIT </p><input type="text" readonly name="" id="deposit">
+      <p>YOUR EXPECTED REFUND  (50%)</p><input type="text" readonly name="" id="expected_refund">
 
-      
-      <button type="submit" name="appCancel" style="float:right">Yes</button>
+      <small><i>If you do not receive a response within 1-3 days, please message us on Facebook: Clouds & Ridges</i></small>
 
-      <button type="button" onclick="appClose()" style="float:right;margin-right:5px;">    Cancel</button>  
+        <hr>
+      <button type="submit" name="refundsubmit" style="float:right">Submit</button>
+
+      <button type="button" onclick="refundclose()" style="float:right;margin-right:5px;">    Cancel</button>  
     </form>
   </div>
 
@@ -23,6 +36,25 @@
 
 <script>
 
+function validate(evt) {
+  var theEvent = evt || window.event;
+
+  // Handle paste
+  if (theEvent.type === 'paste') {
+      key = event.clipboardData.getData('text/plain');
+  } else {
+  // Handle key press
+      var key = theEvent.keyCode || theEvent.which;
+      key = String.fromCharCode(key);
+  }
+  var regex = /[0-9]|\./;
+  if( !regex.test(key) ) {
+    theEvent.returnValue = false;
+    if(theEvent.preventDefault) theEvent.preventDefault();
+  }
+}
+
+
 // Get the modal
 var modal_refund= document.getElementById("myModalrefund");
 
@@ -30,7 +62,7 @@ var modal_refund= document.getElementById("myModalrefund");
 var refund_btn = document.querySelectorAll(".refundBtn");
 
 // Get the <span> element that closes the modal
-var span1 = document.querySelectorAll(".close123");
+var span1 = document.getElementsByClassName("close123")[0];
 
 // When the user clicks the button, open the modal 
 for (var i = 0; i < refund_btn.length; i++) {
@@ -44,8 +76,60 @@ for (var i = 0; i < refund_btn.length; i++) {
       }).get();
      
    console.log(data);
+   document.getElementById("rid").value = data[0].replace("APP","");
+   document.getElementById("deposit").value = data[12];
+   var money12 = data[12].trim();
+   var refund_money = money12 * .50;
 
-   // document.getElementById("aid").value = data[0];
+  document.getElementById("expected_refund").value = refund_money;
+
+
+  
   }
 }
+
+span1.onclick = function () {
+  modal_refund.style.display = "none";
+}
+
+function refundclose(){
+  modal_refund.style.display = "none";
+}
 </script>
+
+
+
+<?php 
+include "dbconnection/conn.php";
+
+if(isset($_POST['refundsubmit'])){
+ $ID = $_POST['rid'];
+ $gcash =$_POST['gcash'];
+ if(substr($gcash, 0, 2)!='09'){
+  echo '<script type="text/javascript">alert("'.substr($gcash, 0, 2).'")</script>';
+  ?>
+    <script type="text/javascript">
+
+       Swal.fire('Please enter realistic phone number!');   
+    </script>
+    <?php
+ }else{
+
+
+  $sql = "UPDATE tbl_booking SET bstatus='Refund Requested', gcash='$gcash' WHERE id='$ID'";
+
+  if ($conn->query($sql) === TRUE) {
+    ?>
+    <script type="text/javascript">
+       Swal.fire('Refund Request Sent.');   
+    </script>
+    <?php
+    echo("<meta http-equiv='refresh' content='1'>");
+  } else {
+    echo "Error updating record: " . $conn->error;
+  }
+
+}
+}
+
+?>

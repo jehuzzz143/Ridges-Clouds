@@ -644,12 +644,134 @@
 
 ?>
     </div>
+<center>
+  <h2 style="font-weight: bold; letter-spacing: 2px; font-size:1.5em;"> REFUND REQUEST</h2>
+</center>
+ <div class="column is-full" style="background-color:;overflow: scroll;width:100%;max-height: 600px; padding:0; margin:0;margin-top:3px;">
+          <table class="styled-table" id="overnighttable">
+            <thead>
+                <tr >
+                    <th >Name</th>
+                    <th>Service</th>
+                    <th>Date Time</th>
+                    <th>Room</th>
+                    <th> +Pax</th>
+                   
+                    <th>Romantic Date</th>
+                     
+                    <th>Status</th>
+                    <th>Price</th>
+                    <th>Action</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                $sql = "SELECT * FROM tbl_booking WHERE bstatus='Refund Requested' OR  bstatus='Refund Request Approved' " ;
+                $result = $conn->query($sql);
+                if ($result->num_rows > 0) {
+                  // output data of each row
+                  while($row = $result->fetch_assoc()) {
+                    $bid = $row['customerID'];
+                    $csql = "SELECT * FROM tbl_user WHERE ID = '$bid'";
+                    $cresult = $conn->query($csql);
+                    $crow = mysqli_fetch_array($cresult);
+                    $fullname = $crow['Userfname'].", " .$crow['Userlname'];
+                    $guestNumber =$crow['Userpnumber'];
+                    $bookingdate = $row['btime_in'];
+                    $datenow = date('Y-m-d');//'2021-05-30';// 
+                        // getting the day difference between two dates
+                              $date1_ts = strtotime($bookingdate);
+                              $date2_ts = strtotime($datenow);
+                              $diff =  $date1_ts - $date2_ts;
+                              $dateDiff = round($diff / 86400);
+                             
+
+                          echo "<tr>";
+                   
+                   ?>
+                        <td style="display:none;"><?php echo"".$row['ID']; ?></td>
+                        <td><?php echo"".$fullname; ?></td>
+                        <td><?php echo"".$row['btype']; ?></td>
+                        <td data-label="Pax"><p><?php echo"<b>Time In: </b>".date("F jS, Y h:s a", strtotime($row['btime_in'])); ?></p>
+                                             <p><?php echo"<b>Time Out: </b>".date("F jS, Y  h:s a", strtotime($row['btime_out'])); ?></p>
+                                             <input type="hidden" value="<?php echo"".$row['btime_in']; ?>"/>
+                                             <input type="hidden" value="<?php echo"".$row['btime_out']; ?>" />
+                        </td>
+                        <td ><?php echo"".$row['broom']; ?></td>
+                        <td ><?php echo"".$row['bpax']; ?></td>
+                       
+                        <?php 
+                          if($row['datecategory']=='' OR $row['datecategory']==' '){
+                            ?>
+                             <td data-label="Pax" style="font-size: 1em;"><?php echo"<b> &nbsp; </b><i class='fas fa-times-circle'></i> &nbsp;"."NO ROMANTIC DATE RESERVATION"; ?></td>
+                             <td data-label="Pax" style="display:none;"></td>
+                            <?php
 
 
+                          }else{
+                            ?>
+                             <td data-label="Pax"><p ><?php echo"<b>Date:</b>".$row['datecategory'];?></p>
+                                                  <p ><?php echo"<b>Place:</b>".$row['btable_date'];?></p>
+                            </td>
+                            <td style="display:none;"><?php echo"".$row['datecategory'];?></td>
+                            <td style="display:none;"><?php echo"".$row['btable_date'];?></td>
+                            <?php
+
+                          }
+                        ?>
+                        <td ><?php echo"".$row['bstatus']; ?></td>
+                        <td data-label="Pax"><?php echo"<b> Total:</b>".$row['bprice']."<Br><b>Deposit:</b>".$row['bdeposit']."<br><b>Refund:</b>".$row['refund']; ?></td>
+                        <td style="display: none;" ><?php echo"".$row['bprice']; ?></td>
+                        <td style="display: none;" ><?php echo"".$row['btime_in']; ?></td>
+                        <td style="display: none;" ><?php echo"".$row['btime_out']; ?></td>
+                        <td style="display: none;" ><?php echo"".$row['balance']; ?></td>
+                        <td >
+                            <?php 
+                              if($row['bstatus']=='Refund Requested'){
+                                ?>
+                                  <button  id="confirmBtn" class="buttons refundBtn">Confirm</button>
+                                <?php
+                              }else{
+                                ?>
+
+                                <?php
+                              }
+                            ?>
+                             
+                              
+                 
+                        </td>
+                        <td style="display:none;"><?php echo"".$guestNumber; ?></td>
+                        <td style="display:none;"><?php echo"".$row['paymentPhoto']; ?></td>
+                        <td style="display:none;"><?php echo"".$row['notes']; ?></td>
+                        <td style="display:none;"><?php echo"".$row['gcash']; ?></td>
+                     </tr>
+
+                   <?php
+                  }
+                }else{
+                  ?>
+                    <tr>
+                      <td style="display:none;">88</td>
+                      <td>NO RECORDS</td>
+                      
+                    </tr>
+
+                  <?php
+                }
+                ?>
+                
+            </tbody>
+          </table>
+         </div>
 
 
   
 </div>
+<?php 
+  include 'confirmRefund.php';
+?>
 <script>
   // ################################################################################## Search
   function search() {

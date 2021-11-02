@@ -59,9 +59,7 @@ if($row['Userimage']==''){
   
 </head>
 <body>
-<?php 
-  include 'refund.php';
-?>
+
 
 <!-- Navbar    -->
 <form method="POST">
@@ -269,7 +267,7 @@ window.onclick = function(event) {
         <li> 
           <div class="columns" style="background-color:#E9E9E9; margin:0;padding:0;">
             <div class="column is-one-fifth" style="margin:0;padding:0;">
-              <div style="margin:0;padding:0;"> <button type='submit' class='action-btn refundBtn' style="margin:5%;" >   Rate </button> </div>
+              <div style="margin:0;padding:0;"> <button type='submit' class='action-btn ' style="margin:5%;" >   Rate </button> </div>
             </div>  
             <div class="column" style=" margin:0; padding-top:1.2%;">
               <small>Before the appointment is completed, you have 7 days to use it.</small>
@@ -279,7 +277,7 @@ window.onclick = function(event) {
         <li> 
           <div class="columns" style="background-color:#E9E9E9; margin:0;padding:0;">
             <div class="column is-one-fifth" style="margin:0;padding:0;">
-              <div style="margin:0;padding:0;"> <button type='submit' class='action-btn refundBtn' style="margin:5%;;">   Resched </button> </div>
+              <div style="margin:0;padding:0;"> <button type='submit' class='action-btn ' style="margin:5%;;">   Resched </button> </div>
             </div>  
             <div class="column" style=" margin:0; padding-top:1.2%;">
               <small> After the appointment is made, You have 3 days to use it. </small>
@@ -289,7 +287,7 @@ window.onclick = function(event) {
         <li> 
           <div class="columns" style="background-color:#E9E9E9; margin:0;padding:0;">
             <div class="column is-one-fifth" style="margin:0;padding:0;">
-              <div style="margin:0;padding:0;"> <button type='submit' class='action-btn refundBtn' style="margin:5%; ;">   Refund </button> </div>
+              <div style="margin:0;padding:0;"> <button type='submit' class='action-btn ' style="margin:5%; ;">   Refund </button> </div>
             </div>  
             <div class="column"  style=" margin:0; padding-top:1.2%;">
               <small>After the appointment is made, You have 3 days to use it. </small>
@@ -378,6 +376,7 @@ window.onclick = function(event) {
                 <?php 
                 if($row12['btype'] == 'Daytour'){
                   ?>
+
                   <td data-label="ID"><?php echo"APP".$row12['ID']; ?></td>
                   <td data-label="Type"><?php echo"".$row12['btype']; ?></td>
                   <td data-label="Date"><?php echo"<b>Time in: </b>".date("F jS, Y -- h:s a", strtotime($row12['btime_in']))."<br><b>Time Out: </b>".date("F jS, Y -- h:s a", strtotime($row12['btime_out'])); ?></td>
@@ -426,6 +425,9 @@ window.onclick = function(event) {
                         
                       }else{
                         echo"".$row12['bstatus'];  
+                        if($row12['refund'] > 0){
+                          echo"<br><b>Refunded:</b> ".$row12['refund']."";
+                        }
                       } 
                     ?>
                       
@@ -499,10 +501,12 @@ window.onclick = function(event) {
                   }
                   ?>
 
+
                 
 
 
                 </td>
+
                 <!-- end -->
                   <?php
 
@@ -553,7 +557,11 @@ window.onclick = function(event) {
                         
                         echo"Person failed <Br>to show up"; 
                       }else{
-                        echo"".$row12['bstatus'];  
+                         echo"".$row12['bstatus'];  
+                        if($row12['refund'] > 0){
+                          echo"<br><b>Refunded:</b> ".$row12['refund']."";
+                        } 
+                        
                       } 
                     ?>
                   </td>
@@ -642,6 +650,7 @@ window.onclick = function(event) {
                 ?>
                 <td style="display:none;"> <?php echo"".$row12['customerID']?></td>
                 <!-- TD for payment proof -->
+
                 <td data-label="Payment Proof" style=""> 
                   <?php 
                     if($row12['bstatus'] == "Pending" AND $row12['paymentPhoto'] == ""){
@@ -664,7 +673,7 @@ window.onclick = function(event) {
                     }else{
                       ?>
                         <div class="container icon-container1">
-                          <img class="zoom" src="<?php echo"".$downpaymentPath; ?>" alt="...">
+                          <img class="zoom" src="<?php echo"".$downpaymentPath; ?>" alt="no payment proof">
                         </div>
                       <?php
                     }
@@ -692,6 +701,8 @@ window.onclick = function(event) {
                     
                   ?>
                 </td>
+                  <td style="display:none"> <?php echo "".$row12['bdeposit'];?></td>
+
 
               </tr>
 
@@ -1096,6 +1107,10 @@ span.onclick = function() {
 </script>
 
 
+
+<?php 
+  include 'refund.php';
+?>
 
 
 </body>

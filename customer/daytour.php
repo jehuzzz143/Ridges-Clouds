@@ -614,6 +614,9 @@ if(isset($_POST['check'])){
   $day_tour_time = $_POST['daytourtime'];
   $day_tour_pax = $_POST['daytourpax'];
 
+
+
+
   // SELECT * FROM tbl_booking WHERE `bdate` = '2021-09-16' AND `bdaytourtime`  = '07:00 am to 10:00 am'  
   $sql = "SELECT * FROM tbl_booking WHERE bdate = '$day_tour_date' AND bdaytourtime LIKE '%$day_tour_time%'";
   $result = $conn->query($sql);

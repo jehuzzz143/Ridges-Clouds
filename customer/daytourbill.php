@@ -417,6 +417,8 @@ window.onclick = function(event) {
 <?php
   include  'scrollup.php';
 
+
+
 ?>
 
 
@@ -442,13 +444,14 @@ exit();
   $nopeople = $_SESSION['daytourpax'];
   $type = $_SESSION['choice'];
   $date = $_SESSION['daytourdate'];
+  $date = date('Y-m-d', strtotime($date));
   $time = $_SESSION['daytourtime'];
   $price = $_SESSION['daytourprice'];
   $promo_id = $_POST['promo_id'];
 
   $timein = date("Y-m-d H:m:s", strtotime($date.substr($time,0,5)));
   $timeout = date("Y-m-d H:m:s", strtotime($date.substr($time,11,6)));
-
+  
  if($term != 'agree'){
   ?>
   <script type="text/javascript">

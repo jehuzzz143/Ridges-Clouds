@@ -272,6 +272,7 @@ window.onclick = function(event) {
           <div class="columns is-gapless is-desktop is-multiline review-row"data-aos="fade-up" >
             <div class="column is-2">
               <div class="container icon-container">
+
                 <img src="<?php echo"".$costumerPhotoPath; ?>" alt="Customer Profile">
                  <h1><?php echo"".$costumerRow['Userfname']." ".$costumerRow['Userlname'];?></h1>
               </div>
@@ -283,7 +284,16 @@ window.onclick = function(event) {
             </div>
             <div class="column is-3">
               <div class="contiainer icon-container">
-                <img class="zoom"src="<?php echo"".$reviewImagePath;?>" alt="...">
+                <?php 
+                  if($row['reviewPhoto']==""){
+
+                  }else{
+                    ?>
+                    <img class="zoom"src="<?php echo"".$reviewImagePath;?>" alt="...">
+                    <?php
+                  }
+                ?>
+                
               </div>
               <center>
               <?php 
@@ -309,7 +319,7 @@ window.onclick = function(event) {
       }
     }else{
       ?>
-        <div class="columns is-gapless is-desktop is-multiline review-row"data-aos="fade-up" >
+        <!-- <div class="columns is-gapless is-desktop is-multiline review-row"data-aos="fade-up" >
           <div class="column is-2">
             <div class="container icon-container">
               <img src="style/images/4.jpg" alt="...">
@@ -333,7 +343,7 @@ window.onclick = function(event) {
               <div class="star"></div>
             </div>
           </div>
-        </div>
+        </div> -->
       <?php
     }
   ?>
