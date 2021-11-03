@@ -256,13 +256,13 @@ window.onclick = function(event) {
 		  <div class="container is-widescreen" style="margin-bottom: 70px;">
 			  <div class="columns is-multiline" data-aos="fade-right">
 			    <div class="column">
-			      	<img class="img-fluid img-thumbnail" id="img"  src="style/bg.jpg" />
+			      	<img class="img-fluid img-thumbnail" id="img"  src="style/room_.jpg" />
 			    </div>
 			    <div class="column">
-			     	<img class="img-fluid img-thumbnail" id="img"  src="style/bg.jpg" />
+			     	<img class="img-fluid img-thumbnail" id="img"  src="style/room1_.jpg" />
 			    </div>
 			    <div class="column">
-			    	<img class="img-fluid img-thumbnail" id="img"  src="style/bg.jpg" />
+			    	<img class="img-fluid img-thumbnail" id="img"  src="style/room3_.jpg" />
 			    </div>
 
 			  </div>
@@ -319,13 +319,13 @@ window.onclick = function(event) {
 			<div class="container is-widescreen" style="margin-bottom:70px;"data-aos="fade-right">
 			  <div class="columns is-multiline">
 			    <div class="column">
-			      	<img class="img-fluid img-thumbnail"id="img" src="style/bg.jpg" />
+			      	<img class="img-fluid img-thumbnail" style="height:500px;" id="img" src="style/sunrise_.jpg" />
 			    </div>
 			    <div class="column">
-			     	<img class="img-fluid img-thumbnail" id="img"src="style/bg.jpg" />
+			     	<img class="img-fluid img-thumbnail" style="height:500px;" id="img"src="style/coffee_.jpg" />
 			    </div>
 			    <div class="column">
-			    	<img class="img-fluid img-thumbnail" id="img" src="style/bg.jpg" />
+			    	<img class="img-fluid img-thumbnail" style="height:500px;" id="img" src="style/dinner_.jpg" />
 			    </div>
 			  </div>
 			</div>
@@ -374,17 +374,18 @@ window.onclick = function(event) {
 			<div class="container is-widescreen " style="margin-bottom:70px" data-aos="fade-right">
 			  <div class="columns is-multiline">
 			    <div class="column">
-			      	<img class="img-fluid img-thumbnail" id="img"  src="style/bg.jpg" />
-			    </div>
-			    <div class="column">
-			     	<img class="img-fluid img-thumbnail" id="img"  src="style/bg.jpg" />
-			    </div>
-			    <div class="column">
-			    	<img class="img-fluid img-thumbnail" id="img"  src="style/bg.jpg" />
+			      	<img class="img-fluid img-thumbnail" id="img"  src="style/tent_.jpg" />
 			    </div>
 			     <div class="column">
-			    	<img class="img-fluid img-thumbnail" id="img"  src="style/bg.jpg" />
+			    	<img class="img-fluid img-thumbnail" id="img"  src="style/kawa.jpg" />
 			    </div>
+			    <div class="column">
+			     	<img class="img-fluid img-thumbnail" id="img"  src="style/pool_.jpg" />
+			    </div>
+			    <div class="column">
+			    	<img class="img-fluid img-thumbnail" id="img"  src="style/bonfire_.jpg" />
+			    </div>
+			    
 			  </div>
 			</div>
 

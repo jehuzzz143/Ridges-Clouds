@@ -652,6 +652,7 @@ function daytour() {
                         </td>
                         <td style="display:none;"><?php echo"".$guestNumber; ?></td>
                         <td style="display:none;"><?php echo"".$row['paymentPhoto']; ?></td>
+
                         <td style="display:none;"><?php echo"".$row['notes']; ?></td>
                      </tr>
 
@@ -819,16 +820,28 @@ function daytour() {
 <div id="paymentProofModal" class="modal fade-in">
 
   <!-- Modal content -->
-  <div class="modal-content" style="width: 450px;">
+  <div class="modal-content" style="width: 600px; height: 600px;">
     <span  class="close12">&times;</span>
     <form method="POST" enctype="multipart/form-data">
       <br>
-      <h1 class="lineText label">Screenshot of Downpayment (Gcash)</h1> 
-
+      <div class="columns">
+        <div class="column is-8">
+          
+          <h1 class="lineText label">Screenshot of Downpayment (Gcash)</h1> 
         <div class="container" style="padding:0;margin:0; text-align: center;">
           <img id="blah" src="#" alt="your sample image" />
         </div>
+          
+        </div>
+        <div class="column">
+         <h1 class="lineText label">Guest Names</h1> 
         <p id="notes"></p>
+          
+        </div>
+
+      </div>
+      
+         
 
      
     </form>
@@ -862,14 +875,14 @@ for (var i = 0; i < paymentProofBtn.length; i++) {
     console.log(data[7])
     if(data[7]!=""){
       document.getElementById("blah").src = "../style/images/downpayments/"+data[17];
-      document.getElementById("notes").innerHTML = data[18];
+      document.getElementById("notes").innerHTML = data[18].replace(/(?:\r\n|\r|\n)/g,"<br>");
     }else{
       document.getElementById("blah").src = "../style/images/downpayments/"+data[16];
-      document.getElementById("notes").innerHTML = data[17];
+      document.getElementById("notes").innerHTML = data[17].replace(/(?:\r\n|\r|\n)/g,"<br>");
     }
   }else{
     document.getElementById("blah").src = "../style/images/downpayments/"+data[14];
-    document.getElementById("notes").innerHTML = data[15];
+    document.getElementById("notes").innerHTML = data[15].replace(/(?:\r\n|\r|\n)/g,"<br>");
   }
 
   }

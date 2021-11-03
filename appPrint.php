@@ -25,6 +25,7 @@ if ($result->num_rows > 0) {
     $category =$row['btype'];
     $discount_id = $row['promo_id'];
     $add_ons = $row['add_ons'];
+    $guest = $row['notes'];
 
     if($row['btype'] == 'Daytour'){
     	 $description = $row['btype'].' / '.$row['bdaytourtime'];
@@ -173,17 +174,41 @@ window.print();
         							?>			
         				</p>
         			</div>
+
         		</div>
         		
+
+
         	</div>
+
+        <b>Appointment Guest</b>
+        <div class="column-count" style="column-count:4;">
+          
+        
+        <p><?php echo"".$guest; ?></p>
+        </div>
+        <br>
+        <b>TO CHECKPOINT PERSONNEL</b><br>
+<pre>Please allow passage of above-named guests of RIDGES AND CLOUDS NATURE CAMP
+per adminitrative circular no. 2021-004 dated 12May2021 and IATF resolution 
+No. 114-A dated 13May2021 allowing Staycation, Outdoor Tourism Activities, 
+Dine-In and Al Fresco dining under GCQ</pre>
+        <p style="text-align: right;">
+          Thank you and God Bless!<br>
+- The Management of Ridges and Clouds Nature Camp<br> </p>
+
+<p style="text-align:right; color:red; font-weight: bold; font-size:10px;">Please provide Valid ID with picture and birthday</p>
+
+       
+
         <h1 class="header">INSTRUCTIONS</h1> <br>
         <h2>Step 1: Save a copy</h2><br>
         <small> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* This receipt, or a screenshot of it, will serve as proof of appointment.</small> <br><Br>
         <h2>Step 2: Present the receipt to nature camp reception</h2><br>
         <small> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* Payment of the remaining balance of an appointment is usually made after a stay at or daytour in a camp.</small> <br>
          <h1 class="header" style="text-decoration:underline;">General Rules</h1> <br>
-         <small> <i class="fas fa-angle-double-right"></i> Pay the exact amount (balance) indicated Above after the staycation.</small><br><br>
-         <small> <i class="fas fa-angle-double-right"></i> If you made a short payment by mistake, do not try to correct it by making another appointment receipt.</small><br><br>
+         <small> <i class="fas fa-angle-double-right"></i> Pay the exact amount (balance) indicated Above after the staycation.</small><br>
+         <small> <i class="fas fa-angle-double-right"></i> If you made a short payment by mistake, do not try to correct it by making another appointment receipt.</small><br>
          <small> <i class="fas fa-angle-double-right"></i> For product-specific inquiries or question regarding the status of your appointment, Please contact us directly.</small><br>
          <br><br>
 

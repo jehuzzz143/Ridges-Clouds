@@ -1217,7 +1217,7 @@ if ($conn->query($sql) === TRUE) {
 $id                       = $_POST['paymentAppId'];
 $id                       = str_replace("APP","",$id);                     
 $paymentProofPhoto        = $_FILES['paymentProofPhoto']['name'];
-$notes = $_POST['notes'];
+$notes                    =nl2br($_POST["notes"],false);
 
   
 $sql = "UPDATE tbl_booking SET paymentPhoto ='$paymentProofPhoto', notes = '$notes' WHERE ID='$id'";
