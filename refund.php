@@ -8,7 +8,7 @@
   <!-- Modal content -->
   <div class="modal-content" style="width: 300px;">
     <span  class="close123">&times;</span>
-    <form method="POST" id="signupform">
+    <form method="POST" >
       <label class="label">Appoinment Referrence</label> <input type="text" name="rid" id="rid" readonly> </label>
       <hr>
   

@@ -237,7 +237,7 @@ window.onclick = function(event) {
             <tr>
               <th>Room Code: </th>
               <td colspan=3><input type="text" readonly name="roomcode" value="<?php echo"".$_SESSION['room']; ?>"></td>
-              
+              <td></td>
             </tr>
             <tr>
               <th>Room Name: </th>
@@ -247,7 +247,7 @@ window.onclick = function(event) {
              <tr>
               <th>Room Price: </th>
                <td></td>
-               <td> </td>
+               <td></td>
               <td><input type="text" readonly name="roomprice" value="<?php echo"".$_SESSION['roomtotal'];?>"></td>
              
             </tr>
@@ -392,18 +392,18 @@ window.onclick = function(event) {
             </tr>
             <tr>
               <th>Time In: </th>
-              <td colspan=2><input type="text" readonly name="time_in" value="<?php echo"".str_replace("T"," ",$_SESSION['start']); ?>"></td>
-            
+              <td colspan=1><input type="text" readonly name="time_in" value="<?php echo"".str_replace("T"," ",$_SESSION['start']); ?>"></td>
+              <td><?php if($_SESSION['day'] > 1){echo"No. Days: ".$_SESSION['day']; }else{ echo"No. Day: ".$_SESSION['day'];}?></td>
             </tr>
             <tr>
               <th>Time Out: </th>
-              <td colspan=2><input type="text" readonly name="time_out" value="<?php echo"".str_replace("T"," ",$_SESSION['end']); ?>"></td>
-              
+              <td colspan=1><input type="text" readonly name="time_out" value="<?php echo"".str_replace("T"," ",$_SESSION['end']); ?>"></td>
+           
             </tr>
             <tr>
               <th>Room Code: </th>
               <td colspan=2><input type="text" readonly name="roomcode" value="<?php echo"".$_SESSION['room']; ?>"></td>
-              
+              <td></td>
             </tr>
             <tr>
               <th>Room Name: </th>
@@ -414,13 +414,15 @@ window.onclick = function(event) {
               <th>Room Price: </th>
                <td ></td>
               <td><input type="text" readonly name="roomprice" value="<?php echo"".$_SESSION['roomtotal'];?>"></td>
-             
+              
+              
             </tr>
 
             <tr>
               <th>Additional Pax Price: </th>
                <td><input type="text" readonly name="roomprice" value="<?php echo"".$_SESSION['additional'];?>"></td>
               <td><input type="text" readonly name="roomprice" value="<?php echo"".$additionalPrice; ?>"></td>
+
             </tr>
             <?php
             

@@ -366,6 +366,7 @@ window.onclick = function(event) {
       $('#result').html(data1)
     });
   }
+  
 </script>
 
 <?php

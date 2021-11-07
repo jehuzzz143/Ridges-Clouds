@@ -697,6 +697,21 @@ tbody tr{
   text-decoration: none;
   cursor: pointer;
 }
+
+/* The Close Button */
+.close1234 {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close1234:hover,
+.close1234:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
 .modal-content input[type=text],.modal-content input[type=password],.modal-content select,.modal-content input[type=file]{
   color:grey;
   font-family: 'Poppins', sans-serif;

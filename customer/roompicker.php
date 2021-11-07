@@ -424,7 +424,7 @@ exit();
 
     $_SESSION['room']=$room;
     $_SESSION['roomactive']=true;
-    $_SESSION['roomtotal']=$roomtotal;
+    $_SESSION['roomtotal']=$roomtotal * $_SESSION['day'];
     $_SESSION['cabana']=$cabana;
 
 

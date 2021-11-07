@@ -309,9 +309,9 @@ window.onclick = function(event) {
   <h1>MY APPOINTMENTS</h1> 
 </div>
 
-  <div class="column is-full" style="text-align:  center; z-index: 0;">
+  <div class="column is-full" style="text-align:  center; z-index: -10;">
 
-    <a href="" class="btn-explore button" data-tooltip="0917322445599">Gcash Number</a>
+    <a href="" class="btn-explore button" data-tooltip="0917322445599" style="z-index: 0;">Gcash Number</a>
 
   </div>
 
@@ -350,6 +350,8 @@ window.onclick = function(event) {
               <!-- CONFIRMED GREEN -->
               <!-- class="print appPrint" -->
               <tr  style="background-color:#EAFAF1; "   >
+
+
                 <p style="display:none"><?php echo"APP".$row12['ID']; ?></p>
               <?php
               
@@ -368,6 +370,7 @@ window.onclick = function(event) {
             }else{
                ?>
               <tr style="background-color:;" >
+
               <?php
               
             }
@@ -452,7 +455,7 @@ window.onclick = function(event) {
                       echo "<button type='submit' class='action-btn cancelBtn' >  Cancel </button> <br>";
                     }
 
-                      echo "<button type='submit' class='action-btn'> Resched </button><Br>";
+                      echo "<button type='submit' class='action-btn reschedBtn'> Reschedzz </button><Br>";
 
                   }else if($row12['bstatus'] == 'Confirmed' AND  $timestamp >= $datenow2 ){
                   $bookingdate = $row12['btime_in'];
@@ -471,7 +474,7 @@ window.onclick = function(event) {
                       echo "<button type='submit' class='action-btn noHover' > Resched </button><Br>";
                     }else{
                       echo "<button type='submit' class='action-btn refundBtn'  >   Refund </button> <br>";
-                      echo "<button type='submit' class='action-btn reschedBtn' > Resched </button><Br>";
+                      echo "<button type='submit' class='action-btn reschedBtn' > Reschedaa </button><Br>";
                     }  
 
                   }else if($row12['bstatus'] == 'Completed' AND $row12['review']==0){
@@ -673,7 +676,7 @@ window.onclick = function(event) {
                     }else{
                       ?>
                         <div class="container icon-container1">
-                          <img class="zoom" src="<?php echo"".$downpaymentPath; ?>" alt="no payment proof">
+                          <img class="" src="<?php echo"".$downpaymentPath; ?>" alt="no payment proof">
                         </div>
                       <?php
                     }
@@ -694,6 +697,7 @@ window.onclick = function(event) {
                         <button class="print-button ">
                           <span class="print-icon noprint"></span>
                         </button> 
+                         <p style="display:none"><?php echo"APP".$row12['ID']; ?></p>
                       </td>
                     <?php
                       
@@ -701,7 +705,26 @@ window.onclick = function(event) {
                     
                   ?>
                 </td>
-                  <td style="display:none"> <?php echo "".$row12['bdeposit'];?></td>
+                  <td style="display:none"> <?php echo "".$row12['bdeposit'];?>
+                  <p><?php echo "".$row12['ID'];?></p>
+                  <p><?php echo "".$row12['btype'];?></p>
+                  <p><?php echo "".$row12['bdaytourtime'];?></p>
+                  <p><?php echo "".date("m/d/Y",strtotime($row12['bdate']));?></p>
+                  <p><?php echo "".$row12['bstatus'];?></p>
+                  <?php 
+                    if($row12['btype']=='Overnight'){
+                      ?>
+
+                        <p><?php echo "".$row12['btime_in'];?></p>
+                        <p><?php echo "".$row12['btime_out'];?></p>
+                        <p><?php echo "".$row12['broom'];?></p>
+                      <?php
+                    }
+
+                  ?>
+                  
+                  
+                  </td>
 
 
               </tr>
@@ -1110,6 +1133,7 @@ span.onclick = function() {
 
 <?php 
   include 'refund.php';
+  include 'resched.php'
 ?>
 
 
