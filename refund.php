@@ -6,7 +6,7 @@
 <div id="myModalrefund" class="modal fade-in">
 
   <!-- Modal content -->
-  <div class="modal-content" style="width: 300px;">
+  <div class="modal-content" style="width: 450px;">
     <span  class="close123">&times;</span>
     <form method="POST" >
       <label class="label">Appoinment Referrence</label> <input type="text" name="rid" id="rid" readonly> </label>
@@ -15,7 +15,7 @@
       <p>Please confirm that you would like to <b>cancel</b> this reservation and receive a refund.</p>
       <br>
       <label>Gcash Number:</label>
-      <input type="gcash" name="gcash" id="gcash"  onkeypress='validate(event)' placeholder="09584569854" maxlength=11  pattern="[0-9]{11}" required>
+      <input type="text" name="gcash" id="gcash"  onkeypress='validate(event)' placeholder="09584569854" maxlength=11  pattern="[0-9]{11}" required>
       <span id="phonetext"></span>
     <br>
       <p>YOUR DEPOSIT </p><input type="text" readonly name="" id="deposit">
@@ -26,7 +26,9 @@
         <hr>
       <button type="submit" name="refundsubmit" style="float:right">Submit</button>
 
-      <button type="button" onclick="refundclose()" style="float:right;margin-right:5px;">    Cancel</button>  
+      <button type="button" onclick="refundclose()" style="float:right;margin-right:5px;">    Cancel</button>
+       <br>
+
     </form>
   </div>
 

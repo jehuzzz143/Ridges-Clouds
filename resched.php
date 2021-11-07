@@ -8,7 +8,7 @@
 <div id="myModalresched" class="modal fade-in">
 
   <!-- Modal content -->
-  <div class="modal-content" style="width: 300px;">
+  <div class="modal-content" style="width: 350px;">
     <span  class="close1234">&times;</span>
     <form method="POST" >
       <label class="label">Appoinment Referrence</label> <input type="text" name="resched_id" id="resched_id" readonly> </label>
