@@ -184,7 +184,7 @@ if(isset($_POST['reset-password-submit'])){
 	$currentDate = date("U");
 
 
-	$sql = "SELECT * FROM pwdReset WHERE pwdResetSelector='$selector' AND pwdResetExpires >= '$currentDate'";
+	$sql = "SELECT * FROM pwdreset WHERE pwdResetSelector='$selector' AND pwdResetExpires >= '$currentDate'";
 	$result = $conn->query($sql);
 	if($result->num_rows > 0){
 		    while($row = $result->fetch_assoc()) {				
@@ -208,7 +208,7 @@ if(isset($_POST['reset-password-submit'])){
 					$sql2 = "UPDATE tbl_user SET Userpword ='$newPwdHash' WHERE Useremail ='$tokenEmail'";
 					$conn->query($sql2);
 
-					$sql3 ="DELETE FROM pwdReset WHERE pwdResetEmail='$tokenEmail'";
+					$sql3 ="DELETE FROM pwdreset WHERE pwdResetEmail='$tokenEmail'";
 					$conn->query($sql3);
 						echo '<script type="text/javascript">alert("Sucessfuly Updated")</script>';
 						echo '<script>location.href = "login.php";</script>';
