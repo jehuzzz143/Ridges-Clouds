@@ -189,21 +189,21 @@ require '/home/ridgeclo/public_html/PHPMailer-master/src/SMTP.php';
 		    
 		    try {
 		        //Server settings
-		        $mail->SMTPDebug = 2;                      //Enable verbose debug output
+		        $mail->SMTPDebug = 0;                      //Enable verbose debug output
 		        $mail->isSMTP();                                            //Send using SMTP
 		        $mail->Mailer = "smtp";
-		        $mail->Host       = 'mail.ridgeclouds.site';                     //Set the SMTP server to send through
+		        $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
 		        $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-		        $mail->Username   = 'do_not_reply@ridgeclouds.site';                     //SMTP username
-		        $mail->Password   = 'p8Q0@2F*p1eWDa';                               //SMTP password
-		        $mail->SMTPSecure = 'ssl';            //Enable implicit TLS encryption
-		        $mail->Port       = 290;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+		        $mail->Username   = 'ridgeclo2021@gmail.com';                     //SMTP username
+		        $mail->Password   = 'ridgeclo';                               //SMTP password
+		        $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
+		        $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 		    
 		        //Recipients
-		        $mail->setFrom('do_not_reply@ridgeclouds.site', 'Ridges & Clouds');
+		        $mail->setFrom('ridgeclo2021@gmail.com', 'Ridges & Clouds');
 		       // $mail->addAddress('joe@example.net', 'Joe User');     //Add a recipient
 		        $mail->addAddress($to);               //Name is optional
-		        $mail->addReplyTo('ridgeclo@ridgeclouds.site');
+		        $mail->addReplyTo('ridgeclo2021@gmail.com');
 		        //$mail->addCC('cc@example.com');
 		        //$mail->addBCC('bcc@example.com');
 		    
