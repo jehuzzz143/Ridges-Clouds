@@ -226,8 +226,8 @@ window.onclick = function(event) {
             </tr>
             <tr>
               <th>Time In: </th>
-              <td colspan=3><input type="text" readonly name="time_in" value="<?php echo"".str_replace("T"," ",$_SESSION['start']); ?>"></td>
-            
+              <td colspan=1><input type="text" readonly name="time_in" value="<?php echo"".str_replace("T"," ",$_SESSION['start']); ?>"></td>
+               <td><?php if($_SESSION['day'] > 1){echo"No. Days: ".$_SESSION['day']; }else{ echo"No. Day: ".$_SESSION['day'];}?></td>
             </tr>
             <tr>
               <th>Time Out: </th>
