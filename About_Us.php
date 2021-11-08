@@ -174,6 +174,12 @@ window.onclick = function(event) {
 </div>
 
 <div class="container" id="text-w" style="padding:50px 0px;"  data-aos="fade-up">
+  <div class="map-responsive">
+  <iframe src="https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2F105748270876223%2Fvideos%2F1020247262048363%2F&show_text=false&width=560&t=0" width="560" height="314" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>
+  </div>
+</div>
+
+<div class="container" id="text-w" style="padding:50px 0px;"  data-aos="fade-up">
   <div style="padding:0px 50px 20px;">
     <h3>Where Ridges & Clouds Located?</h3> 
   </div>
@@ -181,6 +187,7 @@ window.onclick = function(event) {
    <iframe src="https://www.google.com/maps/embed?pb=!1m26!1m12!1m3!1d61778.38902017142!2d121.3267048623513!3d14.590566327632763!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m11!3e6!4m3!3m2!1d14.636120499999999!2d121.15958359999999!4m5!1s0x339793442c3ae3fb%3A0xbc00420bc68415f1!2snature%20camp!3m2!1d14.6012063!2d121.35740159999999!5e0!3m2!1sen!2sph!4v1616159990258!5m2!1sen!2sph" width="800" height="600" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
   </div>
 </div>
+
 <!-- FOOTER -->
 <div class="container is-fluid" style="background-color: #292b2c">
   <div class="container">
