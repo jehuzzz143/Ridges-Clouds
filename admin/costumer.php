@@ -815,7 +815,15 @@ window.onclick = function(event) {
                 <th>Fullname</th>
                 <th>Phone no.</th>
                 <th>Email</th>
-                <th>Password</th>
+                <?php 
+                  if($usertype == 3){
+                    ?>
+                     <th>Password</th>
+                    <?php
+                  }
+
+                ?>
+                
                 <th>No. Booking</th>
                 <th colspan="2">Action</th>
             </tr>
@@ -884,7 +892,17 @@ window.onclick = function(event) {
                           <td><?php echo"".$fullname; ?></td>
                           <td><?php echo"+".$row['Userpnumber']; ?></td>
                           <td ><?php echo"".$row['Useremail']; ?></td>
-                          <td ><?php echo"".$row['Userpwordnohash']; ?></td>
+                          <?php 
+                              if($usertype == 3){
+                                ?>
+                                  <td ><?php echo"".$row['Userpwordnohash']; ?></td>
+                                <?php
+                              }else{
+
+                              }
+
+                            ?>
+                          
                           <td style="text-align: right;"> 
                             <b>No. Completed :</b> <?php echo"".$completed; ?>
                             <br>
