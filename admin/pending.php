@@ -1136,6 +1136,15 @@ function appClose(){
   </body>
 </html>
 <?php
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require '../PHPMailer-master/src/Exception.php';
+require '../PHPMailer-master/src/PHPMailer.php';
+require '../PHPMailer-master/src/SMTP.php';
+
+
+
 if(isset($_POST['logout'])){
 
   session_unset();
@@ -1147,13 +1156,14 @@ if(isset($_POST['logout'])){
 
 }else if(isset($_POST['submit-overnight'])){
 
-  $id         = $_POST['aid-overnight'];
-  $title      = $_POST['title-overnight'];
-  $startDate  = $_POST['startDate'];
-  $endDate    = $_POST['endDate'];
-  $price      = $_POST['price-overnight'];
-  $deposit    = $_POST['deposit-overnight'];
+  $id           = $_POST['aid-overnight'];
+  $title        = $_POST['title-overnight'];
+  $startDate    = $_POST['startDate'];
+  $endDate      = $_POST['endDate'];
+  $price        = $_POST['price-overnight'];
+  $deposit      = $_POST['deposit-overnight'];
   $nightGNumber = $_POST['nightGNumber'];
+  $url = "https://localhost/Ridges&Clouds/appPrint.php?ID=APP".$id."XXX000";
  
   if($deposit <= 0 ||  $deposit > $price){
 
@@ -1164,12 +1174,19 @@ if(isset($_POST['logout'])){
     $textcolor  ="#FDFEFE";
     $textbg     ="#3498DB";
 
-    $sql = "SELECT bdeposit FROM tbl_booking WHERE ID=$id";
+    $sql = "SELECT bdeposit,customerID FROM tbl_booking WHERE ID=$id";
     $result = $conn->query($sql);
     $row = mysqli_fetch_array($result);
+    $customerID = $row['customerID'];
     $deposit1 = $row['bdeposit'];
     $totaldeposit = $deposit+$deposit1;
     $balance    = $price - $deposit;
+    
+    $pull = "SELECT Useremail FROM tbl_user WHERE ID='$customerID'";
+    $get = $conn->query($pull);
+    $column = mysqli_fetch_array($get);
+    $to = $column['Useremail'];
+    
     
     $sql = "UPDATE tbl_booking SET bdeposit = $totaldeposit, balance = $balance, bstatus = 'Confirmed'  WHERE ID=$id ";  //bstatus = 'Confirmed'
     if ($conn->query($sql) === TRUE) {
@@ -1184,8 +1201,56 @@ if(isset($_POST['logout'])){
     $sql1 = "INSERT INTO tbl_audit (UserID, Description, Date_edit, Name, type)
     VALUES ('$customerID' ,'Confirm Overnight Booking ID: $id ', now(),'$fullname_admin', 'booking')";
     $conn->query($sql1);
+    
+        //Create an instance; passing `true` enables exceptions
+        $mail = new PHPMailer(true);
+        
+        try {
+            //Server settings
+            $mail->SMTPDebug = 0;                      //Enable verbose debug output
+            $mail->isSMTP();                                            //Send using SMTP
+            $mail->Mailer = "smtp";
+            $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+            $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+            $mail->Username   = 'ridgeclo2021@gmail.com';                     //SMTP username
+            $mail->Password   = 'ridgeclo';                               //SMTP password
+            $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
+            $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+        
+            //Recipients
+            $mail->setFrom('ridgeclo2021@gmail.com', 'Ridges & Clouds');
+           // $mail->addAddress('joe@example.net', 'Joe User');     //Add a recipient
+            $mail->addAddress($to);               //Name is optional
+            $mail->addReplyTo('ridgeclo2021@gmail.com');
+            //$mail->addCC('cc@example.com');
+            //$mail->addBCC('bcc@example.com');
+        
+            //Attachments
+            //$mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
+            //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
+        
+            //Content
+            $mail->isHTML(true);                                  //Set email format to HTML
+            $mail->Subject = 'Successfully Confirmed Booking';
+            $mail->Body    = 'Your Overnight booking confirmation on ['.date("F jS, Y -- h:s a", strtotime($startDate)).'] 
+            to ['.date("F jS, Y -- h:s a", strtotime($endDate)).'] has Been<b> ====CONFIRMED=== </b> Booking ID (APP'.$id.'), 
+            You can now print or take a screenshot of your booking details by logging in your account in our website. 
+            Present the booking details on onsite reception as proof of booking.  Your support means the world to us! 
+            Thank for your choosing our camp. - Ridges and Clouds Admin.</b> <br> <Br><br> <i> you can now print your receipt under your account profile or just simply print your receipt with this link:'.$url;
+            //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+        
+            $mail->send();
+        } catch (Exception $e) {
+            echo "Mailer Error: " . $mail->ErrorInfo;
+              ?>
+          <script>
+                alert("Unexpected Error");
+          </script>
+        <?php
+        
+        }
 
-      echo '<script type="text/javascript">alert("Sucessfully Confirmed, SMS Notification Sent")</script>';
+      echo '<script type="text/javascript">alert("Sucessfully Confirmed,  Notification Sent!")</script>';
 
     }else{
       echo "Error updating record: " . $conn->error;
@@ -1209,7 +1274,7 @@ if(isset($_POST['logout'])){
   $startDate     = $_POST['timein-daytour'];
   $endDate    = $_POST['timeout-daytour'];
   $dayGNumber = $_POST['dayGNumber'];
-
+  $url = "https://localhost/Ridges&Clouds/appPrint.php?ID=APP".$id."XXX000";
 
   $textcolor  ="white";
   $textbg     ="#FF5733";
@@ -1219,14 +1284,18 @@ if(isset($_POST['logout'])){
     echo '<script type="text/javascript">alert("Please input realistic numbers")</script>';
 
   }else{
-  $sql = "SELECT bdeposit FROM tbl_booking WHERE ID=$id";
+  $sql = "SELECT bdeposit,customerID FROM tbl_booking WHERE ID=$id";
   $result = $conn->query($sql);
   $row = mysqli_fetch_array($result);
   $deposit1 = $row['bdeposit'];
+  $customerID = $row['customerID'];
   $totaldeposit = $deposit+$deposit1;
   $balance    = $price - $deposit;
   
- 
+    $pull = "SELECT Useremail FROM tbl_user WHERE ID='$customerID'";
+    $get = $conn->query($pull);
+    $column = mysqli_fetch_array($get);
+    $to = $column['Useremail'];
 
   $sql = "UPDATE tbl_booking SET bdeposit = $totaldeposit, balance = $balance, bstatus = 'Confirmed'  WHERE ID=$id ";  //bstatus = 'Confirmed'
   if ($conn->query($sql) === TRUE) {
@@ -1240,7 +1309,56 @@ if(isset($_POST['logout'])){
     $sql1 = "INSERT INTO tbl_audit (UserID, Description, Date_edit, Name, type)
     VALUES ('$customerID' ,'Confirm Daytour Booking ID: $id ', now(),'$fullname_admin', 'booking')";
     $conn->query($sql1);
-    echo '<script type="text/javascript">alert("Sucessfully Confirmed, SMS Notification Sent")</script>';
+    //Create an instance; passing `true` enables exceptions
+        $mail = new PHPMailer(true);
+    
+
+        try {
+            //Server settings
+            $mail->SMTPDebug = 0;                      //Enable verbose debug output
+            $mail->isSMTP();                                            //Send using SMTP
+            $mail->Mailer = "smtp";
+            $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+            $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+            $mail->Username   = 'ridgeclo2021@gmail.com';                     //SMTP username
+            $mail->Password   = 'ridgeclo';                               //SMTP password
+            $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
+            $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+        
+            //Recipients
+            $mail->setFrom('ridgeclo2021@gmail.com', 'Ridges & Clouds');
+           // $mail->addAddress('joe@example.net', 'Joe User');     //Add a recipient
+            $mail->addAddress($to);               //Name is optional
+            $mail->addReplyTo('ridgeclo2021@gmail.com');
+            //$mail->addCC('cc@example.com');
+            //$mail->addBCC('bcc@example.com');
+        
+            //Attachments
+            //$mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
+            //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
+        
+            //Content
+            $mail->isHTML(true);                                  //Set email format to HTML
+            $mail->Subject = 'Successfully Confirmed Booking';
+            $mail->Body    = 'Your Daytour booking confirmation on ['.date("F jS, Y -- h:s a", strtotime($startDate)).'] to ['.date("F jS, Y -- h:s a", strtotime($endDate)).'] 
+            has Been<b> ====CONFIRMED=== </b> Booking ID (APP'.$id.'), You can now print or take a screenshot of your booking details by logging in your account in our website. 
+            Present the booking details on onsite reception as proof of booking.  
+            Your support means the world to us! Thank for your choosing our camp. - Ridges and Clouds Admin. <br> <Br><br> <i> you can now print your receipt under your account profile or just simply print your receipt with this link:'.$url;
+            //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients'
+        
+            $mail->send();
+        } catch (Exception $e) {
+            echo "Mailer Error: " . $mail->ErrorInfo;
+              ?>
+          <script>
+                alert("Unexpected Error");
+          </script>
+        <?php
+        
+        }
+    
+    echo '<script type="text/javascript">alert("Sucessfully Confirmed,  Notification Sent!")</script>';
+    
 
   }else{
     echo "Error updating record: " . $conn->error;
@@ -1261,6 +1379,17 @@ $timeInDecline  =$_POST['timeInDecline'];
 $timeOutDecline =$_POST['timeOutDecline'];
 $declineService =$_POST['declineService'];
 
+  $sql = "SELECT bdeposit,customerID FROM tbl_booking WHERE ID=$id";
+  $result = $conn->query($sql);
+  $row = mysqli_fetch_array($result);
+  $deposit1 = $row['bdeposit'];
+  $customerID = $row['customerID'];
+
+$pull = "SELECT Useremail FROM tbl_user WHERE ID='$customerID'";
+    $get = $conn->query($pull);
+    $column = mysqli_fetch_array($get);
+    $to = $column['Useremail'];
+
 $sql = "UPDATE tbl_booking SET bstatus='Declined' WHERE id=$id";
     if ($conn->query($sql) === TRUE) {
 
@@ -1272,7 +1401,53 @@ $sql = "UPDATE tbl_booking SET bstatus='Declined' WHERE id=$id";
     $sql1 = "INSERT INTO tbl_audit (UserID, Description, Date_edit, Name, type)
     VALUES ('$customerID' ,'Decline Booking ID: $id ', now(),'$fullname', 'booking')";
     $conn->query($sql1);
-      echo '<script type="text/javascript">alert("Appointment Declined")</script>';
+    
+    $mail = new PHPMailer(true);
+        
+        try {
+            //Server settings
+            $mail->SMTPDebug = 0;                      //Enable verbose debug output
+            $mail->isSMTP();                                            //Send using SMTP
+            $mail->Mailer = "smtp";
+            $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+            $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+            $mail->Username   = 'ridgeclo2021@gmail.com';                     //SMTP username
+            $mail->Password   = 'ridgeclo';                               //SMTP password
+            $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
+            $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+        
+            //Recipients
+            $mail->setFrom('ridgeclo2021@gmail.com', 'Ridges & Clouds');
+           // $mail->addAddress('joe@example.net', 'Joe User');     //Add a recipient
+            $mail->addAddress($to);               //Name is optional
+            $mail->addReplyTo('ridgeclo2021@gmail.com');
+            //$mail->addCC('cc@example.com');
+            //$mail->addBCC('bcc@example.com');
+        
+            //Attachments
+            //$mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
+            //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
+        
+            //Content
+            $mail->isHTML(true);                                  //Set email format to HTML
+            $mail->Subject = 'Booking Declined';
+            $mail->Body    = 'Your '.$declineService.' booking ['.date("F jS, Y -- h:s a", strtotime($timeInDecline)).'] 
+            to ['.date("F jS, Y -- h:s a", strtotime($timeOutDecline)).'] 
+            has Been<b> === DECLINED === </b>due to inactive transaction. Booking ID (APP'.$id.'), 
+            Feel free to book again on another day thank you for supporting our camp - Ridges and Clouds Admin.';
+            //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+        
+            $mail->send();
+        } catch (Exception $e) {
+            echo "Mailer Error: " . $mail->ErrorInfo;
+              ?>
+          <script>
+                alert("Unexpected Error");
+          </script>
+        <?php
+        
+        }
+      echo '<script type="text/javascript">alert("Appointment Declined, Notification Sent!")</script>';
       echo("<meta http-equiv='refresh' content='1'>");
     } else {
       echo "Error deleting record: " . $conn->error;

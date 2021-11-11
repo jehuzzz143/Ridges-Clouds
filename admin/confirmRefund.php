@@ -25,8 +25,7 @@
       <label class="label">Appoinment Referrence</label> <input type="text" name="rid" id="rid" readonly> </label>
       <hr>
       
-      <p>Gcash Number: <b id="gcashnumber"> </b></p>
-
+      <p>Gcash Number:</p> <input type="text" id="gcashnumber" name="gcashnumber">
 
 
       <p>CUSTOMER DEPOSIT: </p><input type="text" readonly id="deposit" name="deposit">
@@ -73,7 +72,7 @@ for (var i = 0; i < refund_btn.length; i++) {
    var deposit = data[13];
    var refund = deposit * .50;
    document.getElementById("refund").value = refund;
-   document.getElementById("gcashnumber").innerHTML = data[18];
+   document.getElementById("gcashnumber").value = data[18];
   }
 }
 
@@ -91,18 +90,78 @@ function refundclose(){
 <?php 
 include "../dbconnection/conn.php";
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require '../PHPMailer-master/src/Exception.php';
+require '../PHPMailer-master/src/PHPMailer.php';
+require '../PHPMailer-master/src/SMTP.php';
+
+
 if(isset($_POST['refundsubmit_admin'])){
  $ID = $_POST['rid'];
  $refund = $_POST['refund'];
+ $deposit = $_POST['deposit'];
+ $gcash = $_POST['gcashnumber'];
 $sql = "UPDATE tbl_booking SET bstatus='Refund Request Approved', refund=$refund, balance=0 WHERE id='$ID'";
 
 if ($conn->query($sql) === TRUE) {
-  ?>
-  <script type="text/javascript">
-     Swal.fire('Successfull');   
-  </script>
 
-  <?php
+    $sql = "SELECT bdeposit,customerID FROM tbl_booking WHERE ID='$ID'";
+    $result = $conn->query($sql);
+    $row = mysqli_fetch_array($result);
+    $customerID = $row['customerID'];
+
+    $pull = "SELECT Useremail FROM tbl_user WHERE ID='$customerID'";
+    $get = $conn->query($pull);
+    $column = mysqli_fetch_array($get);
+    $to = $column['Useremail'];
+
+    //Create an instance; passing `true` enables exceptions
+        $mail = new PHPMailer(true);
+        
+        try {
+            //Server settings
+            $mail->SMTPDebug = 0;                      //Enable verbose debug output
+            $mail->isSMTP();                                            //Send using SMTP
+            $mail->Mailer = "smtp";
+            $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+            $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+            $mail->Username   = 'ridgeclo2021@gmail.com';                     //SMTP username
+            $mail->Password   = 'ridgeclo';                               //SMTP password
+            $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
+            $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+        
+            //Recipients
+            $mail->setFrom('ridgeclo2021@gmail.com', 'Ridges & Clouds');
+           // $mail->addAddress('joe@example.net', 'Joe User');     //Add a recipient
+            $mail->addAddress($to);               //Name is optional
+            $mail->addReplyTo('ridgeclo2021@gmail.com');
+            //$mail->addCC('cc@example.com');
+            //$mail->addBCC('bcc@example.com');
+        
+            //Attachments
+            //$mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
+            //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
+        
+            //Content
+            $mail->isHTML(true);                                  //Set email format to HTML
+            $mail->Subject = 'Refund Success';
+            $mail->Body    = 'Refund successfully sent to '.$gcash.' number, the total refund is: '.$refund.' Pesos';
+            //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+        
+            $mail->send();
+        } catch (Exception $e) {
+            echo "Mailer Error: " . $mail->ErrorInfo;
+              ?>
+          <script>
+                alert("Unexpected Error");
+          </script>
+        <?php
+        
+        }
+
+
    $sql1 = "INSERT INTO tbl_audit (UserID, Description, Date_edit, Name, type)
     VALUES ('$customerID' ,'Refund booking ID: $ID ', now(),'$fullname_admin', 'booking')";
     $conn->query($sql1);
@@ -111,7 +170,24 @@ if ($conn->query($sql) === TRUE) {
   $conn->query($sql11);
 
 
-  echo("<meta http-equiv='refresh' content='1'>");
+   ?>
+     <script type="text/javascript">
+          Swal.fire({
+
+                  text: 'Refund Sent',
+                  confirmButtonColor:'#3085d6',
+                  confirmButtonText: 'OK'
+                  
+                }).then((result) => {
+                if (result.isConfirmed) {
+
+
+                  location.href = 'allbooking.php';
+                  
+                }
+              })
+        </script>
+    <?php
 } else {
   echo "Error updating record: " . $conn->error;
 }

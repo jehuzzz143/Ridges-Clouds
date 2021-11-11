@@ -868,43 +868,81 @@ if(isset($_POST['loginsubmit'])){
 		
 		?>
 			<script>
-				Swal.fire("Email is already taken");
-				
-				
+				Swal.fire({
+								 
+								  text: 'Email is already taken',
+								  confirmButtonColor:'#3085d6',
+								  confirmButtonText: 'OK'
+								  
+								}).then((result) => {
+							  if (result.isConfirmed) {
+							    location.href = 'login.php';
+							  }
+							})
 			</script>
 		<?php
-		echo("<meta http-equiv='refresh' content='2'>");
+		exit();
 	}else if($rowcompare['Userpnumber'] == $pnumber){
 		?>
 			<script>
-				Swal.fire("Phone number is already taken");
-				 
+
+				Swal.fire({
+								 
+								  text: 'Phone number is already taken',
+								  confirmButtonColor:'#3085d6',
+								  confirmButtonText: 'OK'
+								  
+								}).then((result) => {
+							  if (result.isConfirmed) {
+							    location.href = 'login.php';
+							  }
+							})
 				
 			</script>
 		<?php
-		echo("<meta http-equiv='refresh' content='2'>");
+		exit();
 	}else{
 
 	
 	if($pword!=$cpword){
 		?>
 			<script>
-				Swal.fire('Password Does not match');
-				
+				Swal.fire({
+								 
+								  text: 'Password Does not match',
+								  confirmButtonColor:'#3085d6',
+								  confirmButtonText: 'OK'
+								  
+								}).then((result) => {
+							  if (result.isConfirmed) {
+							    location.href = 'login.php';
+							  }
+							})
 				
 			</script>
 		<?php
-		echo("<meta http-equiv='refresh' content='2'>");
+		exit();
 	}elseif($rest != "63"){
 		?>
 			<script>
-				Swal.fire('Incorrect phone number');
+
+				Swal.fire({
+								 
+								  text: 'Incorrect phone number',
+								  confirmButtonColor:'#3085d6',
+								  confirmButtonText: 'OK'
+								  
+								}).then((result) => {
+							  if (result.isConfirmed) {
+							    location.href = 'login.php';
+							  }
+							})
 				
 				
 			</script>
 		<?php
-
-		echo("<meta http-equiv='refresh' content='2'>");
+		exit();
+		
 
 	}else{
 		$sqlselect = "Select * from tbl_user order by SUBSTRING(ID,-5,LENGTH(ID)) desc limit 1";
@@ -944,15 +982,17 @@ if(isset($_POST['loginsubmit'])){
  				// 
  				?>
  					<script>
- 						Swal.fire("Successfully account created!");
+ 							Swal.fire({
 
- 					</script>
-
- 					 
-
- 				<?php
-
- 						$_SESSION["attemp"] = false;
+									icon: 'success', 
+								  text: 'Account Created',
+								  confirmButtonColor:'#3085d6',
+								  confirmButtonText: 'OK'
+								  
+								}).then((result) => {
+							  if (result.isConfirmed) {
+							  	<?php 
+							  		$_SESSION["attemp"] = false;
  						$_SESSION["attemp1"] = false;
  						$_SESSION['ID'] = $cstmr1;
                        // $_SESSION['Useremail'] = $email;
@@ -960,7 +1000,20 @@ if(isset($_POST['loginsubmit'])){
                         $_SESSION["loggedin"] = true;
                         $_SESSION["description"] = "<b> Welcome to Ridges and Clouds.</b>";
 
-                   echo("<meta http-equiv='refresh' content='1'>");
+							  	?>
+
+							  	location.href = 'login.php';
+							    
+							  }
+							})
+
+ 					</script>
+
+ 					 
+
+ 				<?php
+
+
 
  			}else{
  				

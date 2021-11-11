@@ -192,7 +192,7 @@ if(isset($_POST['daytour_resched'])){
 
   $daytourdate      = date("Y-m-d",strtotime($daytourdate));
   // $time_in = $daytourdate
-
+// echo '<script type="text/javascript">alert("'.$daytourdate.'")</script>';
   if($resched_time_in == '07:00 am to 10:00 am'){
     $timein = $daytourdate .'T07:00';
     $timeout = $daytourdate .'T10:00';
@@ -207,28 +207,56 @@ if(isset($_POST['daytour_resched'])){
     $timeout = $daytourdate .'T19:00';
   }
 
-$sql = "UPDATE MyGuests SET lastname='Doe' WHERE id=2";
+
   if($resched_status =='Pending'){
 
-    $sql = "UPDATE tbl_booking SET bdate='$day_tour_date', bdaytourtime='$resched_time_in', btime_in ='$timein', btime_out ='$timeout'  WHERE ID='$resched_id'";
+    $sql = "UPDATE tbl_booking SET bdate='$daytourdate', bdaytourtime='$resched_time_in', btime_in ='$timein', btime_out ='$timeout'  WHERE ID='$resched_id'";
     if ($conn->query($sql) === TRUE) {
       ?>
         <script type="text/javascript">
-          Swal.fire('Successfull');
+          Swal.fire({
+
+                  icon: 'success', 
+                  text: 'Self Rescheduled Success',
+                  confirmButtonColor:'#3085d6',
+                  confirmButtonText: 'OK'
+                  
+                }).then((result) => {
+                if (result.isConfirmed) {
+
+
+                  location.href = 'user.php';
+                  
+                }
+              })
         </script>
       <?php
     }else{
       echo "Error updating record: " . $conn->error;
     }
   }else if($resched_status == 'Confirmed'){
-    $sql = "UPDATE tbl_booking SET bdate='$day_tour_date', bdaytourtime='$resched_time_in', btime_in ='$timein', btime_out ='$timeout'  WHERE ID='$resched_id'";
+    $sql = "UPDATE tbl_booking SET bdate='$daytourdate', bdaytourtime='$resched_time_in', btime_in ='$timein', btime_out ='$timeout'  WHERE ID='$resched_id'";
     if ($conn->query($sql) === TRUE) {
     $sql = "UPDATE events SET  start_event ='$timein', end_event ='$timeout'  WHERE appID='$resched_id'";
      $conn->query($sql) === TRUE;
 
       ?>
         <script type="text/javascript">
-          Swal.fire('Successfull');
+          Swal.fire({
+
+                  icon: 'success', 
+                  text: 'Self Rescheduled Success',
+                  confirmButtonColor:'#3085d6',
+                  confirmButtonText: 'OK'
+                  
+                }).then((result) => {
+                if (result.isConfirmed) {
+
+
+                  location.href = 'user.php';
+                  
+                }
+              })
         </script>
       <?php
 
@@ -240,7 +268,7 @@ $sql = "UPDATE MyGuests SET lastname='Doe' WHERE id=2";
 
 
 
-echo("<meta http-equiv='refresh' content='1'>");
+
 
 }else if(isset($_POST['overnight_resched'])){
 $resched_id       = $_POST['resched_id'];
@@ -260,8 +288,22 @@ $timeout = $tomoorow_time."T12:00";
       if ($conn->query($sql) === TRUE) {
         ?>
           <script type="text/javascript">
-            Swal.fire('Successfull');
-          </script>
+          Swal.fire({
+
+                  icon: 'success', 
+                  text: 'Self Rescheduled Success',
+                  confirmButtonColor:'#3085d6',
+                  confirmButtonText: 'OK'
+                  
+                }).then((result) => {
+                if (result.isConfirmed) {
+
+
+                  location.href = 'user.php';
+                  
+                }
+              })
+        </script>
         <?php
       }else{
         echo "Error updating record: " . $conn->error;
@@ -274,8 +316,22 @@ $timeout = $tomoorow_time."T12:00";
       $conn->query($sql) === TRUE;
         ?>
           <script type="text/javascript">
-            Swal.fire('Successfull');
-          </script>
+          Swal.fire({
+
+                  icon: 'success', 
+                  text: 'Self Rescheduled Success',
+                  confirmButtonColor:'#3085d6',
+                  confirmButtonText: 'OK'
+                  
+                }).then((result) => {
+                if (result.isConfirmed) {
+
+
+                  location.href = 'user.php';
+                  
+                }
+              })
+        </script>
         <?php
       }else{
         echo "Error updating record: " . $conn->error;
@@ -283,7 +339,7 @@ $timeout = $tomoorow_time."T12:00";
   }
 
 
-echo("<meta http-equiv='refresh' content='1'>");
+
 
 }
 

@@ -122,11 +122,25 @@ if(isset($_POST['refundsubmit'])){
 
   if ($conn->query($sql) === TRUE) {
     ?>
-    <script type="text/javascript">
-       Swal.fire('Refund Request Sent.');   
-    </script>
+     <script type="text/javascript">
+          Swal.fire({
+
+                  icon: 'success', 
+                  text: 'Refund Request Sent',
+                  confirmButtonColor:'#3085d6',
+                  confirmButtonText: 'OK'
+                  
+                }).then((result) => {
+                if (result.isConfirmed) {
+
+
+                  location.href = 'user.php';
+                  
+                }
+              })
+        </script>
     <?php
-    echo("<meta http-equiv='refresh' content='1'>");
+ 
   } else {
     echo "Error updating record: " . $conn->error;
   }

@@ -51,7 +51,7 @@ var currentYear = date.getFullYear();
 
 $("#datepicker").datepicker({
 
-     minDate: 0,
+     minDate: 2,
      beforeShowDay: function(date){     
           var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
           return [ javascript_array.indexOf(string) == -1 ]
@@ -59,11 +59,11 @@ $("#datepicker").datepicker({
 });
 
 
-
+    
     $(function () {
         $("#datepicker").datepicker({
 
-           
+        minDate: 2,
         beforeShowDay: function(date){     
           var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
           return [ javascript_array.indexOf(string) == -1 ]

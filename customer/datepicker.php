@@ -113,7 +113,7 @@
    
     var month = dtToday.getMonth() + 1;
    
-    var day = dtToday.getDate();
+    var day = dtToday.getDate() +2;
 
     var year = dtToday.getFullYear();
 
@@ -433,37 +433,72 @@ if(isset($_POST['date-check'])){
       
        // output data of each row
        while($row1 = $result1->fetch_assoc()) {
-        if(strstr($row1['broom'], $compare_all_room)){
+        $occupied .= $row1['broom'];
+        // echo '<script type="text/javascript">alert("'.$occupied.'")</script>';
+        // echo '<script type="text/javascript">alert("'.$compare_all_room.'")</script>';
+        if(strstr($occupied, $compare_all_room)){
            
-         
-           echo '<script type="text/javascript"> Swal.fire({
-              icon: "error",
-              title: "Oopss this date is fully Booked",
-              text: "Try to select different date"
-             
-            })</script>';
+         ?>
+          <script type="text/javascript">
+           Swal.fire({
+                  icon:'error',
+                  title: 'All rooms are occupied.',
+                  
+                  confirmButtonColor:'#292B2C',
+                  confirmButtonText: 'OK'
+                  
+                }).then((result) => {
+                if (result.isConfirmed) {
+                  location.href = 'datepicker.php';
+                }
+              });
+            </script>
+        <?php
           exit();
         }
         
        }
      } else {
-         echo '<script type="text/javascript">Swal.fire({
-              icon: "success",
-              title: "Date Available",
-             
-             
-            });</script>';
+        ?>
+          <script type="text/javascript">
+           Swal.fire({
+                  icon:'success',
+                  title: 'Date is available',
+                  
+                  confirmButtonColor:'#292B2C',
+                  confirmButtonText: 'OK'
+                  
+                }).then((result) => {
+                if (result.isConfirmed) {
+                  location.href = 'datepicker.php';
+                }
+              });
+            </script>
+        <?php
+       
+
+
     
    
      }
-     echo '<script type="text/javascript">Swal.fire({
-              icon: "success",
-              title: "Date Available",
-             
-             
-            });</script>';
+      ?>
+          <script type="text/javascript">
+           Swal.fire({
+                  icon:'success',
+                  title: 'Date is available',
+                  
+                  confirmButtonColor:'#292B2C',
+                  confirmButtonText: 'OK'
+                  
+                }).then((result) => {
+                if (result.isConfirmed) {
+                  location.href = 'datepicker.php';
+                }
+              });
+            </script>
+        <?php
     
-		 echo("<meta http-equiv='refresh' content='1'>");	
+		 
 		$_SESSION['dateactive'] =   true;
 		$_SESSION['start']		=	$start.'T14:00';
 		$_SESSION['end']  		=   $end.'T12:00';

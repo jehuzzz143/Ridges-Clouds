@@ -89,7 +89,7 @@ var currentYear = date.getFullYear();
 
 $("#datepicker").datepicker({
 
-     minDate: 4,
+     minDate: 3,
      beforeShowDay: function(date){     
           var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
           return [ javascript_array.indexOf(string) == -1 ]

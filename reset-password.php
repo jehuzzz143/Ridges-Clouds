@@ -140,9 +140,9 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require '/home/ridgeclo/public_html/PHPMailer-master/src/Exception.php';
-require '/home/ridgeclo/public_html/PHPMailer-master/src/PHPMailer.php';
-require '/home/ridgeclo/public_html/PHPMailer-master/src/SMTP.php';
+require 'PHPMailer-master/src/Exception.php';
+require 'PHPMailer-master/src/PHPMailer.php';
+require 'PHPMailer-master/src/SMTP.php';
 
 
 	if(isset($_POST['reset-request-submit'])){
@@ -150,7 +150,7 @@ require '/home/ridgeclo/public_html/PHPMailer-master/src/SMTP.php';
 		$selector = bin2hex(random_bytes(8));
 		$token = random_bytes(32);
 
-		$url = "http://www.ridgeclouds.site/create-new-password.php?selector=".$selector."&validator=".bin2hex($token);
+		$url = "https://localhost/Ridges&Clouds/create-new-password.php?selector=".$selector."&validator=".bin2hex($token);
 
 		$expires = date("U") + 1800;
 
@@ -220,7 +220,19 @@ require '/home/ridgeclo/public_html/PHPMailer-master/src/SMTP.php';
 		        $mail->send();
 		        	?>
 		    	<script>
-		 						alert("Check your e-mail");
+		 						Swal.fire({
+								  title: 'Email Sent',
+								  text: 'Check Email',
+								  confirmButtonColor:'#3085d6',
+								  confirmButtonText: 'OK'
+								  
+								}).then((result) => {
+							  if (result.isConfirmed) {
+							    location.href = 'login.php';
+							  }
+							})
+
+		 						
 		 			</script>
 		 		<?php
 		    } catch (Exception $e) {

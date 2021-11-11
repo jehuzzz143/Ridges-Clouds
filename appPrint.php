@@ -185,7 +185,7 @@ window.print();
         <div class="column-count" style="column-count:4;">
           
         
-        <p><?php echo"".$guest; ?></p>
+        <p><?php if($guest == ""){ echo"No name ";}else{echo"".$guest;} ?></p>
         </div>
         <br>
         <b>TO CHECKPOINT PERSONNEL</b><br>

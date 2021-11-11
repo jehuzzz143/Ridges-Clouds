@@ -345,7 +345,7 @@ window.onclick = function(event) {
             $timestamp = $row12['btime_in'];
             $downpaymentPath = "style/images/downpayments/".$row12['paymentPhoto'];
 
-            if($row12['bstatus']=='Confirmed' AND  $timestamp >= $datenow2 ){
+            if(($row12['bstatus']=='Confirmed' OR $row12['bstatus']=='Refund Requested' )AND  $timestamp >= $datenow2 ){
               ?>
               <!-- CONFIRMED GREEN -->
               <!-- class="print appPrint" -->
@@ -455,7 +455,7 @@ window.onclick = function(event) {
                       echo "<button type='submit' class='action-btn cancelBtn' >  Cancel </button> <br>";
                     }
 
-                      echo "<button type='submit' class='action-btn reschedBtn'> Reschedzz </button><Br>";
+                      echo "<button type='submit' class='action-btn reschedBtn'> Resched </button><Br>";
 
                   }else if($row12['bstatus'] == 'Confirmed' AND  $timestamp >= $datenow2 ){
                   $bookingdate = $row12['btime_in'];
@@ -474,7 +474,7 @@ window.onclick = function(event) {
                       echo "<button type='submit' class='action-btn noHover' > Resched </button><Br>";
                     }else{
                       echo "<button type='submit' class='action-btn refundBtn'  >   Refund </button> <br>";
-                      echo "<button type='submit' class='action-btn reschedBtn' > Reschedaa </button><Br>";
+                      echo "<button type='submit' class='action-btn reschedBtn' > Resched </button><Br>";
                     }  
 
                   }else if($row12['bstatus'] == 'Completed' AND $row12['review']==0){
@@ -705,7 +705,8 @@ window.onclick = function(event) {
                     
                   ?>
                 </td>
-                  <td style="display:none"> <?php echo "".$row12['bdeposit'];?>
+                  <td style="display:none"> <?php echo "".$row12['bdeposit'];?> </td>
+                   <td style="display:none">
                   <p><?php echo "".$row12['ID'];?></p>
                   <p><?php echo "".$row12['btype'];?></p>
                   <p><?php echo "".$row12['bdaytourtime'];?></p>
@@ -1197,8 +1198,27 @@ $id = str_replace("APP","",$id);
 
 $sql = "DELETE FROM tbl_booking WHERE ID='$id'";
     if ($conn->query($sql) === TRUE) {
-      echo '<script type="text/javascript">alert("Appointment Succesfully Canceled")</script>';
-      echo("<meta http-equiv='refresh' content='1'>");
+      ?>
+        <script type="text/javascript">
+          Swal.fire({
+
+                  icon: 'success', 
+                  text: 'Appointment Succesfully Canceled',
+                  confirmButtonColor:'#3085d6',
+                  confirmButtonText: 'OK'
+                  
+                }).then((result) => {
+                if (result.isConfirmed) {
+
+
+                  location.href = 'user.php';
+                  
+                }
+              })
+        </script>
+      <?php
+
+  
     } else {
       echo "Error deleting record: " . $conn->error;
     }
