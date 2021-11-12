@@ -529,13 +529,23 @@ $result = $conn->query($sql);
 if ($result->num_rows > 0) {
   while($row = $result->fetch_assoc()) {
       ?>
-      <script type="text/javascript">
-        Swal.fire({
-      icon: 'success',
-      title: 'Success',
-      text: 'Promo applied',
+<script type="text/javascript">
+  Swal.fire({
+
+          icon: 'success', 
+          text: 'Coupon Successfully applied',
+          confirmButtonColor:'#3085d6',
+          confirmButtonText: 'OK'
+          
+        }).then((result) => {
+        if (result.isConfirmed) {
+
+
+          location.href = 'daytourbill.php';
+          
+        }
       })
-      </script>
+</script>
       <?php
       $_SESSION['promo_id'] = $row['promo_id'];
       $_SESSION['couponactive']= true;
@@ -559,18 +569,27 @@ if ($result->num_rows > 0) {
       $conn->query($sql);
 
 
-        echo("<meta http-equiv='refresh' content='2'>");
+
   }
 } else {
   ?>
-  <script type="text/javascript">
-    Swal.fire({
-  icon: 'error',
-  title: 'Oops...',
-  text: 'Invalid promo code',
+<script type="text/javascript">
+  Swal.fire({
 
-  })
-  </script>
+          icon: 'error', 
+          text: 'Invalid Coupon Discount',
+          confirmButtonColor:'#3085d6',
+          confirmButtonText: 'OK'
+          
+        }).then((result) => {
+        if (result.isConfirmed) {
+
+
+          location.href = 'daytourbill.php';
+          
+        }
+      })
+</script>
   <?php
 }
 
@@ -594,14 +613,27 @@ if ($result->num_rows > 0) {
   $_SESSION['promo_id'] = "";
   $_SESSION['daytourprice'] = $_SESSION['booking_price'];
   ?>
-  <script type="text/javascript">
-   Swal.fire('Coupon Remove'); 
-  </script>
+<script type="text/javascript">
+  Swal.fire({
+
+          icon: 'success', 
+          text: 'Coupon Removed',
+          confirmButtonColor:'#3085d6',
+          confirmButtonText: 'OK'
+          
+        }).then((result) => {
+        if (result.isConfirmed) {
+
+
+          location.href = 'daytourbill.php';
+          
+        }
+      })
+</script>
   <?php
 
  
-  
-  echo("<meta http-equiv='refresh' content='2'>");
+
 }else if(isset($_POST['back'])){
    ?>
   <script type="text/javascript">location.href = 'daytour.php';</script>

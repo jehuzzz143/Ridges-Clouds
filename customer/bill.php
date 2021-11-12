@@ -565,8 +565,10 @@ window.onclick = function(event) {
      &#10148; Forfeiture of DP if cancelled/rebooked 1 day before and no show on the date
      of visit.
 ------------------------- OPEN DATE REBOOKING POLICIES ---------------------------
-      &#10148; Guests may rebook to an open date and put their DP as Booking Fund.
+      &#10148; Guests may rebook to an open date.
       &#10148; Subject to respective fees above.
+      &#10148; Refund and Reschedule are disable for the booking day that is 3 days
+      ahed.
      "
      data-tooltip-location="center"
      style="display: inline-block;"
@@ -757,15 +759,23 @@ exit();
 
   if($term != 'agree'){
     ?>
-  <script type="text/javascript">
-    Swal.fire({
-  icon: 'error',
-  title: 'Oops...',
-  text: 'Agree with the term and condition first before proceed to payments',
+<script type="text/javascript">
+  Swal.fire({
 
-  })
-  </script>
+          icon: 'error', 
+          text: 'Before proceeding with payments, agree to the terms and conditions.',
+          confirmButtonColor:'#3085d6',
+          confirmButtonText: 'OK'
+          
+        }).then((result) => {
+        if (result.isConfirmed) {
 
+
+          location.href = 'bill.php';
+          
+        }
+      })
+</script>
   <?php
 
   }else{
@@ -827,14 +837,23 @@ $result = $conn->query($sql);
 if ($result->num_rows > 0) {
   while($row = $result->fetch_assoc()) {
       ?>
-      <script type="text/javascript">
-        Swal.fire({
-      icon: 'success',
-      title: 'Success',
-      text: 'Promo applied',
-      footer: '<a href="">Why do I have this issue?</a>'
+<script type="text/javascript">
+  Swal.fire({
+
+          icon: 'success', 
+          text: 'Coupon Successfully applied',
+          confirmButtonColor:'#3085d6',
+          confirmButtonText: 'OK'
+          
+        }).then((result) => {
+        if (result.isConfirmed) {
+
+
+          location.href = 'bill.php';
+          
+        }
       })
-      </script>
+</script>
 
       <?php
       if($_SESSION['dateactive']==true){
@@ -866,18 +885,27 @@ if ($result->num_rows > 0) {
       $conn->query($sql);
 
 
-        echo("<meta http-equiv='refresh' content='2'>");
+    
   }
 } else {
   ?>
-  <script type="text/javascript">
-    Swal.fire({
-  icon: 'error',
-  title: 'Oops...',
-  text: 'Invalid promo code',
-  footer: '<a href="">Why do I have this issue?</a>'
-  })
-  </script>
+<script type="text/javascript">
+  Swal.fire({
+
+          icon: 'error', 
+          text: 'Invalid Coupon Discount',
+          confirmButtonColor:'#3085d6',
+          confirmButtonText: 'OK'
+          
+        }).then((result) => {
+        if (result.isConfirmed) {
+
+
+          location.href = 'bill.php';
+          
+        }
+      })
+</script>
   <?php
 }
 }else if(isset($_POST['remove_coupon'])){
@@ -898,9 +926,23 @@ if ($result->num_rows > 0) {
   $_SESSION['promo_id'] = "";
   $_SESSION['daytourprice'] = $_SESSION['booking_price'];
   ?>
-  <script type="text/javascript">
-   Swal.fire('Coupon Remove'); 
-  </script>
+<script type="text/javascript">
+  Swal.fire({
+
+          icon: 'success', 
+          text: 'Coupon Removed',
+          confirmButtonColor:'#3085d6',
+          confirmButtonText: 'OK'
+          
+        }).then((result) => {
+        if (result.isConfirmed) {
+
+
+          location.href = 'bill.php';
+          
+        }
+      })
+</script>
   <?php
   
   echo("<meta http-equiv='refresh' content='2'>");
