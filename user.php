@@ -588,7 +588,7 @@ window.onclick = function(event) {
                       echo "<button type='submit' class='action-btn cancelBtn' >  Cancel </button> <br>";
                     }
 
-                      echo "<button type='submit' class='action-btn'> Resched </button><Br>";
+                      echo "<button type='submit' class='action-btn reschedBtn'> Resched </button><Br>";
 
 
                   }else if($row12['bstatus'] == 'Confirmed' AND  $timestamp >= $datenow2){

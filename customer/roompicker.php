@@ -162,7 +162,7 @@ window.onclick = function(event) {
   <div class="container is-desktop white-background">
     <div class=" columns is-multiline">
         <?php
-          $sql = "SELECT * FROM tbl_price WHERE category = 'room' ORDER BY imagename";
+          $sql = "SELECT * FROM tbl_price WHERE category = 'room' ORDER BY CAST(SUBSTR(imagename FROM 2) AS UNSIGNED)";
           $result = $conn->query($sql);
           
           while($row = $result->fetch_assoc()) {
@@ -413,12 +413,22 @@ exit();
     foreach($_POST['room'] as $selected){
     
      $room = $room." || ".$selected;
-
-     $lastChar = substr(str_replace(' ', '', $room), -1);
+      // echo '<script type="text/javascript">alert("' . strlen($selected) . '")</script>';
+     // echo '<script type="text/javascript">alert("' . $room . '")</script>';
+     // echo '<script type="text/javascript">alert("' . strlen($room) . '")</script>';
+     if (strlen($selected)==4) {
+       $lastChar = substr(str_replace(' ', '', $room), -2);
+     }else{
+      $lastChar = substr(str_replace(' ', '', $room), -1);
+     }
+     
+     
+     // echo '<script type="text/javascript">alert("' . $lastChar . '")</script>';
      $price = $_POST['price'.$lastChar];
      $roomtotal += $price;
      $cabana .= " || ".$_POST['cabana'.$lastChar];
 
+     // echo '<script type="text/javascript">alert("' . $price. '")</script>';
   
     }
 

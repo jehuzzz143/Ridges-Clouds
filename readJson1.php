@@ -65,7 +65,8 @@ $sql = "SELECT `btype`,`bdate`,GROUP_CONCAT(`broom`) as 'room' FROM `tbl_booking
 
     }
 
-   
+    //   $sql = "SELECT * FROM tbl_price WHERE category = 'room' AND imagename != '' ORDER BY imagename";
+    // $result = $conn->query($sql);
 
 
 

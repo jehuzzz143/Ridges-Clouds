@@ -1125,7 +1125,16 @@ if(isset($_POST['logout'])){
         VALUES ('CLOSE', '$type CLOSE CAMP MAINTENANCE', '$startDate', '$endDate','$textbg','$textcolor')";
     }else{
         
-        $room = " || C1  || C2  || C3  || C4  || C5  || C6  || C7  || C8  || C9 ";
+        $sqlroom = "SELECT * FROM tbl_price WHERE category = 'room' and imagename != '' ORDER BY imagename";
+    $resultroom = $conn->query($sqlroom);
+       $roomcount = mysqli_num_rows($resultroom);
+        // echo '<script type="text/javascript">alert("'.$roomcount.'")</script>';
+        $count = 1;
+        $compare_all_room="";
+        for ($x = 1; $x <= $roomcount; $x++) {
+          $compare_all_room .= " || C".$x." ";
+        }
+        $room = $compare_all_room;
         $sql1 = "INSERT INTO tbl_booking (customerID, bname, bdate, broom,btype, btime_in, btime_out ,  bpax,bprice,balance, bstatus)
         VALUES ('CLOSE', ' ', '$startDate','$room' ,'$type', '$startDateTime', '$endDateTime',30,0,0,'CLOSE')";
 
