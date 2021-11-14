@@ -428,7 +428,7 @@
           $sql = "SELECT * FROM tbl_booking WHERE bstatus='Pending'";
           $result = $conn->query($sql);
         ?>
-        <div class="column" id="clicker" style="  border-left:10px solid #B9F0E0; ">
+        <div class="column" id="clicker" style="  border-left:10px solid #333948; ">
           
               <h1 style="color:#333948;">No. of Pending Booking:</h1>
               <h2 > <?php echo"".$result->num_rows;?>  <i id="rightside" class="fas fa-user-clock"></i></h2>
@@ -439,7 +439,7 @@
           $sql = "SELECT * FROM tbl_booking WHERE bstatus='Completed'";
           $result = $conn->query($sql);
         ?>
-        <div class="column" id="clicker" style="  border-left:10px solid #B6D7F0;">
+        <div class="column" id="clicker" style="  border-left:10px solid #333948;">
           
               <h1 style="color:#333948;">No. of Completed Booking:</h1>
               <h2 ><?php echo"".$result->num_rows;?>  <i id="rightside" class="fas fa-calendar-check"></i></h2>
