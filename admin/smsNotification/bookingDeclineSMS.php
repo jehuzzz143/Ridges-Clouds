@@ -6,7 +6,7 @@
 
 include '../vendor/autoload.php';
 $sid = "ACba551ad8270f2edb52a262cda846530c"; // Your Account SID from twillio
-$token = "9311decbcecbadb0b5ee5d3d44d67e27"; // Your Auth Token from twillio
+$token = "c815cf817e569d7c411f8d39ed44eb1f"; // Your Auth Token from twillio
 
 $client = new Twilio\Rest\Client($sid, $token);
 $message = $client->messages->create(
@@ -20,4 +20,3 @@ $message = $client->messages->create(
 print $message->sid;
 
 ?>
- ?>

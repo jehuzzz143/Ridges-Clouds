@@ -973,7 +973,7 @@ for (var i = 0; i < btn1.length; i++) {
     var timeout = data[11].replace(" ", "T");
     document.getElementById("timein-daytour").value = timein;
     document.getElementById("timeout-daytour").value = timeout;
-    document.getElementById("dayGNumber").value = "+"+data[data.length -2];
+    document.getElementById("dayGNumber").value = "+"+data[data.length -3];
 
 
   
@@ -1036,7 +1036,7 @@ for (var i = 0; i < declineBtn.length; i++) {
          var timout =  data[12].replace(" ", "T");
          document.getElementById("aid").value = data[0];
          document.getElementById("declineService").value =data[2];
-         document.getElementById("declineGNumber").value="+"+data[data.length -1];
+         document.getElementById("declineGNumber").value="+"+data[data.length -3];
          document.getElementById("timeInDecline").value = timein;
           document.getElementById("timeOutDecline").value = timout;
         
@@ -1046,7 +1046,7 @@ for (var i = 0; i < declineBtn.length; i++) {
          var timout =  data[13].replace(" ", "T");
            document.getElementById("declineService").value =data[2];
           document.getElementById("aid").value = data[0];
-         document.getElementById("declineGNumber").value="+"+data[data.length -1];
+         document.getElementById("declineGNumber").value="+"+data[data.length -3];
          document.getElementById("timeInDecline").value = timein;
           document.getElementById("timeOutDecline").value = timout;
         
@@ -1061,7 +1061,7 @@ for (var i = 0; i < declineBtn.length; i++) {
       var timout =  data[11].replace(" ", "T");
       document.getElementById("declineService").value =data[2];
       document.getElementById("aid").value = data[0];
-      document.getElementById("declineGNumber").value="+"+data[data.length -1];
+      document.getElementById("declineGNumber").value="+"+data[data.length -3];
        document.getElementById("timeInDecline").value = timein;
           document.getElementById("timeOutDecline").value = timout;
 
@@ -1230,13 +1230,29 @@ if(isset($_POST['logout'])){
             //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
         
             //Content
-            $mail->isHTML(true);                                  //Set email format to HTML
-            $mail->Subject = 'Successfully Confirmed Booking';
-            $mail->Body    = 'Your Overnight booking confirmation on ['.date("F jS, Y -- h:s a", strtotime($startDate)).'] 
-            to ['.date("F jS, Y -- h:s a", strtotime($endDate)).'] has Been<b> ====CONFIRMED=== </b> Booking ID (APP'.$id.'), 
-            You can now print or take a screenshot of your booking details by logging in your account in our website. 
-            Present the booking details on onsite reception as proof of booking.  Your support means the world to us! 
-            Thank for your choosing our camp. - Ridges and Clouds Admin.</b> <br> <Br><br> <i> you can now print your receipt under your account profile or just simply print your receipt with this link:'.$url;
+            $mail->isHTML(true);  
+            $mail->addEmbeddedImage('../style/confirmed.png','confirmed');                                //Set email format to HTML
+            $mail->Subject = 'Successfully Confirmed Booking (Overnight)';
+            $mail->Body    = '
+            <div style="background-color:#F7F7F7; text-align: center; font-family:Montserrat, sans-serif;"> 
+            <center>
+            <img src="cid:confirmed" style="width:600px;"/>
+            </center>
+            <br>
+            <p style="font-family: Poppins, sans-serif;">
+            Your Overnight booking confirmation on ['.date("F jS, Y -- h:s a", strtotime($startDate)).'] 
+            to ['.date("F jS, Y -- h:s a", strtotime($endDate)).'] has Been<b> ====CONFIRMED=== </b> Booking ID (APP'.$id.').
+            Your support means the world to us! please present the details on the reception.
+            Thank you for choosing our camp. - Ridges and Clouds Admin.</b> <br>
+           </p>
+            <br> <i> you can now print your receipt under your account profile or just simply print your receipt with this link:<br>
+
+             <button style="color:white; cursor: pointer;background-color: #333948; border: none;padding: 10px 12px;
+                    border-radius: 5px;">
+            <a href='.$url.' style="text-decoration:none; color:white; font-weight:bold; font-family: Poppins, sans-serif;"> RECEIPT</a>
+            </button>
+             
+             </div>';
             //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
         
             $mail->send();
@@ -1305,6 +1321,10 @@ if(isset($_POST['logout'])){
     VALUES ('$id', '$title', '$startDate', '$endDate','$textbg','$textcolor')";
     mysqli_query($conn, $sql);
     // SMS notification
+
+  
+     // echo '<script type="text/javascript">alert("'.$dayGNumber.'")</script>';
+
     //include 'smsNotification/daytourConfirm.php';
     $sql1 = "INSERT INTO tbl_audit (UserID, Description, Date_edit, Name, type)
     VALUES ('$customerID' ,'Confirm Daytour Booking ID: $id ', now(),'$fullname_admin', 'booking')";
@@ -1339,11 +1359,29 @@ if(isset($_POST['logout'])){
         
             //Content
             $mail->isHTML(true);                                  //Set email format to HTML
-            $mail->Subject = 'Successfully Confirmed Booking';
-            $mail->Body    = 'Your Daytour booking confirmation on ['.date("F jS, Y -- h:s a", strtotime($startDate)).'] to ['.date("F jS, Y -- h:s a", strtotime($endDate)).'] 
-            has Been<b> ====CONFIRMED=== </b> Booking ID (APP'.$id.'), You can now print or take a screenshot of your booking details by logging in your account in our website. 
-            Present the booking details on onsite reception as proof of booking.  
-            Your support means the world to us! Thank for your choosing our camp. - Ridges and Clouds Admin. <br> <Br><br> <i> you can now print your receipt under your account profile or just simply print your receipt with this link:'.$url;
+            $mail->Subject = 'Successfully Confirmed Booking (Daytour)';
+             $mail->addEmbeddedImage('../style/confirmed.png','confirmed');   
+            $mail->Body    = '
+
+            <div style="background-color:#F7F7F7; text-align: center; font-family:Montserrat, sans-serif;"> 
+            <center>
+            <img src="cid:confirmed" style="width:600px;"/>
+            </center>
+          
+             <p style="font-family: Poppins, sans-serif;">
+            Your Daytour booking confirmation on ['.date("F jS, Y -- h:s a", strtotime($startDate)).'] to ['.date("F jS, Y -- h:s a", strtotime($endDate)).'] 
+            has Been<b> ====CONFIRMED=== </b> Booking ID (APP'.$id.').  
+            Your support means the world to us! please present the details on the reception.
+            Thank you for choosing our camp. - Ridges and Clouds Admin. <br> 
+            </p>
+
+            <Br><br> <i> you can now print your receipt under your account profile or just simply print your receipt with this link: <br>
+            <button style="color:white; cursor: pointer;background-color: #333948; border: none;padding: 10px 12px;
+                    border-radius: 5px;">
+            <a href='.$url.' style="text-decoration:none; color:white; font-weight:bold; font-family: Poppins, sans-serif;"> RECEIPT</a>
+            </button>
+            </div>
+            ';
             //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients'
         
             $mail->send();
@@ -1431,10 +1469,23 @@ $sql = "UPDATE tbl_booking SET bstatus='Declined' WHERE id=$id";
             //Content
             $mail->isHTML(true);                                  //Set email format to HTML
             $mail->Subject = 'Booking Declined';
-            $mail->Body    = 'Your '.$declineService.' booking ['.date("F jS, Y -- h:s a", strtotime($timeInDecline)).'] 
+             $mail->addEmbeddedImage('../style/decline.png','decline');
+            $mail->Body    = '
+            <div style="background-color:#F7F7F7; text-align: center; font-family:Montserrat, sans-serif;"> 
+            <center>
+            <img src="cid:decline" style="width:600px;"/>
+            </center>
+
+            <p style="font-family: Poppins, sans-serif;">
+            Your '.$declineService.' booking ['.date("F jS, Y -- h:s a", strtotime($timeInDecline)).'] 
             to ['.date("F jS, Y -- h:s a", strtotime($timeOutDecline)).'] 
             has Been<b> === DECLINED === </b>due to inactive transaction. Booking ID (APP'.$id.'), 
-            Feel free to book again on another day thank you for supporting our camp - Ridges and Clouds Admin.';
+            Feel free to book again on another day thank you for supporting our camp - Ridges and Clouds Admin.
+            </p>
+
+
+
+            </div>';
             //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
         
             $mail->send();

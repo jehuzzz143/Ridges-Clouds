@@ -23,7 +23,7 @@ if ($conn->connect_error) {
     if ($result->num_rows > 0) {
 
       while($row = $result->fetch_assoc()) {
-         if($row['TOTAL PAX']==30){
+         if($row['TOTAL PAX']>=30){
           $dates = (string)$row['bdate'];
 
         array_push($datesBooked,$dates);

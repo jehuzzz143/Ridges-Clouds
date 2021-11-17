@@ -3,6 +3,11 @@
 	include "dbconnection/conn.php";
 ?>
 <html lang="en">
+<style type="text/css">
+	.background{
+		backgroun-color: "#F7F7F7";
+	}
+</style>
 <head>
 		<title> Reset Password | Ridges and Clouds </title>
 	
@@ -214,7 +219,24 @@ require 'PHPMailer-master/src/SMTP.php';
 		        //Content
 		        $mail->isHTML(true);                                  //Set email format to HTML
 		        $mail->Subject = 'Reset Password';
-		        $mail->Body    = 'We recieved a password reset request. The link to reset your password is below. If you did not make this request, you can ignore this email <br> <b> Click this link to reset your password:</b>'.$url;
+		        $mail->addEmbeddedImage('style/password.png','password');
+		        $mail->Body    = '<div style="background-color:#F7F7F7; text-align: center; font-family:Montserrat, sans-serif;"> 
+		        <img src="cid:password" style="width:600px;"/>
+		        <h5 style="font-weight: bold; letter-spacing: 2px; font-size:1.5em;">A REQUEST FOR A PASSWORD RESET HAS BEEN RECEIVED.</h5> 
+		        <H2> Click the button below to reset your password</h2>
+		        <button style="color:white; cursor: pointer;background-color: #333948; border: none;padding: 10px 12px;
+									  border-radius: 5px;">
+		        <a href='.$url.' style="text-decoration:none; color:white; font-weight:bold; font-family: Poppins, sans-serif;"> RESET PASSWORD</a>
+		        </button>
+		   	<br>
+		        <small><i>
+		       You may disregard this email if you did not make this request. 
+		        </small></i>
+
+		   
+
+		        </div>
+		        ';
 		        //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 		    
 		        $mail->send();

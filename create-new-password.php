@@ -210,9 +210,25 @@ if(isset($_POST['reset-password-submit'])){
 
 					$sql3 ="DELETE FROM pwdreset WHERE pwdResetEmail='$tokenEmail'";
 					$conn->query($sql3);
-						echo '<script type="text/javascript">alert("Sucessfuly Updated")</script>';
-						echo '<script>location.href = "login.php";</script>';
+											?>
+        <script type="text/javascript">
+          Swal.fire({
 
+                  icon: 'success', 
+                  text: 'Password Successfully Updated',
+                  confirmButtonColor:'#3085d6',
+                  confirmButtonText: 'OK'
+                  
+                }).then((result) => {
+                if (result.isConfirmed) {
+
+
+                  location.href = 'login.php';
+                  
+                }
+              })
+        </script>
+      <?php
 					exit();
 
 				} else {
