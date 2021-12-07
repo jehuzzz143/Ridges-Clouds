@@ -65,6 +65,11 @@
 	<!-- CSS -->
 	<link rel="stylesheet" href="css/datepicker.css">
 
+      <!-- DATE PICKER -->
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 	<!-- date formatting -->
 	<script src="https://momentjs.com/downloads/moment.js"></script>
 	 <!-- fontawSome -->
@@ -182,7 +187,9 @@ window.onclick = function(event) {
   	<div class="columns is-desktop is-multiline" style="margin:0;padding:0;">
   		<div class="column is-full" >
   			<label class="label" >Pick Date:</label>
-  			<input type="date" id="txtDate" name="date" value="<?php echo"".$_SESSION['date'] ?>" required>
+
+        <input type="text" readonly id="txtDate" name="date" value="<?php echo"".$_SESSION['date'] ?>" required placeholder="mm/dd/yyyy">
+<!--   			<input type="date" id="txtDate" name="date" value="<?php echo"".$_SESSION['date'] ?>" required> -->
   		</div>
   		<div class="column is-full">
   			<label  class="label">No. of Days:</label>
@@ -257,7 +264,19 @@ window.onclick = function(event) {
   
 </div>
 </form>
+<!--  -->
 
+
+<!--  -->
+
+ <script>
+  $( function() {
+
+    $( "#txtDate" ).datepicker({
+      minDate:0
+    });
+  } );
+  </script>
 <!-- paralax end -->
 
 
@@ -403,11 +422,18 @@ if(isset($_POST['date-check'])){
 
 	
 	$date = new DateTime($date);
+  $start = $date->format('Y-m-d');
+
+  $_SESSION['date']     =   $date->format('Y-m-d');
 	$date->modify('+'.$day.' day');
+
 	$end = $date->format('Y-m-d');
 
+  
+ 
 	
-
+// echo '<script type="text/javascript">alert("'.$_SESSION['start'].'")</script>';
+// echo '<script type="text/javascript">alert("'.$_SESSION['end'].'")</script>';
 
 	
 	if($date == ""){
@@ -502,7 +528,7 @@ if(isset($_POST['date-check'])){
 		$_SESSION['dateactive'] =   true;
 		$_SESSION['start']		=	$start.'T14:00';
 		$_SESSION['end']  		=   $end.'T12:00';
-		$_SESSION['date'] 		=   $_POST['date'];
+		
 		$_SESSION['day'] 		=   $_POST['day'];
     $_SESSION['check']= 1; 
   //   // 

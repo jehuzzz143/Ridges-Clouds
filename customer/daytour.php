@@ -192,7 +192,7 @@ window.onclick = function(event) {
 
       <div class="column is-full" >
         <label class="label" >Time of arrival:</label>
-       <select name="daytourtime" id="datetime1" class="datetime1" onchange="time()"required>
+       <select name="daytourtime" id="datetime1" class="datetime1" onChange="time()" required>
                 <option value="" selected>Select time</option>
                 <option value="07:00 am to 10:00 am" <?php if($_SESSION['daytourtime']=='07:00 am to 10:00 am') echo "SELECTED"; ?>>7 am to 10 am</option>
                 <option value="10:00 am to 13:00 pm" <?php if($_SESSION['daytourtime']=='10:00 am to 13:00 pm') echo "SELECTED"; ?>>10 am to 1 pm</option>
@@ -282,7 +282,9 @@ window.onclick = function(event) {
 <script type="text/javascript">
   function time(){
 
-    var time_value = document.getElementById("datetime1").value;
+    // var time_value = document.getElementById("datetime1").value;
+     var e = document.getElementById("datetime1");
+    var time_value = e.options[e.selectedIndex].value;
     console.log(time_value);
 
  
@@ -304,7 +306,7 @@ window.onclick = function(event) {
       document.getElementById("19").style.display = "none";
       document.getElementById("20").style.display = "none";
 
-    }else if(time_value ='10:00 am to 13:00 pm'){
+    }else if(time_value =='10:00 am to 13:00 pm'){
       document.getElementById("6").style.display = "block";
       document.getElementById("7").style.display = "block";
       document.getElementById("8").style.display = "block";
@@ -322,7 +324,7 @@ window.onclick = function(event) {
       document.getElementById("19").style.display = "none";
       document.getElementById("20").style.display = "none";
 
-    }else if(time_value ='13:00 pm to 16:00 pm'){
+    }else if(time_value =='13:00 pm to 16:00 pm'){
 
       document.getElementById("6").style.display = "block";
       document.getElementById("7").style.display = "block";
@@ -365,7 +367,8 @@ window.onclick = function(event) {
     function(data1){
       $('#result').html(data1)
     });
-  }
+       
+}
   
 </script>
 

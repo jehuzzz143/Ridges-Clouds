@@ -500,3 +500,14 @@ a{
   0% {width:  0%;}
   100%{width: 20%;}
 }
+input[type=text] { 
+  color:grey;
+  font-family: 'Poppins', sans-serif;
+  width: 100%;
+  padding: 10px 20px;
+  //margin: 5px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}

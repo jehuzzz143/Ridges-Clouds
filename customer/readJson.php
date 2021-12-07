@@ -13,7 +13,7 @@ if ($conn->connect_error) {
 
  $_SESSION['time_value_compare'] = $_POST['valuetime'];
 
-
+echo '<script type="text/javascript">alert("'.$_POST['valuetime'].'")</script>';
 
     $datesBooked = array();
     $dates = "";

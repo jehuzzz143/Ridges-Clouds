@@ -770,7 +770,7 @@ window.onclick = function(event) {
         <center>
           <small><i>Please list down the names of guest</i></small>
         </center>
-        <textarea type="text" placeholder="1. Name A. Lastname" rows="7" name="notes" id="notes" style="padding:3;"></textarea>
+        <textarea type="text" placeholder="1. Name A. Lastname" rows="7" name="notes" id="notes" style="padding:3;" required></textarea>
 
       <!-- paymentProofPhoto,paymentAppId  -->
       <button type="submit" name="paymentProof" style="float:right">Submit</button>
@@ -1269,8 +1269,27 @@ $sql = "UPDATE tbl_booking SET paymentPhoto ='$paymentProofPhoto', notes = '$not
 
   if ($conn->query($sql) === TRUE) {
     move_uploaded_file($_FILES["paymentProofPhoto"]["tmp_name"],"style/images/downpayments/".$_FILES["paymentProofPhoto"]["name"]);
-    echo '<script type="text/javascript">alert("Payment Successfully Posted")</script>';
-    echo("<meta http-equiv='refresh' content='1'>");
+  ?>
+     <script type="text/javascript">
+          Swal.fire({
+
+                  icon: 'success', 
+                  text: 'Payment succefully submitted',
+                  confirmButtonColor:'#3085d6',
+                  confirmButtonText: 'OK'
+                  
+                }).then((result) => {
+                if (result.isConfirmed) {
+
+
+                  location.href = 'user.php';
+                  
+                }
+              })
+        </script>
+    <?php
+
+  
 
   }else{
     echo "Error: " . $sql . "<br>" . $conn->error;

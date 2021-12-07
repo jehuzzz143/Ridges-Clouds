@@ -637,6 +637,7 @@ if($_FILES['patient_image']['name']==''){
       $sql = "UPDATE tbl_user SET Userlname='$lname', Userfname='$fname', Useremail='$email', Userpnumber='$phone', Userbday='$bday',Usertype=$type ,Userfbook='$facebook', Userpword='$hashed_password', Usertwitter='$twitter', Userinstagram='$instagram', Userimage='$images', Userpwordnohash='$legitpassword' WHERE ID= '$customerID'";
       if(mysqli_query($conn, $sql)) {
         move_uploaded_file($_FILES["patient_image"]["tmp_name"],"upload/profilepicture/".$_FILES["patient_image"]["name"]);
+        
         $sql1 = "INSERT INTO tbl_audit (UserID, Description, Date_edit, Name)
   VALUES ('$customerID' ,' Update Profile information', now(),'$fullname')";
    $conn->query($sql1);

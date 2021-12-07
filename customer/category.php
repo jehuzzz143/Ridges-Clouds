@@ -348,7 +348,24 @@ if(isset($_POST['next'])){
     <?php 
 
   }else{
-    echo '<script type="text/javascript">alert("Please Select Category First!")</script>';
+    ?>
+          <script type="text/javascript">
+           Swal.fire({
+                  icon:'error',
+                  title: 'Please select category first',
+                  
+                  confirmButtonColor:'#292B2C',
+                  confirmButtonText: 'OK'
+                  
+                }).then((result) => {
+                if (result.isConfirmed) {
+                  location.href = 'category.php';
+                }
+              });
+            </script>
+        <?php
+
+
   }
 	
 

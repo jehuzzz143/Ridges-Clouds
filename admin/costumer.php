@@ -44,7 +44,7 @@
     <meta charset="utf-8">
     <!-- responsive viewport meta tag -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-   
+    <title>Admin | Customer</title>
     <!-- CSS -->
     <link rel="stylesheet" href="assets/costumer.css">
     <!-- CodingNepal jquery -->
@@ -875,14 +875,14 @@ window.onclick = function(event) {
                             <?php 
                              if($row['Userimage']==""){
                               ?>
-                               <figure class="image is-square" alt="Customer Photo" style="object-fit: cover ;">
+                               <figure class="image is-square" alt="Customer Photo" style="object-fit: cover:; z-index:-1;">
                              
                                </figure>
                               <?php
                              }else{
                               ?>
                                <figure class="image is-square">
-                                <img class="is-rounded" src="<?php echo"".$path; ?>" style="overflow:hidden; object-fit: cover;">
+                                <img class="is-rounded" src="<?php echo"".$path; ?>" style="overflow:hidden; object-fit: cover; z-index:-1;">
                                </figure>
                               <?php
                              }
@@ -895,7 +895,7 @@ window.onclick = function(event) {
                           <?php 
                               if($usertype == 3){
                                 ?>
-                                  <td ><?php echo"".$row['Userpwordnohash']; ?></td>
+                                  <td ><?php echo"".str_repeat("*", strlen($password)); ?></td>
                                 <?php
                               }else{
 
