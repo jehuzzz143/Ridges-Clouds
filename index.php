@@ -166,11 +166,12 @@ window.onclick = function(event) {
 
 <!-- -->
 
+
 <div class="container is-fluid" id="parallax">
   <div class="container">
     <center>
       <p class="text-slogan">Take back memories with you </p> 
-      <a class="btn-explore button" href="app-files/index.html" rel="noopener noreferrer" target="_blank" role="button">EXPLORE OUR CAMP</a>
+      <a class="btn-explore button" href="360/app-files/index.html" rel="noopener noreferrer" target="_blank" role="button">EXPLORE OUR CAMP</a>
     </center>
   </div>
 </div>

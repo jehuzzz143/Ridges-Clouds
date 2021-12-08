@@ -94,7 +94,12 @@ error_reporting(0);
 
 </head>
 <body>
+
 	
+
+
+
+
 <!-- Navbar    -->
 <form method="POST">
 <nav>
