@@ -10,13 +10,7 @@
 </head>
 <body class="multiple-scenes view-control-buttons">
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/1vzg7-tsV40?autoplay=1?mute=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="display:none;"></iframe>
 
-<audio controls autoplay style="display:none;">
-    <source src="../../style/music/AkoNamanMuna.mp3" type="audio/mp3">
-      <source src="../../style/music/AkoNamanMuna.ogg" type="audio/mpeg">
-   <source src="../../style/music/AkoNamanMuna.wav" type="audio/mpeg">
-</audio>
 
 
 
@@ -100,6 +94,20 @@
 
 <script src="data.js"></script>
 <script src="index.js"></script>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/1vzg7-tsV40?autoplay=1?mute=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="display:none;"></iframe>
+
+<audio controls autoplay style="display:none;">
+    <source src="../../style/music/AkoNamanMuna.mp3" type="audio/mp3">
+      <source src="../../style/music/AkoNamanMuna.ogg" type="audio/mpeg">
+   <source src="../../style/music/AkoNamanMuna.wav" type="audio/mpeg">
+</audio>
+
+<script>
+  var audio = document.getElementById("myaudio");
+  audio.volume = 0.3;
+</script>
+
 
 </body>
 </html>
