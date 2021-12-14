@@ -866,8 +866,23 @@ color:grey;
 
 function date(){
     var first_date = document.getElementById('txtDate').value;
-    
-    document.getElementById('txtDate1').setAttribute("min",first_date)
+    // console.log(first_date)
+
+
+
+       var d = new Date(first_date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + (d.getDate() + 1),
+        year = d.getFullYear();
+
+    if (month.length < 2) 
+        month = '0' + month;
+    if (day.length < 2) 
+        day = '0' + day;
+        
+    var a = [year, month, day ].join('-');
+      console.log(a)
+    document.getElementById('txtDate1').setAttribute("min",a)
 }
 
 
@@ -941,6 +956,7 @@ function modaldate(){
             <select name="category" required>
                 <option value="Daytour">Daytour</option>
                 <option value="Overnight">Overnight</option>
+                <option value="Both">Both</option>
             </select>
             
           </div> 
@@ -1122,7 +1138,36 @@ if(isset($_POST['logout'])){
         VALUES ('CLOSE', ' ', '$startDate' ,'$type', '$startDate', '$endDate',30,0,0,'07:00 am to 10:00 am 10:00 am to 13:00 pm 13:00 pm to 16:00 pm 16:00 pm to 19:00 pm','CLOSE')";
 
         $sql = "INSERT INTO events (appID, title, start_event, end_event, color, text_color)
-        VALUES ('CLOSE', '$type CLOSE CAMP MAINTENANCE', '$startDate', '$endDate','$textbg','$textcolor')";
+        VALUES ('CLOSE', '$type CLOSE - CAMP MAINTENANCE', '$startDate', '$endDate','$textbg','$textcolor')";
+    }else if($type == 'Both'){
+        $sqlroom = "SELECT * FROM tbl_price WHERE category = 'room' and imagename != '' ORDER BY imagename";
+    $resultroom = $conn->query($sqlroom);
+       $roomcount = mysqli_num_rows($resultroom);
+        // echo '<script type="text/javascript">alert("'.$roomcount.'")</script>';
+        $count = 1;
+        $compare_all_room="";
+        for ($x = 1; $x <= $roomcount; $x++) {
+          $compare_all_room .= " || C".$x." ";
+        }
+        $room = $compare_all_room;
+         $startDate = $_POST['startDate'];
+        $endDate   = $_POST['endDate'];
+
+        $startDateTime = $startDate.'T14:00:00';
+        $endDateTime = $endDate.'T12:00:00';
+
+        $textbg ='#655656';
+        $textcolor ='#FFFFFF';
+        $type = $_POST['category'];
+        $sql1 = "INSERT INTO tbl_booking (customerID, bname, bdate, btype, btime_in,broom, btime_out ,  bpax,bprice,balance,bdaytourtime, bstatus)
+        VALUES ('CLOSE', ' ', '$startDate' ,'$type', '$startDateTime','$room','$endDateTime',30,0,0,'07:00 am to 10:00 am 10:00 am to 13:00 pm 13:00 pm to 16:00 pm 16:00 pm to 19:00 pm','CLOSE')";
+
+           $sql = "INSERT INTO events (appID, title, start_event, end_event, color, text_color)
+        VALUES ('CLOSE', '$type Daytour and Overnight are CLOSED - CAMP MAINTENANCE', '$startDateTime', '$endDateTime','$textbg','$textcolor')";
+
+
+
+
     }else{
         
         $sqlroom = "SELECT * FROM tbl_price WHERE category = 'room' and imagename != '' ORDER BY imagename";
@@ -1139,7 +1184,7 @@ if(isset($_POST['logout'])){
         VALUES ('CLOSE', ' ', '$startDate','$room' ,'$type', '$startDateTime', '$endDateTime',30,0,0,'CLOSE')";
 
         $sql = "INSERT INTO events (appID, title, start_event, end_event, color, text_color)
-        VALUES ('CLOSE', '$type CLOSE CAMP MAINTENANCE', '$startDateTime', '$endDateTime','$textbg','$textcolor')";
+        VALUES ('CLOSE', '$type CLOSE - CAMP MAINTENANCE', '$startDateTime', '$endDateTime','$textbg','$textcolor')";
     }
 
     

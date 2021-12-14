@@ -13,12 +13,12 @@ if ($conn->connect_error) {
 
  $_SESSION['time_value_compare'] = $_POST['valuetime'];
 
-echo '<script type="text/javascript">alert("'.$_POST['valuetime'].'")</script>';
+// echo '<script type="text/javascript">alert("'.$_POST['valuetime'].'")</script>';
 
     $datesBooked = array();
     $dates = "";
 
-    $sql = "SELECT `btype`,`bdate`,SUM(`bpax`) as 'TOTAL PAX' FROM `tbl_booking` WHERE `btype` = 'Daytour' AND `bdaytourtime` = '{$_SESSION['time_value_compare']}' AND (`bstatus` = 'Pending' OR `bstatus` = 'Confirmed') GROUP BY `bdate`";
+    $sql = "SELECT `btype`,`bdate`,SUM(`bpax`) as 'TOTAL PAX' FROM `tbl_booking` WHERE (`btype` = 'Daytour' OR `btype` = 'Both') AND `bdaytourtime` LIKE '%{$_SESSION['time_value_compare']}%' AND (`bstatus` = 'Pending' OR `bstatus` = 'Confirmed' OR `bstatus` = 'CLOSE') GROUP BY `bdate`";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
 

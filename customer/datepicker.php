@@ -268,14 +268,79 @@ window.onclick = function(event) {
 
 
 <!--  -->
+<?php 
+    $sql = "SELECT * FROM tbl_price WHERE category = 'room' and imagename != '' ORDER BY imagename";
+    $result = $conn->query($sql);
+    $roomcount = mysqli_num_rows($result);
+  
+    $count = 1;
+    $compare_all_room="";
+    for ($x = 1; $x <= $roomcount; $x++) {
+      $compare_all_room .= " || C".$x." ";
+    }
+      // echo '<script type="text/javascript">alert("'.$compare_all_room.'")</script>';
 
+
+    $datesBooked = array();
+    $dates = "";
+
+    $sql = "SELECT `btype`,`bdate` FROM `tbl_booking` WHERE (`btype` = 'Overnight' OR `btype` = 'Both') AND (`bstatus` = 'Pending' OR `bstatus` = 'Confirmed' OR `bstatus` = 'CLOSE') AND `broom` = '$compare_all_room' GROUP BY `bdate`";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+
+      while($row = $result->fetch_assoc()) {
+      
+          $dates = (string)$row['bdate'];
+
+        array_push($datesBooked,$dates);
+        
+      }
+    } 
+
+?>
  <script>
-  $( function() {
+  <?php
 
-    $( "#txtDate" ).datepicker({
-      minDate:0
+    $js_array = json_encode($datesBooked);
+    echo "var javascript_array = ". $js_array . ";\n";
+
+  ?>
+
+  var date = new Date();
+  var currentMonth = date.getMonth();
+  var currentDate = date.getDate();
+  var currentYear = date.getFullYear();
+
+
+  $("#txtDate").datepicker({
+
+     minDate: 2,
+     beforeShowDay: function(date){     
+          var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
+          return [ javascript_array.indexOf(string) == -1 ]
+        }
+});
+
+
+    
+    $(function () {
+        $("#txtDate").datepicker({
+
+        minDate: 2,
+        beforeShowDay: function(date){     
+          var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
+          return [ javascript_array.indexOf(string) == -1 ]
+        }
+
+        });
     });
-  } );
+
+  // $( function() {
+
+  //   $( "#txtDate" ).datepicker({
+  //     minDate:0
+  //   });
+  // } );
   </script>
 <!-- paralax end -->
 

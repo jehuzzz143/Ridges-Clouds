@@ -285,7 +285,7 @@ window.onclick = function(event) {
     // var time_value = document.getElementById("datetime1").value;
      var e = document.getElementById("datetime1");
     var time_value = e.options[e.selectedIndex].value;
-    console.log(time_value);
+    // console.log(time_value);
 
  
 
@@ -493,7 +493,7 @@ window.onclick = function(event) {
 
 
 <?php
-  include  'scrollup.php';
+  // include  'scrollup.php';
 
 ?>
 
