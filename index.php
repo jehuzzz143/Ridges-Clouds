@@ -94,6 +94,10 @@ if ($result->num_rows > 0) {
 
   <!-- fontawSome -->
   <script src="https://kit.fontawesome.com/70127cec04.js" crossorigin="anonymous"></script>
+  <!-- CodingNepal jquery -->
+  <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+
+
 
 </head>
 <body>
@@ -313,6 +317,7 @@ window.onclick = function(event) {
 
               ?>
               </center>
+              <br>
             </div>
           </div>
         <?php
@@ -357,6 +362,82 @@ window.onclick = function(event) {
 <!-- end reviews -->
 
 
+
+<!-- Check Date -->
+  <form method="POST">
+<div class="container" style="margin-bottom:20px" data-aos="fade-up">
+  <div class="columns is-multiline">
+  
+    <div class="column is-full" >
+      <label>Category:</label>
+      <select name="category" id="categ"  onchange="showDiv('hidden_div', this)">
+        <option value="" disabled selected> -- Select Category --</option>
+        <option value="daytour">Daytour</option>
+        <option value="overnight">Overnight</option>
+      </select>
+    </div>
+    <div class="column is-4">
+      <label >Select date:</label>
+             <input type="date" name="date" >
+    </div>
+<!--     <div class="column is-4" id="hidden_div_day">
+          <label >No. of days:</label>
+          <select name="no_days">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="13">13</option>
+            <option value="14">14</option>
+            <option value="15">15</option>
+          </select>
+    </div> -->
+
+    <div class="column is-4" id="hidden_div_night" >
+          <label >Time of arrival:</label>
+          <select name="time_arrival">
+            <option value="07:00 am to 10:00 am">7pm - 10pm</option>
+            <option value="10:00 am to 13:00 pm">10pm - 1pm</option>
+             <option value="13:00 pm to 16:00 pm">1pm - 4pm</option>
+            <option value="16:00 pm to 19:00 pm">4pm - 7pm</option>
+          </select>
+    </div>
+
+    <div class="column is-2">
+             <button  type="submit" name="checkdate"class="buttonNav"><i class="far fa-calendar-check"></i>  Check Date</button>
+    </div>
+
+    <div class="column is-2" style="">
+           <!-- check Date -->
+           <i class="fas fa-check-square"> AVAILABLE</i>
+           <i class="fas fa-window-close"> UNAVAILABLE</i>
+    </div>
+
+  </div>
+
+</div>
+</form>
+<script>
+document.getElementById('categ').addEventListener('change', function () {
+    var style = this.value == 'overnight' ? 'block' : 'none';
+    document.getElementById('hidden_div_day').style.display = style;
+});
+
+document.getElementById('categ').addEventListener('change', function () {
+    var style = this.value == 'daytour' ? 'block' : 'none';
+    document.getElementById('hidden_div_night').style.display = style;
+});
+</script>
+
+<!-- end Check Date -->
 
 
 
@@ -437,6 +518,8 @@ window.onclick = function(event) {
 
 
 <script>
+
+
 // Get the modal
 var modal = document.getElementById("myModal");
 
@@ -463,7 +546,9 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
+
 </script>
+
 
 
 <!-- AOS animation Script -->
@@ -485,6 +570,41 @@ window.onclick = function(event) {
   ?>
 </body>
 </html>
+
+
+<?php
+
+  if(isset($_POST['checkdate'])){
+    $category=$_POST['category'];
+    $date=$_POST['date'];
+    $time=$_POST['time_arrival'];
+
+    if ($category == "daytour"){
+      $result = mysqli_query($conn, "SELECT SUM(bpax) AS value_sum FROM tbl_booking WHERE btype ='$category' AND bdate='$date' AND bdaytourtime='$time'"); 
+      $row = mysqli_fetch_assoc($result); 
+      $sum = $row['value_sum'];
+      echo $sum;
+      if($sum >=30){
+        echo 'full';
+      }
+    }
+
+
+    if ($category == "overnight"){
+      $result = mysqli_query($conn, "SELECT SUM(bpax) AS value_sum FROM tbl_booking WHERE btype ='$category' AND bdate='$date'"); 
+      $row = mysqli_fetch_assoc($result); 
+      $sum = $row['value_sum'];
+      echo $sum;
+       if($sum >=30){
+        echo 'full';
+      }
+    }
+
+    
+    }
+
+?>
+
 <?php
 if(isset($_POST['homelogout'])){
 
@@ -501,3 +621,4 @@ exit();
  <script type="text/javascript">location.href = 'user.php';</script>
 <?php
 }
+?>

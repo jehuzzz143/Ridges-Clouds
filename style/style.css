@@ -817,8 +817,57 @@ nav .icon-burger .line {
   padding: 10px 20px;
   word-wrap: break-word;
 }
+ input[type=text],input[type=password], select, input[type=file]{
+  color:#292b2c;
+  font-family: 'Poppins', sans-serif;
+  width: 100%;
+  padding: 10px 20px;
+  margin: 5px 0px;
+  //display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
 
 
+}
+
+input[type=text]:focus {
+  background-color: white;
+}
+
+input[type=date]{
+color:#292b2c;
+  font-family: 'Poppins', sans-serif;
+  width: 100%;
+  padding: 10px 20px;
+  margin: 5px 0px;
+  //display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+input[type=date]:focus {
+  background-color: white;
+}
+
+#hidden_div_day,#hidden_div_night{
+    display: none;
+}
+
+.buttonNav{
+  width: 150px;  color:white;
+  transition:.2s;
+  cursor: pointer;
+  background-color: #333948;
+  border: none;
+  padding: 12.5px 10px;
+  border-radius: 5px;
+  margin-top: 30px;
+}
+.buttonNav:hover{
+  background:#2E94E3;
+
+}
 /* STARS */
 
 /* END OF START  */
