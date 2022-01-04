@@ -868,6 +868,29 @@ input[type=date]:focus {
   background:#2E94E3;
 
 }
+
+.datecheckerr{
+	
+	tranisiont: 1s;
+	display: none;
+}
+
+
+.hide{
+	
+	display: none;
+	opacity: 0;
+	transition: 1s;
+}
+.unhide{
+
+	display: block;
+	opacity: 1;
+	transition: 1s;
+}
+.text-unavailable {
+  color: red;
+}
 /* STARS */
 
 /* END OF START  */

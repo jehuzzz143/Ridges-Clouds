@@ -361,7 +361,28 @@ window.onclick = function(event) {
 </div>
 <!-- end reviews -->
 
+<script type="text/javascript">
+  $(function(){
+    var dtToday = new Date();
+    
+    var month = dtToday.getMonth() + 1;
+    var day = dtToday.getDate();
+    var year = dtToday.getFullYear();
+    if(month < 10)
+        month = '0' + month.toString();
+    if(day < 10)
+        day = '0' + day.toString();
+    
+    var maxDate = year + '-' + month + '-' + day;
 
+    // or instead:
+    // var maxDate = dtToday.toISOString().substr(0, 10);
+
+    // alert(maxDate);
+    $('#date').attr('min', maxDate);
+});
+
+</script>
 
 <!-- Check Date -->
   <form method="POST">
@@ -378,7 +399,7 @@ window.onclick = function(event) {
     </div>
     <div class="column is-4">
       <label >Select date:</label>
-             <input type="date" name="date" >
+             <input type="date" name="date" id="date">
     </div>
 <!--     <div class="column is-4" id="hidden_div_day">
           <label >No. of days:</label>
@@ -403,7 +424,7 @@ window.onclick = function(event) {
 
     <div class="column is-4" id="hidden_div_night" >
           <label >Time of arrival:</label>
-          <select name="time_arrival">
+          <select name="time_arrival" id="time_arriaval">
             <option value="07:00 am to 10:00 am">7pm - 10pm</option>
             <option value="10:00 am to 13:00 pm">10pm - 1pm</option>
              <option value="13:00 pm to 16:00 pm">1pm - 4pm</option>
@@ -411,14 +432,17 @@ window.onclick = function(event) {
           </select>
     </div>
 
+
     <div class="column is-2">
-             <button  type="submit" name="checkdate"class="buttonNav"><i class="far fa-calendar-check"></i>  Check Date</button>
+             <button  type="button" name="checkdate" id="checkdate" onclick="checkday()" class="buttonNav"><i class="far fa-calendar-check"></i>  Check Date</button>
     </div>
 
     <div class="column is-2" style="">
            <!-- check Date -->
-           <i class="fas fa-check-square"> AVAILABLE</i>
-           <i class="fas fa-window-close"> UNAVAILABLE</i>
+           <i class="fas fa-check-square hide" id="Date_Available" style="font-size: 23px;"> AVAILABLE</i>
+           <i class="fas fa-window-close hide" id="Date_Unavailable" style="font-size: 23px;"> UNAVAILABLE</i>
+           <div id="result" style="display:none"></div>
+           <div id="result1" style="display:none"></div>
     </div>
 
   </div>
@@ -435,6 +459,9 @@ document.getElementById('categ').addEventListener('change', function () {
     var style = this.value == 'daytour' ? 'block' : 'none';
     document.getElementById('hidden_div_night').style.display = style;
 });
+
+
+
 </script>
 
 <!-- end Check Date -->
@@ -558,6 +585,7 @@ window.onclick = function(event) {
 <script src="clickCounter.js"></script>
 <script src="zoom-main.js"></script>
 
+
 <script>
   AOS.init({
     offset:200,
@@ -573,6 +601,8 @@ window.onclick = function(event) {
 
 
 <?php
+include "checkDateBtn.php";
+
 
   if(isset($_POST['checkdate'])){
     $category=$_POST['category'];
