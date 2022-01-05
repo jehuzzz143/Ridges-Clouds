@@ -144,6 +144,7 @@ error_reporting(0);
 	<link rel="shortcut icon" type="image/x-icon" href="style/mini.png">
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
 <!-- Navbar    -->
@@ -217,8 +218,12 @@ error_reporting(0);
 						  <p > <?php echo"".$wrongemail; ?> </p> 
 						  <p style="color:black;"> Don't have Account yet? <a id="myBtn" class="signup"   href="#"> Sign up here.</a></p>
 			</div>
+			<div class= "column is-full error-log">
+			    <div class="g-recaptcha" data-sitekey="6LfakvEdAAAAAAkJDwRQkzoCT8WMh-W2OpMAhsM3" required > </div> 
+			    
+			</div>
 			<div class="column is-full">
-				<input type=submit class="no-button" id="login" value="Log In" name="loginsubmit">
+				<input type=submit class="no-button" id="login" value="Log In" name="loginsubmit" >
 			</div>
 		</div>
 	</div>
@@ -487,7 +492,7 @@ var year = "";
 		if(email1.match(pattern)){
 			form.classList.add("valid");
 			form.classList.remove("invalid");
-			text.innerHTML = "Your Email Address in valid.";
+			text.innerHTML = "Your Email Address is valid.";
 			text.style.color = "green";
 		}else{
 			form.classList.remove("valid");
@@ -521,7 +526,7 @@ var year = "";
 		}else{
 			form.classList.remove("valid1");
 			form.classList.add("invalid1");
-			text.innerHTML= "Please Enter valid phone number";
+			text.innerHTML= "Please Enter 6309.. format";
 			text.style.color ="#ff0000";
 		}
 		if (pnumber == ""){
@@ -760,73 +765,75 @@ window.onclick = function(event) {
 
 include "dbconnection/conn.php";
 
-if(isset($_POST['loginsubmit'])){
+if(isset($_POST['loginsubmit']) && $_POST['g-recaptcha-response'] != ""){
+      
 
 	$user = $_POST['loginname'];
 	$pass = $_POST['loginpassword'];
-
 	$sql = "SELECT * from tbl_user Where Useremail = '$user'";
 	$result = $conn->query($sql);
+	$secret = '6LfakvEdAAAAAMstNS74GzsrkkcS5bhQItl_cWp8';
+	$verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $secret . '&response=' . $_POST['g-recaptcha-response']);
+    $responseData = json_decode($verifyResponse);
 	
-
-	
-
-	if($result->num_rows>0){
-	$row = mysqli_fetch_array($result);	
-	$id =$row['ID'];
-	if($row['Usertype'] == 3 OR $row['Usertype'] == 2){
-		if(password_verify($pass, $row['Userpword'])){
-			
-			 $_SESSION['ID'] = $id;
-			 $_SESSION["loggedin"] = true;
-			 echo "<script> location.href='admin'; </script>";
-        exit;
-		
-		}else{
-
-				$_SESSION["attemp1"] = true;
-				$_SESSION["attemp"] = false;
-				$_SESSION["WrongPass"] = "Incorrect Password.";
-				$_SESSION["WrongEmail"]= "";
-				
-				echo("<meta http-equiv='refresh' content='1'>");
-		}
-
-	}else if($row['Usertype'] == 1){
-
-		if(password_verify($pass, $row['Userpword'])){
-			 $_SESSION['ID'] = $id;
-			 $_SESSION['loggedin'] = true;
-			  $_SESSION['dateactive'] = false;
-			  $_SESSION['roomactive']=false;
-			  $_SESSION['categoryactive'] = false;
-
-			 echo "<script> location.href='customer/category.php'; </script>";
-        exit;
-		
-		}else{
-				$_SESSION["attemp1"] = true;
-				$_SESSION["attemp"] = false;
-				$_SESSION["WrongPass"] ="Incorrect password";
-				$_SESSION["WrongEmail"]= "";
-				
-				echo("<meta http-equiv='refresh' content='1'>");
-
-				
-
-		}
-		
-
-	}
-	}else{
-		$_SESSION["attemp1"] = false;
-		$_SESSION["attemp"] = true;
-		
-		$_SESSION["WrongEmail"]= "Invalid email address";
-		$_SESSION["WrongPass"] = "";
-
-				echo("<meta http-equiv='refresh' content='1'>");
-	}
+    if($responseData->success){
+    	if($result->num_rows>0){
+    	$row = mysqli_fetch_array($result);	
+    	$id =$row['ID'];
+    	if($row['Usertype'] == 3 OR $row['Usertype'] == 2){
+    		if(password_verify($pass, $row['Userpword'])){
+    			
+    			 $_SESSION['ID'] = $id;
+    			 $_SESSION["loggedin"] = true;
+    			 echo "<script> location.href='admin'; </script>";
+            exit;
+    		
+    		}else{
+    
+    				$_SESSION["attemp1"] = true;
+    				$_SESSION["attemp"] = false;
+    				$_SESSION["WrongPass"] = "Incorrect Password.";
+    				$_SESSION["WrongEmail"]= "";
+    				
+    				echo("<meta http-equiv='refresh' content='1'>");
+    		}
+    
+    	}else if($row['Usertype'] == 1){
+    
+    		if(password_verify($pass, $row['Userpword'])){
+    			 $_SESSION['ID'] = $id;
+    			 $_SESSION['loggedin'] = true;
+    			  $_SESSION['dateactive'] = false;
+    			  $_SESSION['roomactive']=false;
+    			  $_SESSION['categoryactive'] = false;
+    
+    			 echo "<script> location.href='customer/category.php'; </script>";
+            exit;
+    		
+    		}else{
+    				$_SESSION["attemp1"] = true;
+    				$_SESSION["attemp"] = false;
+    				$_SESSION["WrongPass"] ="Incorrect password";
+    				$_SESSION["WrongEmail"]= "";
+    				
+    				echo("<meta http-equiv='refresh' content='1'>");
+    
+    				
+    
+    		}
+    		
+    
+    	}
+    	}else {
+    		$_SESSION["attemp1"] = false;
+    		$_SESSION["attemp"] = true;
+    		
+    		$_SESSION["WrongEmail"]= "Invalid Email Address";
+    		$_SESSION["WrongPass"] = "";
+    
+    				echo("<meta http-equiv='refresh' content='1'>");
+    	}
+    }
 
 
 
