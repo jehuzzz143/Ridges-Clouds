@@ -429,7 +429,6 @@ background: linear-gradient(90deg, rgba(254,172,94,1) 0%, rgba(199,121,208,1) 50
 	border-radius: 5px;
 	padding: 20px;
 	box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-
 }
 .loginform h1{
 	font-family: 'Poppins' sans-serif;
@@ -751,3 +750,96 @@ padding-left:4%;
 /*============================================================================ FOOTER ============================================================*/
 
 
+#hidden_div_day,#hidden_div_night{
+    display: none;
+}
+
+.buttonNav{
+  width: 150px;  color:white;
+  transition:.2s;
+  cursor: pointer;
+  background-color: #333948;
+  border: none;
+  padding: 12.5px 10px;
+  border-radius: 5px;
+  margin-top: 30px;
+}
+.buttonNav:hover{
+  background:#2E94E3;
+
+}
+
+.datecheckerr{
+	
+	tranisiont: 1s;
+	display: none;
+}
+
+
+.hide{
+	
+	display: none;
+	opacity: 0;
+	transition: 1s;
+}
+.unhide{
+
+	display: block;
+	opacity: 1;
+	transition: 1s;
+}
+.text-unavailable {
+  color: red;
+}
+ input[type=text],input[type=password], select, input[type=file]{
+  color:#292b2c;
+  font-family: 'Poppins', sans-serif;
+  width: 100%;
+  padding: 10px 20px;
+  margin: 5px 0px;
+  //display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+
+
+}
+
+input[type=text]:focus {
+  background-color: white;
+}
+
+input[type=date]{
+color:#292b2c;
+  font-family: 'Poppins', sans-serif;
+  width: 100%;
+  padding: 10px 20px;
+  margin: 5px 0px;
+  //display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+input[type=date]:focus {
+  background-color: white;
+}
+
+.dateform{
+	background: #f7f7f7 ;
+	width: 700px;
+	/*/height: 400px;*/
+	margin-top: 200px;
+	margin-bottom: 25%;
+	border-radius: 5px;
+
+	padding: 20px;
+	box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+.dateform h1{
+	font-family: 'Poppins' sans-serif;
+	font-weight: bold;	
+	font-size: 23px;
+	color: #292b2c;
+	padding: 20px;
+	text-align: center;
+}

@@ -176,7 +176,6 @@ error_reporting(0);
 </script>
 <!-- End of Navbar -->
 <!-- ==========================================================================================================================================LOGIN -->
-
 <form action="login.php" METHOD=POST  >	
 	<div class="background-login">
 	<div class="container is-desktop loginform">
@@ -231,6 +230,8 @@ error_reporting(0);
 			<!-- LOOOOGINNN FOOORRRMMM-->
 			</div>
 			</form>
+
+</div>
 
 
 

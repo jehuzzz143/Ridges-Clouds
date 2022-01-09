@@ -207,7 +207,87 @@ window.onclick = function(event) {
   }
   ?>
 
+<!-- Check Date -->
+<form method="POST">
+<div class="container checkdate-div" style="margin-bottom:20px" data-aos="fade-up">
+  <div class="columns is-multiline">
+  
+    <div class="column is-full" >
+      <label>Category:</label>
+      <select name="category" id="categ"  onchange="showDiv('hidden_div', this)">
+        <option value="" disabled selected> -- Select Category --</option>
+        <option value="daytour">Daytour</option>
+        <option value="overnight">Overnight</option>
+      </select>
+    </div>
+    <div class="column is-4">
+      <label >Select date:</label>
+             <input type="date" name="date" id="date">
+    </div>
+<!--     <div class="column is-4" id="hidden_div_day">
+          <label >No. of days:</label>
+          <select name="no_days">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="13">13</option>
+            <option value="14">14</option>
+            <option value="15">15</option>
+          </select>
+    </div> -->
 
+    <div class="column is-4" id="hidden_div_night" >
+          <label >Time of arrival:</label>
+          <select name="time_arrival" id="time_arriaval">
+            <option value="07:00 am to 10:00 am">7pm - 10pm</option>
+            <option value="10:00 am to 13:00 pm">10pm - 1pm</option>
+             <option value="13:00 pm to 16:00 pm">1pm - 4pm</option>
+            <option value="16:00 pm to 19:00 pm">4pm - 7pm</option>
+          </select>
+    </div>
+
+
+    <div class="column is-2">
+             <button  type="button" name="checkdate" id="checkdate" onclick="checkday()" class="buttonNav"><i class="far fa-calendar-check"></i>  Check Date</button>
+    </div>
+
+    <div class="column is-2" style="float: right;">
+           <!-- check Date -->
+           <i class="fas fa-check-square hide" id="Date_Available" style="font-size: 15px; font-family: 'Poppins', sans-serif;"> AVAILABLE</i>
+           <i class="fas fa-window-close hide" id="Date_Unavailable" style="font-size: 15px;font-family: 'Poppins', sans-serif;"> UNAVAILABLE </i>
+           <div id="result" style="display:none"></div>
+           <div id="result1" style="display:none"></div>
+    </div>
+
+  </div>
+
+</div>
+</form>
+<script>
+document.getElementById('categ').addEventListener('change', function () {
+    var style = this.value == 'overnight' ? 'block' : 'none';
+    document.getElementById('hidden_div_day').style.display = style;
+});
+
+document.getElementById('categ').addEventListener('change', function () {
+    var style = this.value == 'daytour' ? 'block' : 'none';
+    document.getElementById('hidden_div_night').style.display = style;
+});
+
+
+
+</script>
+
+<!-- end Check Date -->
 <!--SLIDE ANIMATIONS-->
 <div class="container" style="overflow: hidden;">
   <div class="container" style="margin-top: 20px; margin-bottom: 20px;" data-aos="fade-right">
@@ -384,87 +464,7 @@ window.onclick = function(event) {
 
 </script>
 
-<!-- Check Date -->
-  <form method="POST">
-<div class="container" style="margin-bottom:20px" data-aos="fade-up">
-  <div class="columns is-multiline">
-  
-    <div class="column is-full" >
-      <label>Category:</label>
-      <select name="category" id="categ"  onchange="showDiv('hidden_div', this)">
-        <option value="" disabled selected> -- Select Category --</option>
-        <option value="daytour">Daytour</option>
-        <option value="overnight">Overnight</option>
-      </select>
-    </div>
-    <div class="column is-4">
-      <label >Select date:</label>
-             <input type="date" name="date" id="date">
-    </div>
-<!--     <div class="column is-4" id="hidden_div_day">
-          <label >No. of days:</label>
-          <select name="no_days">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-            <option value="11">11</option>
-            <option value="12">12</option>
-            <option value="13">13</option>
-            <option value="14">14</option>
-            <option value="15">15</option>
-          </select>
-    </div> -->
 
-    <div class="column is-4" id="hidden_div_night" >
-          <label >Time of arrival:</label>
-          <select name="time_arrival" id="time_arriaval">
-            <option value="07:00 am to 10:00 am">7pm - 10pm</option>
-            <option value="10:00 am to 13:00 pm">10pm - 1pm</option>
-             <option value="13:00 pm to 16:00 pm">1pm - 4pm</option>
-            <option value="16:00 pm to 19:00 pm">4pm - 7pm</option>
-          </select>
-    </div>
-
-
-    <div class="column is-2">
-             <button  type="button" name="checkdate" id="checkdate" onclick="checkday()" class="buttonNav"><i class="far fa-calendar-check"></i>  Check Date</button>
-    </div>
-
-    <div class="column is-2" style="">
-           <!-- check Date -->
-           <i class="fas fa-check-square hide" id="Date_Available" style="font-size: 23px;"> AVAILABLE</i>
-           <i class="fas fa-window-close hide" id="Date_Unavailable" style="font-size: 23px;"> UNAVAILABLE</i>
-           <div id="result" style="display:none"></div>
-           <div id="result1" style="display:none"></div>
-    </div>
-
-  </div>
-
-</div>
-</form>
-<script>
-document.getElementById('categ').addEventListener('change', function () {
-    var style = this.value == 'overnight' ? 'block' : 'none';
-    document.getElementById('hidden_div_day').style.display = style;
-});
-
-document.getElementById('categ').addEventListener('change', function () {
-    var style = this.value == 'daytour' ? 'block' : 'none';
-    document.getElementById('hidden_div_night').style.display = style;
-});
-
-
-
-</script>
-
-<!-- end Check Date -->
 
 
 

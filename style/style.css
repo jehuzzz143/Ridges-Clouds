@@ -850,6 +850,14 @@ input[type=date]:focus {
   background-color: white;
 }
 
+.checkdate-div{
+  background-color: white;#f8f9fa;292b2c;
+  //margin-bottom: 30px;  
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  border-radius: 8px;
+  padding: 20px;
+}
+
 #hidden_div_day,#hidden_div_night{
     display: none;
 }
@@ -890,7 +898,8 @@ input[type=date]:focus {
 }
 .text-unavailable {
   color: red;
-}
+  
+  }
 /* STARS */
 
 /* END OF START  */
