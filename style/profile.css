@@ -683,6 +683,19 @@ tbody tr{
   text-decoration: none;
   cursor: pointer;
 }
+.close122 {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close122:hover,
+.close122:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
 /* The Close Button */
 .close123 {
   color: #aaaaaa;

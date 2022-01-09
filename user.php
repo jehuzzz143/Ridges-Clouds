@@ -661,22 +661,29 @@ window.onclick = function(event) {
                         <!-- <button class="payment-button proof"> <i class="fas fa-plus"></i></button>
  -->
 
-        <div class="Neon Neon-theme-dragdropbox proof">
-        <input style="opacity: 0; width: 100px; height: 180px; position: absolute; right: 0px; left: 0px; margin-right: auto; margin-left: auto;" >
-        <div class="Neon-input-dragDrop">
-          <div class="Neon-input-inner">
+        <div class="Neon Neon-theme-dragdropbox proof" >
+        <input style="opacity: 0; width: 100px; height: 180px; position: absolute; right: 0px; left: 0px; margin-right: auto; margin-left: auto; cursor:pointer;" >
+        <div class="Neon-input-dragDrop" >
+          <div class="Neon-input-inner" >
             <div class="Neon-input-icon"><i class="fa fa-file-image-o"></i></div>
             <div class="Neon-input-text"><h3>Payment Proof</h3> <span style="display:inline-block; margin: 10px 0"></span>
-            </div><a class="Neon-input-choose-btn blue">Browse Files</a>
+            </div><a class="Neon-input-choose-btn blue" >Browse Files</a>
           </div>
         </div>
         </div>
                       <?php 
 
+                    }else if(($row12['bstatus'] == "Pending" OR $row12['bstatus'] == "Confirmed")  AND $row12['paymentPhoto'] != ""){
+                      ?>
+                        <div class="container icon-container1 ">
+                          <img class="paymentProoftrigger" src="<?php echo"".$downpaymentPath; ?>" alt="no payment proof" style="cursor:pointer;" >
+                        </div>
+                      <?php
+
                     }else{
                       ?>
-                        <div class="container icon-container1">
-                          <img class="" src="<?php echo"".$downpaymentPath; ?>" alt="no payment proof">
+                        <div class="container icon-container1 ">
+                          <img class="" src="<?php echo"".$downpaymentPath; ?>" alt="no payment proof"  >
                         </div>
                       <?php
                     }
@@ -723,8 +730,8 @@ window.onclick = function(event) {
                     }
 
                   ?>
-                  
-                  
+                  <p><?php echo "".$row12['notes'];?></p>
+                  <p><?php echo "".$row12['paymentPhoto'];?></p>
                   </td>
 
 
@@ -749,6 +756,92 @@ window.onclick = function(event) {
 </div>
 <!-- payment proof modal-->
 
+<div id="paymentProofModalChange" class="modal fade-in">
+
+  <!-- Modal content -->
+  <div class="modal-content" style="width: 600px; height: 650px;">
+    <span  class="close122">&times;</span>
+    <form method="POST" enctype="multipart/form-data">
+      <br>
+      <div class="columns">
+        <div class="column is-8">
+          
+          <h1 class="lineText label">Screenshot of Downpayment (Gcash)</h1> 
+        <div class="container" style="padding:0;margin:0; text-align: center;">
+          <img id="blah" src="#" alt="your sample image" />
+        </div>
+          
+        </div>
+        <div class="column">
+         <h1 class="lineText label">Guest Names</h1> 
+         <input type="text" name="booking_id" id="booking_id" style="display:none;" >
+        <p id="notess"></p>
+          
+        </div>
+
+      </div>
+      <div>
+        <center>
+          <small><i>Only use the erase button if you've input incorrect information.</i></small>
+          <br>
+          <button type="submit" name="payment_delete"> Delete</button>
+        </center>
+        
+      </div>
+      
+         
+
+     
+    </form>
+  </div>
+
+</div>
+<!-- Payment proof change modal -->
+<script>
+
+var paymentProofBtn1          = document.querySelectorAll(".paymentProoftrigger");
+var paymentProofModal1        = document.getElementById("paymentProofModalChange");
+for (var i = 0; i < paymentProofBtn1.length; i++) {
+ paymentProofBtn1[i].onclick = function(e) {
+   paymentProofModal1.style.display = "block";
+
+
+   $tr = $(this).closest('tr');
+   var data = $tr.children("td").map(function(){
+        return $(this).text();
+      }).get();
+      var data1 = $tr.children("td").find("p").map(function(){
+        return $(this).text();
+      }).get();
+   console.log(data1);
+
+    document.getElementById("booking_id").value = data1[1];
+
+    if(data1[2]=="Overnight"){  
+    console.log(data1[7])
+    if(data[7]!=""){
+      document.getElementById("blah").src = "style/images/downpayments/"+data1[10];
+      document.getElementById("notess").innerHTML = data1[9].replace(/(?:\r\n|\r|\n)/g,"<br>");
+    }else{
+      document.getElementById("blah").src = "style/images/downpayments/"+data1[10];
+      document.getElementById("notess").innerHTML = data1[9].replace(/(?:\r\n|\r|\n)/g,"<br>");
+    }
+  }else{
+    document.getElementById("blah").src = "style/images/downpayments/"+data1[7];
+    document.getElementById("notess").innerHTML = data1[6].replace(/(?:\r\n|\r|\n)/g,"<br>");
+  }
+ }
+}
+
+
+var span12 = document.getElementsByClassName("close122")[0];
+
+span12.onclick = function() {
+  paymentProofModal1.style.display = "none";
+}
+
+
+</script>
 <div id="paymentProofModal" class="modal fade-in">
 
   <!-- Modal content -->
@@ -1294,6 +1387,55 @@ $sql = "UPDATE tbl_booking SET paymentPhoto ='$paymentProofPhoto', notes = '$not
   }else{
     echo "Error: " . $sql . "<br>" . $conn->error;
   }
+
+
+}else if(isset($_POST['payment_delete'])){
+  $booking_id = $_POST['booking_id'];
+
+  $sql = "UPDATE tbl_booking SET notes='',paymentPhoto='' WHERE id='$booking_id'";
+
+if ($conn->query($sql) === TRUE) {
+  ?>
+     <script type="text/javascript">
+          Swal.fire({
+
+                  icon: 'success', 
+                  text: 'Payment proof succefully deleted',
+                  confirmButtonColor:'#3085d6',
+                  confirmButtonText: 'OK'
+                  
+                }).then((result) => {
+                if (result.isConfirmed) {
+
+
+                  location.href = 'user.php';
+                  
+                }
+              })
+        </script>
+    <?php
+} else {
+  ?>
+     <script type="text/javascript">
+          Swal.fire({
+
+                  icon: 'error', 
+                  text: 'Something Went Wrong',
+                  confirmButtonColor:'#3085d6',
+                  confirmButtonText: 'OK'
+                  
+                }).then((result) => {
+                if (result.isConfirmed) {
+
+
+                  location.href = 'user.php';
+                  
+                }
+              })
+        </script>
+    <?php
+}
+
 
 
 }else if(isset($_POST['homelogout'])){

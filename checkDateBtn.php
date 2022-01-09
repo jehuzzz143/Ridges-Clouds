@@ -48,7 +48,7 @@
 
 				}
 			
-			console.log(c +' '+' '+ d);
+			// console.log(c +' '+' '+ d);
 		}else if(c == "overnight"){
 			if(d==""){
 					Swal.fire({
