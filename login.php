@@ -468,6 +468,27 @@ var year = "";
 </div> -->
 <!--  END OF SIGN UP--->
 
+<!-- The Modal -->
+<div id="myModal1" class="modal1 fade-in" style="display:none;">
+
+  <!-- Modal content -->
+  <div class="modal-content1">
+    <h1>STEPS IN BOOKING: <span class="close" id="close1">&times;</span></h1>
+    <hr>
+    <p><b>STEP 1: </b> Create an Account</p>
+    <p><b>STEP 2: </b> Login the Account</p>
+    <p><b>STEP 3: </b>  Choose Date</p>
+    <p><b>STEP 4: </b> Submit the Booking Request</p>
+    <p><b>STEP 5: </b> Pay 50% of Booking Cost Through GCASH with BOOKING ID</p>
+    <p><b>STEP 6: </b> Wait for the SMS Confirmation of Booking</p>
+    <p><b>STEP 7: </b> After Receving a text, Print the Booking Receipt Under Account Profile and present it to the camp</p>
+  </div>
+
+</div>
+<?php
+  include  'customer/scrollup.php';
+
+?>
 <!--
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 

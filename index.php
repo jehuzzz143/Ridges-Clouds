@@ -526,7 +526,7 @@ document.getElementById('categ').addEventListener('change', function () {
 <!-- END OF FOOTER -->
 
 <!-- The Modal -->
-<div id="myModal" class="modal fade-in">
+<div id="myModal" class="modal fade-in" style="display:none;">
 
   <!-- Modal content -->
   <div class="modal-content">

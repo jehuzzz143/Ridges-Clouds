@@ -1,17 +1,17 @@
 <style type="text/css">
 
 .scrollup {
-    
     position: fixed;
     bottom: 50px;
     left: 120;
     padding: .5%;
     border-top-right-radius: 6%;
     border-bottom-right-radius: 6%;
-    background-color:#E09F5B;
-    color:  #F7F7F7;
+    background-color:#F7F7F7;
+    color:  black;
     font-family: Poppins, sans-serif;
     transition-duration: 0.5s;
+    z-index: 10;
 }
 .scrollup:hover{
     background-color:#F7F7F7;
@@ -20,7 +20,7 @@
 
 }
 
-.modal {
+.modal1 {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
@@ -35,19 +35,19 @@
 }
 
 /* Modal Content */
-.modal-content {
+.modal-content1 {
   background-color: #f7f7f7;
   margin: auto;
   padding: 30px;
   border: 1px solid #888;
   border-radius: 8px;
-  width:400px;
+  width:500px;
 }
-.modal-content h1{
+.modal-content1 h1{
   font-weight: bold;
   
 }
-.modal-content p,.modal-content h1,.modal-content b{
+.modal-content1 p,.modal-content1 h1,.modal-content1 b{
   margin-top: 5px;
   font-family: 'Poppins' sans-serif;
 
@@ -61,24 +61,26 @@
 
 
     $('.scrollup').click(function () {
-          modal.style.display = "block";
+          modal1.style.display = "block";
     });
 
 });
 
   // Get the modal
-var modal = document.getElementById("myModal");
+var modal1 = document.getElementById("myModal1");
 
 // Get the button that opens the modal
-var btn = document.getElementById("myBtn");
-span.onclick = function() {
-  modal.style.display = "none";
+var btn1 = document.getElementById("myBtn1");
+var span1 = document.getElementById("close1");
+
+span1.onclick = function() {
+  modal1.style.display = "none";
 }
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
   if (event.target == modal) {
-    modal.style.display = "none";
+    modal1.style.display = "none";
   }
 }
 </script>
